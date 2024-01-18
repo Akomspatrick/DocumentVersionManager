@@ -228,7 +228,7 @@ namespace DocumentVersionManager.Integration.Tests
         public async Task PostShouldCreateModelTypeObject_WithCorrectHeaderLocation_WhenSuccessful(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>();//.RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var ExpetedHeaderLocation = $"{path}/{modelTypeGetRequestDTO.GuidId}";
 

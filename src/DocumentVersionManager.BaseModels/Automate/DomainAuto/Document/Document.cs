@@ -5,8 +5,8 @@ namespace DocumentVersionManager.Domain.Entities
     {
         private Document(){}
         public string DocumentName    { get; init; }  = string.Empty; 
-        public string ModelName    { get; init; }  = string.Empty; 
         public int ModelVersionId    { get; init; } 
+        public string ModelName    { get; init; }  = string.Empty; 
         public string ContentPDFPath    { get; init; }  = string.Empty; 
         public string ChangeOrderPDFPath    { get; init; }  = string.Empty; 
         public string DocumentBasePathId    { get; init; }  = string.Empty; 
@@ -17,7 +17,7 @@ namespace DocumentVersionManager.Domain.Entities
         public  IReadOnlyCollection<DocumentDocumentType> DocumentDocumentTypes => _DocumentDocumentTypes;
         public Guid GuidId    { get; init; } 
         
-        public static Document Create(string  documentName, string  modelName, int  modelVersionId, string  contentPDFPath, string  changeOrderPDFPath, string  documentBasePathId, string  documentDescription, DateTime  timestamp, Guid  guidId)
+        public static Document Create(string  documentName, int  modelVersionId, string  modelName, string  contentPDFPath, string  changeOrderPDFPath, string  documentBasePathId, string  documentDescription, DateTime  timestamp, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -26,8 +26,8 @@ namespace DocumentVersionManager.Domain.Entities
         return  new()
         {
             DocumentName = documentName ,
-            ModelName = modelName ,
             ModelVersionId = modelVersionId ,
+            ModelName = modelName ,
             ContentPDFPath = contentPDFPath ,
             ChangeOrderPDFPath = changeOrderPDFPath ,
             DocumentBasePathId = documentBasePathId ,

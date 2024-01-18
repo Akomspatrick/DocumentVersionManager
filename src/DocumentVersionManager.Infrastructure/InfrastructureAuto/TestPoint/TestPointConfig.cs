@@ -7,9 +7,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
     {
         public void Configure(EntityTypeBuilder<TestPoint> entity)
         {
-            entity.HasKey(e => new { e.ModelName,e.ModelVersionId,e.CapacityTestPoint });
+            entity.HasKey(e => new { e.ModelVersionId,e.ModelName,e.CapacityTestPoint });
             entity.Property(e => e.ModelName).HasMaxLength(32); 
-            entity.HasOne<ModelVersion>(e => e.ModelVersion).WithMany(ad => ad.TestPoints).HasForeignKey(e => new {e.ModelName,e.ModelVersionId});
+            entity.HasOne<ModelVersion>(e => e.ModelVersion).WithMany(ad => ad.TestPoints).HasForeignKey(e => new {e.ModelVersionId,e.ModelName});
         }
     }
 }

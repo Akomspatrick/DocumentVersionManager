@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class firstd : Migration
+    public partial class test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -174,7 +174,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModelVersions", x => new { x.ModelName, x.ModelVersionId });
+                    table.PrimaryKey("PK_ModelVersions", x => new { x.ModelVersionId, x.ModelName });
                     table.ForeignKey(
                         name: "FK_ModelVersions_Models_ModelName",
                         column: x => x.ModelName,
@@ -199,25 +199,25 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     ModelName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ModelVersionId = table.Column<int>(type: "int", nullable: false),
-                    ContentPDFPath = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    ContentPDFPath = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ChangeOrderPDFPath = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    ChangeOrderPDFPath = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DocumentBasePathId = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    DocumentBasePathId = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DocumentDescription = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    DocumentDescription = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Documents", x => new { x.DocumentName, x.ModelName, x.ModelVersionId });
+                    table.PrimaryKey("PK_Documents", x => new { x.DocumentName, x.ModelVersionId, x.ModelName });
                     table.ForeignKey(
-                        name: "FK_Documents_ModelVersions_ModelName_ModelVersionId",
-                        columns: x => new { x.ModelName, x.ModelVersionId },
+                        name: "FK_Documents_ModelVersions_ModelVersionId_ModelName",
+                        columns: x => new { x.ModelVersionId, x.ModelName },
                         principalTable: "ModelVersions",
-                        principalColumns: new[] { "ModelName", "ModelVersionId" },
+                        principalColumns: new[] { "ModelVersionId", "ModelName" },
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -235,23 +235,23 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     Timestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Stage = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SubStage = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    SubStage = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SalesOrderId = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    SalesOrderId = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CableLength = table.Column<int>(type: "int", nullable: false),
                     InspectionResult = table.Column<int>(type: "int", nullable: false),
-                    DefaultTestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    DefaultTestingMode = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ModelTypeGroupName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    ModelTypeGroupName = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UsedTestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    UsedTestingMode = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ThermexPurcharseOrderNo = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    ThermexPurcharseOrderNo = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MachiningPurcharseOrderNo = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    MachiningPurcharseOrderNo = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SteelPurcharseOrderNo = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    SteelPurcharseOrderNo = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BatcNo = table.Column<int>(type: "int", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
@@ -260,10 +260,10 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Products_ModelVersions_ModelName_ModelVersionId",
-                        columns: x => new { x.ModelName, x.ModelVersionId },
+                        name: "FK_Products_ModelVersions_ModelVersionId_ModelName",
+                        columns: x => new { x.ModelVersionId, x.ModelName },
                         principalTable: "ModelVersions",
-                        principalColumns: new[] { "ModelName", "ModelVersionId" },
+                        principalColumns: new[] { "ModelVersionId", "ModelName" },
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -280,12 +280,12 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TestPoints", x => new { x.ModelName, x.ModelVersionId, x.CapacityTestPoint });
+                    table.PrimaryKey("PK_TestPoints", x => new { x.ModelVersionId, x.ModelName, x.CapacityTestPoint });
                     table.ForeignKey(
-                        name: "FK_TestPoints_ModelVersions_ModelName_ModelVersionId",
-                        columns: x => new { x.ModelName, x.ModelVersionId },
+                        name: "FK_TestPoints_ModelVersions_ModelVersionId_ModelName",
+                        columns: x => new { x.ModelVersionId, x.ModelName },
                         principalTable: "ModelVersions",
-                        principalColumns: new[] { "ModelName", "ModelVersionId" },
+                        principalColumns: new[] { "ModelVersionId", "ModelName" },
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -305,7 +305,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DocumentDocumentTypes", x => new { x.DocumentName, x.ModelName, x.ModelVersionId, x.DocumentTypeName });
+                    table.PrimaryKey("PK_DocumentDocumentTypes", x => new { x.DocumentName, x.ModelVersionId, x.ModelName, x.DocumentTypeName });
                     table.ForeignKey(
                         name: "FK_DocumentDocumentTypes_DocumentTypes_DocumentTypeName",
                         column: x => x.DocumentTypeName,
@@ -313,10 +313,10 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         principalColumn: "DocumentTypeName",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DocumentDocumentTypes_Documents_DocumentName_ModelName_Model~",
-                        columns: x => new { x.DocumentName, x.ModelName, x.ModelVersionId },
+                        name: "FK_DocumentDocumentTypes_Documents_DocumentName_ModelVersionId_~",
+                        columns: x => new { x.DocumentName, x.ModelVersionId, x.ModelName },
                         principalTable: "Documents",
-                        principalColumns: new[] { "DocumentName", "ModelName", "ModelVersionId" },
+                        principalColumns: new[] { "DocumentName", "ModelVersionId", "ModelName" },
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -327,9 +327,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 column: "DocumentTypeName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documents_ModelName_ModelVersionId",
+                name: "IX_Documents_ModelVersionId_ModelName",
                 table: "Documents",
-                columns: new[] { "ModelName", "ModelVersionId" });
+                columns: new[] { "ModelVersionId", "ModelName" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Models_ModelTypeName",
@@ -339,7 +339,13 @@ namespace DocumentVersionManager.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ModelTypes_ModelTypeGroupName",
                 table: "ModelTypes",
-                column: "ModelTypeGroupName");
+                column: "ModelTypeGroupName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModelVersions_ModelName",
+                table: "ModelVersions",
+                column: "ModelName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModelVersions_ShellMaterialName",
@@ -347,9 +353,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 column: "ShellMaterialName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_ModelName_ModelVersionId",
+                name: "IX_Products_ModelVersionId_ModelName",
                 table: "Products",
-                columns: new[] { "ModelName", "ModelVersionId" });
+                columns: new[] { "ModelVersionId", "ModelName" });
         }
 
         /// <inheritdoc />

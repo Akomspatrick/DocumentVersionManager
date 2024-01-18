@@ -5,14 +5,14 @@ namespace DocumentVersionManager.Domain.Entities
     {
         private DocumentDocumentType(){}
         public string DocumentName    { get; init; }  = string.Empty; 
-        public string ModelName    { get; init; }  = string.Empty; 
         public int ModelVersionId    { get; init; } 
+        public string ModelName    { get; init; }  = string.Empty; 
         public string DocumentTypeName    { get; init; }  = string.Empty; 
         public Document Document    { get; init; } 
         public DocumentType DocumentType    { get; init; } 
         public Guid GuidId    { get; init; } 
         
-        public static DocumentDocumentType Create(string  documentName, string  modelName, int  modelVersionId, string  documentTypeName, Guid  guidId)
+        public static DocumentDocumentType Create(string  documentName, int  modelVersionId, string  modelName, string  documentTypeName, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -21,8 +21,8 @@ namespace DocumentVersionManager.Domain.Entities
         return  new()
         {
             DocumentName = documentName ,
-            ModelName = modelName ,
             ModelVersionId = modelVersionId ,
+            ModelName = modelName ,
             DocumentTypeName = documentTypeName ,
             GuidId = guidId ,
         };

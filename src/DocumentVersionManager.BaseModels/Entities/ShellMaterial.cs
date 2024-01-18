@@ -4,7 +4,7 @@ namespace DocumentVersionManager.BaseModels.Entities
 {
     public class ShellMaterial : BaseEntity
     {
-        [BaseModelBasicAttribute(32, 0, true, false, true)]
+        [BaseModelBasicAttribute(32, 0, true, false, false, true)]
         public string ShellMaterialName { get; init; } = string.Empty;
 
         public bool Alloy { get; init; }

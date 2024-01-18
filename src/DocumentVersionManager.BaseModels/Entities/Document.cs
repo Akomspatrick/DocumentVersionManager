@@ -8,11 +8,12 @@ namespace DocumentVersionManager.BaseModels.Entities
         [BaseModelBasicAttribute(32, 0, true, false)]
         public string DocumentName { get; init; } = string.Empty;
 
+        [BaseModelBasicAttribute(true, true)]
+        public int ModelVersionId { get; init; }
 
         [BaseModelBasicAttribute(32, 0, true, true)]
         public string ModelName { get; init; } = string.Empty;
-        [BaseModelBasicAttribute(true, true)]
-        public int ModelVersionId { get; init; }
+
         //public Guid DocumentGuid { get; init; }
         public string ContentPDFPath { get; init; } = string.Empty;
         public string ChangeOrderPDFPath { get; init; } = string.Empty;

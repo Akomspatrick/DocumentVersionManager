@@ -9,10 +9,10 @@ namespace DocumentVersionManager.BaseModels.Entities
         // public ModelType ModelType { get; set; }
         // public string ModelId { get; init; } = string.Empty;
         // public Guid ModelId { get; private set; }
-        [BaseModelBasicAttribute(32, 0, true, false, true)]
+        [BaseModelBasicAttribute(32, 0, true, false, false, true)]
         public string ModelName { get; init; } = string.Empty;
 
-        [BaseModelBasicAttribute(32, 0, false, true, true)]
+        [BaseModelBasicAttribute(32, 0, false, true, false, true)]
         public string ModelTypeName { get; private set; } = string.Empty;
         public ModelType? ModelType { get; set; }
 
