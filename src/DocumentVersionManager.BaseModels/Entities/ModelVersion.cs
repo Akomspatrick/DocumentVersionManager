@@ -33,17 +33,11 @@ namespace DocumentVersionManager.BaseModels.Entities
         public int? DefaultCableLength { get; init; }
         public int? NumberOfGauges { get; init; }
         public int? Resistance { get; init; }
-
         public string CCNumber { get; init; } = string.Empty;
-
         public string AccuracyClass { get; init; } = string.Empty;
-
         public string Application { get; init; } = string.Empty;
-
         public int? TemperingHardnessLow { get; init; }
         public int? TemperingHardnessHigh { get; init; }
-
-
         public string NTEPCertificationId { get; init; } = string.Empty;
         public DateTime? NTEPCertificationTimestamp { get; init; }
 

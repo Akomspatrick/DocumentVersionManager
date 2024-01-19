@@ -15,8 +15,8 @@ namespace DocumentVersionManager.Domain.Tests
             //Expected exception message to match the equivalent of "ModelType Guid cannot be empty guidId)", but "Model Type Guid cannot be empty guidId" does not.
             //Expected exception message to match the equivalent of "ModelType Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'modelTypeName')" does not.
 
-            var modelTypeName = "ML101";
-            var nodelGrade = "SCALES/PAD";
+            var modelTypeName = Faker.Name.First();//"ML101";
+            var nodelGrade = Faker.Name.First();//"SCALES/PAD";
             var guidId = Guid.Empty;
             var PropertyName = "ModelType Guid value cannot be empty guidId";
             //Act

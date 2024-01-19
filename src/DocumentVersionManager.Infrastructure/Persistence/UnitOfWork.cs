@@ -83,10 +83,10 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
         }
 
-        public void Dispose()
-        {
-            _ctx?.Dispose();
-            GC.SuppressFinalize(this);
-        }
+        public void Dispose() { _ctx?.Dispose(); GC.SuppressFinalize(this); }
+
+
+
+
     }
 }
