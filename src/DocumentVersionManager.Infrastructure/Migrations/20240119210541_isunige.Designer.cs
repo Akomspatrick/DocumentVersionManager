@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-    [Migration("20240118194932_test")]
-    partial class test
+    [Migration("20240119210541_isunige")]
+    partial class isunige
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -168,8 +168,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.HasKey("ModelTypeName");
 
-                    b.HasIndex("ModelTypeGroupName")
-                        .IsUnique();
+                    b.HasIndex("ModelTypeGroupName");
 
                     b.ToTable("ModelTypes");
                 });
@@ -190,8 +189,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("TestingMode")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
+                        .HasMaxLength(160)
+                        .HasColumnType("varchar(160)");
 
                     b.HasKey("ModelTypeGroupName");
 

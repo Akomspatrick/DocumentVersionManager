@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class test : Migration
+    public partial class isunige : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,7 +53,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 {
                     ModelTypeGroupName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    TestingMode = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -196,9 +196,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 {
                     DocumentName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     ModelName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     ContentPDFPath = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ChangeOrderPDFPath = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
@@ -272,9 +272,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 name: "TestPoints",
                 columns: table => new
                 {
+                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     ModelName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     CapacityTestPoint = table.Column<int>(type: "int", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
@@ -296,9 +296,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 {
                     DocumentName = table.Column<string>(type: "varchar(32)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     ModelName = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ModelVersionId = table.Column<int>(type: "int", nullable: false),
                     DocumentTypeName = table.Column<string>(type: "varchar(32)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
@@ -339,8 +339,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ModelTypes_ModelTypeGroupName",
                 table: "ModelTypes",
-                column: "ModelTypeGroupName",
-                unique: true);
+                column: "ModelTypeGroupName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModelVersions_ModelName",

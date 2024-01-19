@@ -16,6 +16,7 @@ using Bogus;
 using AutoBogus;
 using System.IO;
 using static System.Net.WebRequestMethods;
+using LanguageExt.Pretty;
 
 namespace DocumentVersionManager.Integration.Tests
 {
@@ -23,12 +24,13 @@ namespace DocumentVersionManager.Integration.Tests
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl = $"http://localhost:5007/";
-        private readonly List<Guid> createdGuids = new();
+        private readonly List<String> headerLocations = [];
 
         public ModelTypesControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)
         {
             _httpClient = _appFactory.CreateClient();
             _httpClient.BaseAddress = new Uri($"{_baseUrl}{DocumentVersionManagerAPIEndPoints.APIBase}/");
+            // Layout should setup post  modeltypegroup  by inserting into it  before 
         }
 
         [Theory]
@@ -44,6 +46,8 @@ namespace DocumentVersionManager.Integration.Tests
             var response = await _httpClient.GetAsync($"{_baseUrl}{postresponse.Headers.Location?.OriginalString}");
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+            // createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+            headerLocations.Add(response.Headers.Location?.OriginalString);
         }
 
 
@@ -71,6 +75,8 @@ namespace DocumentVersionManager.Integration.Tests
 
             //Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+            //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+            headerLocations.Add(response.Headers.Location?.OriginalString);
         }
 
         [Theory]
@@ -100,6 +106,8 @@ namespace DocumentVersionManager.Integration.Tests
             var result = await response.Content.ReadFromJsonAsync<ModelTypeResponseDTO>();
             result.Should().BeAssignableTo<ModelTypeResponseDTO>();
             result.ModelTypeName.Should().Be(modelTypeGetRequestDTO.ModelTypeName);
+            //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+            headerLocations.Add(response.Headers.Location?.OriginalString);
         }
 
 
@@ -117,7 +125,6 @@ namespace DocumentVersionManager.Integration.Tests
 
 
         [Theory]
-
         [InlineData($"{DocumentVersionManagerAPIEndPoints.ModelType.Controller}/")]
         public async Task GetByIdModelTypeShouldASingleModelType(string path)
         {
@@ -206,6 +213,8 @@ namespace DocumentVersionManager.Integration.Tests
 
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.Created);
+            //createdGuids.Add(modelTypeGetRequestDTO.GuidId);
+            headerLocations.Add(response.Headers.Location?.OriginalString);
         }
 
         [Theory]
@@ -228,7 +237,11 @@ namespace DocumentVersionManager.Integration.Tests
         public async Task PostShouldCreateModelTypeObject_WithCorrectHeaderLocation_WhenSuccessful(string path)
         {
             //arrange
-            var faker = new AutoFaker<ModelTypeCreateRequestDTO>();//.RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName());
+            // var faker = new AutoFaker<ModelTypeCreateRequestDTO>();//.RuleFor(x => x.ModelTypeName, f =>
+            var faker = new AutoFaker<ModelTypeCreateRequestDTO>().
+                RuleFor(x => x.ModelTypeName, f => f.Commerce.ProductName())
+                .RuleFor(x => x.ModelTypeGroupName, f => "LOADCELLS_GROUP"); ;
+
             ModelTypeCreateRequestDTO modelTypeGetRequestDTO = faker.Generate();
             var ExpetedHeaderLocation = $"{path}/{modelTypeGetRequestDTO.GuidId}";
 
@@ -237,6 +250,9 @@ namespace DocumentVersionManager.Integration.Tests
 
             //assert
             response.Headers.Location?.OriginalString.Should().EndWith(ExpetedHeaderLocation);
+
+            headerLocations.Add(response.Headers.Location?.OriginalString);
+
         }
 
 
@@ -289,9 +305,20 @@ namespace DocumentVersionManager.Integration.Tests
         }
         public Task InitializeAsync() => Task.CompletedTask;
 
-        public Task DisposeAsync() => Task.CompletedTask;
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task DisposeAsync()
+        {
+
+            foreach (var headerLocation in headerLocations)
+            {
+                try
+                {
+                    _httpClient.DeleteAsync($"{_baseUrl}{headerLocation}");
+
+                }
+                catch (Exception) { }
+
+            }
+
+        }
     }
 }

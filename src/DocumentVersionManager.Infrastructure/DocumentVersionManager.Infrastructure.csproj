@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<Folder Include="Mappings\" />
+	  <Compile Remove="Mappings\**" />
+	  <EmbeddedResource Remove="Mappings\**" />
+	  <None Remove="Mappings\**" />
 	</ItemGroup>
 
 	<ItemGroup>

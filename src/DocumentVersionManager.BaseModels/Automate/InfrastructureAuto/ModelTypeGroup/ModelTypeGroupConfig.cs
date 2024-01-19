@@ -9,7 +9,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
         {
             entity.HasKey(e => new { e.ModelTypeGroupName });
             entity.Property(e => e.ModelTypeGroupName).HasMaxLength(32); 
-            entity.Property(e => e.TestingMode).HasMaxLength(32); 
+            entity.Property(e => e.TestingMode).HasMaxLength(160); 
             entity.Property(e => e.Description).HasMaxLength(64); 
             entity.Property(e => e.ModelTypeGroupName).IsRequired(); 
         }
