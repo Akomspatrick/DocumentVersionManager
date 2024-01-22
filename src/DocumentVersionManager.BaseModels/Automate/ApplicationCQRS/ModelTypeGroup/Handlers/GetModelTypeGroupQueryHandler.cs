@@ -1,13 +1,12 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
-using DocumentVersionManager.Application.CQRS.Model.Queries;
-using DocumentVersionManager.Application.Contracts.ResponseDTO;
+using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-namespace DocumentVersionManager.Application.CQRS.ModelTypeGroup.Handlers
+namespace DocumentVersionManager.Application.CQRS
 {
-    public  class GetModelTypeGroupQueryHandler  :  IRequestHandler<GetModelTypeGroupQuery, Either<GeneralFailure, ApplicationModelTypeGroupResponseDTO>>
+    public  class GetModelTypeGroupQueryHandler  :  IRequestHandler<GetModelTypeGroupQuery, Either<GeneralFailure, ModelTypeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetModelTypeGroupQueryHandler> _logger;
@@ -17,7 +16,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelTypeGroup.Handlers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, ApplicationModelTypeGroupResponseDTO>> Handle(GetModelTypeGroupQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, ModelTypeGroupResponseDTO>> Handle(GetModelTypeGroupQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

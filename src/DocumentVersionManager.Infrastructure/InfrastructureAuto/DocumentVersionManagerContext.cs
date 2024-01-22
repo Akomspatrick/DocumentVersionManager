@@ -24,14 +24,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DocumentVersionManagerContext).Assembly);
         }
         
-        public DbSet<Document> Documents { get; private set; }
-        public DbSet<DocumentBasePath> DocumentBasePaths { get; private set; }
-        public DbSet<DocumentDocumentType> DocumentDocumentTypes { get; private set; }
-        public DbSet<DocumentType> DocumentTypes { get; private set; }
         public DbSet<Model> Models { get; private set; }
         public DbSet<ModelType> ModelTypes { get; private set; }
         public DbSet<ModelTypeGroup> ModelTypeGroups { get; private set; }
         public DbSet<ModelVersion> ModelVersions { get; private set; }
+        public DbSet<ModelVersionDocument> ModelVersionDocuments { get; private set; }
         public DbSet<Product> Products { get; private set; }
         public DbSet<ShellMaterial> ShellMaterials { get; private set; }
         public DbSet<TestPoint> TestPoints { get; private set; }

@@ -23,8 +23,8 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
             _logger.LogInformation($"AddNewModelTypeCommandHandler- Attempt to   Add New Model {request.CreateModelDTO.ModelName}");
             var entity = Domain.Entities.Model.Create(request.CreateModelDTO.ModelName, request.CreateModelDTO.ModelTypesName, request.CreateModelDTO.GuidId);
 
-            var result=  await _unitOfWork.ModelRepository.AddAsync(entity, cancellationToken);
-            return result.Map(x=>entity.GuidId);
+            var result = await _unitOfWork.ModelRepository.AddAsync(entity, cancellationToken);
+            return result.Map(x => entity.GuidId);
         }
     }
 }

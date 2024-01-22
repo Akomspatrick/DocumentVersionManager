@@ -7,13 +7,13 @@ namespace DocumentVersionManager.Domain.Entities
         public int ModelVersionId    { get; init; } 
         public string VersionDescription    { get; init; }  = string.Empty; 
         public string ModelVersionName    { get; init; }  = string.Empty; 
-        public Model Models    { get; init; } 
+        public Model Model    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public DateTime Timestamp    { get; init; } 
         public string UserName    { get; init; }  = string.Empty; 
-        private  List <Document> _Documents { get;  set;}  = new List<Document>();
-        public  IReadOnlyCollection<Document> Documents => _Documents;
+        private  List <ModelVersionDocument> _ModelVersionDocuments { get;  set;}  = new List<ModelVersionDocument>();
+        public  IReadOnlyCollection<ModelVersionDocument> ModelVersionDocuments => _ModelVersionDocuments;
         private  List <Product> _Products { get;  set;}  = new List<Product>();
         public  IReadOnlyCollection<Product> Products => _Products;
         public int Capacity    { get; init; } 

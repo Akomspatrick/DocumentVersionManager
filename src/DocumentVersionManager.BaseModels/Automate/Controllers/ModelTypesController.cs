@@ -1,8 +1,8 @@
 using DocumentVersionManager.Api.Extentions;
-using DocumentVersionManager.Application.CQRS.ModelType.Commands;
-using DocumentVersionManager.Application.CQRS.ModelType.Queries;
+using DocumentVersionManager.Application.CQRS;
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Contracts.ResponseDTO;
+using DocumentVersionManager.Api.Extensions;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;

@@ -3,46 +3,6 @@ namespace DocumentVersionManager.Api
     public static class DocumentVersionManagerAPIEndPoints
     {
         public const string APIBase = "api";
-        public static class Document
-        {
-            public const string Controller = "Documents";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
-        public static class DocumentBasePath
-        {
-            public const string Controller = "DocumentBasePaths";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
-        public static class DocumentDocumentType
-        {
-            public const string Controller = "DocumentDocumentTypes";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
-        public static class DocumentType
-        {
-            public const string Controller = "DocumentTypes";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
         public static class Model
         {
             public const string Controller = "Models";
@@ -76,6 +36,16 @@ namespace DocumentVersionManager.Api
         public static class ModelVersion
         {
             public const string Controller = "ModelVersions";
+            public const string Create = $"{APIBase}/{Controller}";
+            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
+            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
+            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
+            public const string Get = $"{APIBase}/{Controller}";
+            public const string Update = $"{APIBase}/{Controller}";
+        }
+        public static class ModelVersionDocument
+        {
+            public const string Controller = "ModelVersionDocuments";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";

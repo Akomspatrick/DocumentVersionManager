@@ -2,23 +2,25 @@
 
 namespace DocumentVersionManager.BaseModels.Entities
 {
-    // [BaseModelsForeignKeyAttribute("Model", "ModelVersions")]
+    [BaseModelsForeignKeyAttribute("Model", "ModelVersions")]
+    [BaseModelsPrincipalKey("ShellMaterial", "ModelVersions")]
     public class ModelVersion : BaseEntity
     {
-        [BaseModelBasicAttribute(true, true)]
+        [BaseModelBasicAttribute(true)]
         public int ModelVersionId { get; init; }
 
         public string VersionDescription { get; init; } = string.Empty;
         public string ModelVersionName { get; init; } = string.Empty;
-        public Model Models { get; init; }
+        public Model Model { get; init; }
 
         [BaseModelBasicAttribute(32, 0, true, true, false)]
         public string ModelName { get; init; } = string.Empty;
         public string DefaultTestingMode { get; init; } = string.Empty; // Manual, Automatic for each product
         public DateTime Timestamp { get; init; }
         public string UserName { get; init; } = string.Empty;
-        public ICollection<Document> Documents { get; init; }
+        public ICollection<ModelVersionDocument> ModelVersionDocuments { get; init; }
         public ICollection<Product> Products { get; set; }
+        [BaseModelBasicAttribute(0, 0, false, false, false, true)]
         public int Capacity { get; init; }
         public double? NominalOutput { get; init; }
         public decimal? NominalOutputPercentage { get; init; }
@@ -28,6 +30,7 @@ namespace DocumentVersionManager.BaseModels.Entities
         public int? nMax { get; init; }
         public int? SafeLoad { get; init; }
         public int? UltimateLoad { get; init; }
+        [BaseModelBasicAttribute(32, 0, false, false, true)]
         public string ShellMaterialName { get; init; } = string.Empty;
         public bool Alloy { get; init; }
         public int? DefaultCableLength { get; init; }

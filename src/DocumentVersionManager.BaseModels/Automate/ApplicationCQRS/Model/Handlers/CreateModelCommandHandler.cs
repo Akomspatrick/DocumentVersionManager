@@ -2,10 +2,8 @@ using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
 using LanguageExt;
 using MediatR;
-using DocumentVersionManager.Application.CQRS.Model.Commands;
-using DocumentVersionManager.Application.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-namespace DocumentVersionManager.Application.CQRS.Model.Handlers
+namespace DocumentVersionManager.Application.CQRS
 {
     public  class CreateModelCommandHandler  :  IRequestHandler<CreateModelCommand, Either<GeneralFailure, Guid>>
     {
@@ -19,7 +17,8 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
 
         public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelCommand request, CancellationToken cancellationToken)
         {
+            throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;
-        }var entity =null;// Domain.Entities.Model.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
+        }//var entity =null; Domain.Entities.Model.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
     }
 }

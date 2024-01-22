@@ -1,16 +1,16 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
-using DocumentVersionManager.Application.Contracts.ResponseDTO;
+using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
-namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
+namespace DocumentVersionManager.Application.CQRS
 {
     public  class DeleteModelTypeCommandHandler  :  IRequestHandler<DeleteModelTypeCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateModelTypeCommandHandler> _logger;
+        private readonly IAppLogger<DeleteModelTypeCommandHandler> _logger;
         public DeleteModelTypeCommandHandler(IUnitOfWork unitOfWork, IAppLogger<DeleteModelTypeCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));

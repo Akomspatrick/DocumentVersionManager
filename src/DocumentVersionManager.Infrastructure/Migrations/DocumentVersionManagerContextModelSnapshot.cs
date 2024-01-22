@@ -19,115 +19,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Document", b =>
-                {
-                    b.Property<string>("DocumentName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<int>("ModelVersionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModelName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("ChangeOrderPDFPath")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
-
-                    b.Property<string>("ContentPDFPath")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
-
-                    b.Property<string>("DocumentBasePathId")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
-
-                    b.Property<string>("DocumentDescription")
-                        .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("DocumentName", "ModelVersionId", "ModelName");
-
-                    b.HasIndex("ModelVersionId", "ModelName");
-
-                    b.ToTable("Documents");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.DocumentBasePath", b =>
-                {
-                    b.Property<string>("DocumentBasePathId")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.HasKey("DocumentBasePathId");
-
-                    b.ToTable("DocumentBasePaths");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.DocumentDocumentType", b =>
-                {
-                    b.Property<string>("DocumentName")
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<int>("ModelVersionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ModelName")
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
-
-                    b.Property<string>("DocumentTypeName")
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("DocumentName", "ModelVersionId", "ModelName", "DocumentTypeName");
-
-                    b.HasIndex("DocumentTypeName");
-
-                    b.ToTable("DocumentDocumentTypes");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.DocumentType", b =>
-                {
-                    b.Property<string>("DocumentTypeName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("DocumentTypeName");
-
-                    b.ToTable("DocumentTypes");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Model", b =>
                 {
                     b.Property<string>("ModelName")
@@ -186,8 +77,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("TestingMode")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.HasKey("ModelTypeGroupName");
 
@@ -282,6 +173,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
+                    b.Property<string>("ShellMaterialName1")
+                        .HasColumnType("varchar(32)");
+
                     b.Property<int>("TemperingHardnessHigh")
                         .HasColumnType("int");
 
@@ -317,9 +211,62 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.HasIndex("ModelName");
 
-                    b.HasIndex("ShellMaterialName");
+                    b.HasIndex("ShellMaterialName1");
 
                     b.ToTable("ModelVersions");
+                });
+
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionDocument", b =>
+                {
+                    b.Property<int>("ModelVersionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModelName")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<int>("ModelVersionDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DocumentDescription")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("DocumentDrive")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("DocumentPath")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<string>("Documentname")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Stage")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.HasKey("ModelVersionId", "ModelName", "ModelVersionDocumentId");
+
+                    b.ToTable("ModelVersionDocuments");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Product", b =>
@@ -339,8 +286,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("DefaultTestingMode")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<Guid>("GuidId")
                         .HasColumnType("char(36)");
@@ -350,8 +297,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("MachiningPurcharseOrderNo")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
@@ -360,16 +307,16 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("ModelTypeGroupName")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<int>("ModelVersionId")
                         .HasColumnType("int");
 
                     b.Property<string>("SalesOrderId")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("Stage")
                         .IsRequired()
@@ -377,26 +324,26 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<string>("SteelPurcharseOrderNo")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("SubStage")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("ThermexPurcharseOrderNo")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("UsedTestingMode")
                         .IsRequired()
-                        .HasMaxLength(160)
-                        .HasColumnType("varchar(160)");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.HasKey("ProductId");
 
@@ -442,36 +389,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("TestPoints");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Document", b =>
-                {
-                    b.HasOne("DocumentVersionManager.Domain.Entities.ModelVersion", "ModelVersion")
-                        .WithMany("Documents")
-                        .HasForeignKey("ModelVersionId", "ModelName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ModelVersion");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.DocumentDocumentType", b =>
-                {
-                    b.HasOne("DocumentVersionManager.Domain.Entities.DocumentType", "DocumentType")
-                        .WithMany("DocumentDocumentTypes")
-                        .HasForeignKey("DocumentTypeName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DocumentVersionManager.Domain.Entities.Document", "Document")
-                        .WithMany("DocumentDocumentTypes")
-                        .HasForeignKey("DocumentName", "ModelVersionId", "ModelName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Document");
-
-                    b.Navigation("DocumentType");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Model", b =>
                 {
                     b.HasOne("DocumentVersionManager.Domain.Entities.ModelType", "ModelType")
@@ -496,7 +413,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersion", b =>
                 {
-                    b.HasOne("DocumentVersionManager.Domain.Entities.Model", "Models")
+                    b.HasOne("DocumentVersionManager.Domain.Entities.Model", "Model")
                         .WithMany("ModelVersions")
                         .HasForeignKey("ModelName")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -504,13 +421,22 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.HasOne("DocumentVersionManager.Domain.Entities.ShellMaterial", "ShellMaterial")
                         .WithMany("ModelVersions")
-                        .HasForeignKey("ShellMaterialName")
+                        .HasForeignKey("ShellMaterialName1");
+
+                    b.Navigation("Model");
+
+                    b.Navigation("ShellMaterial");
+                });
+
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionDocument", b =>
+                {
+                    b.HasOne("DocumentVersionManager.Domain.Entities.ModelVersion", "ModelVersion")
+                        .WithMany("ModelVersionDocuments")
+                        .HasForeignKey("ModelVersionId", "ModelName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Models");
-
-                    b.Navigation("ShellMaterial");
+                    b.Navigation("ModelVersion");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Product", b =>
@@ -535,16 +461,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Navigation("ModelVersion");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Document", b =>
-                {
-                    b.Navigation("DocumentDocumentTypes");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.DocumentType", b =>
-                {
-                    b.Navigation("DocumentDocumentTypes");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Model", b =>
                 {
                     b.Navigation("ModelVersions");
@@ -562,7 +478,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersion", b =>
                 {
-                    b.Navigation("Documents");
+                    b.Navigation("ModelVersionDocuments");
 
                     b.Navigation("Products");
 

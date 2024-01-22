@@ -4,8 +4,8 @@ using DocumentVersionManager.Application.CQRS.Model.Commands;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Application.Contracts.ResponseDTO;
-namespace DocumentVersionManager.Application.CQRS.Model.Handlers
+using DocumentVersionManager.Contracts.ResponseDTO;
+namespace DocumentVersionManager.Application.CQRS
 {
     public  class UpdateModelCommandHandler  :  IRequestHandler<UpdateModelCommand, Either<GeneralFailure, int>>
     {

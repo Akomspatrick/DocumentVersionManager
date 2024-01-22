@@ -7,57 +7,57 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
 {
 
-    public class ModelVersionConfig : IEntityTypeConfiguration<ModelVersion>
-    {
-        public void Configure(EntityTypeBuilder<ModelVersion> entity)
-        {
-            entity.HasKey(e => new { e.ModelVersionId, e.ModelName });
-            entity.Property(e => e.ModelName).HasMaxLength(FixedValues.ModelNameMaxLength);
-            entity.Property(e => e.Capacity).IsRequired();
-            entity.HasOne<ShellMaterial>(e => e.ShellMaterial).WithMany(e => e.ModelVersions).HasForeignKey(e => new { e.ShellMaterialName });
-            entity.HasOne<Model>(e => e.Models).WithMany(ad => ad.ModelVersions).HasForeignKey(e => e.ModelName).HasPrincipalKey(e => e.ModelName);
-            entity.Property(e => e.VersionDescription).HasMaxLength(32);
-            entity.Property(e => e.ModelVersionName).HasMaxLength(32);
-            entity.Property(e => e.ModelName).HasMaxLength(32);
-            entity.Property(e => e.DefaultTestingMode).HasMaxLength(32);
-            entity.Property(e => e.UserName).HasMaxLength(32);
-            entity.Property(e => e.ShellMaterialName).HasMaxLength(32);
-            entity.Property(e => e.CCNumber).HasMaxLength(32);
-            entity.Property(e => e.AccuracyClass).HasMaxLength(32);
-            entity.Property(e => e.Application).HasMaxLength(32);
-            entity.Property(e => e.NTEPCertificationId).HasMaxLength(32);
-            entity.Property(e => e.OIMLCertificationId).HasMaxLength(32);
-            //entity.HasData(ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
-            //    , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-            //      ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
-            //      ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "GETVALUESFROMTESTINGFLOWTYPES", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")));
+    //public class ModelVersionConfig : IEntityTypeConfiguration<ModelVersion>
+    //{
+    //    public void Configure(EntityTypeBuilder<ModelVersion> entity)
+    //    {
+    //        entity.HasKey(e => new { e.ModelVersionId, e.ModelName });
+    //        entity.Property(e => e.ModelName).HasMaxLength(FixedValues.ModelNameMaxLength);
+    //        entity.Property(e => e.Capacity).IsRequired();
+    //        entity.HasOne<ShellMaterial>(e => e.ShellMaterial).WithMany(e => e.ModelVersions).HasForeignKey(e => new { e.ShellMaterialName });
+    //        entity.HasOne<Model>(e => e.Models).WithMany(ad => ad.ModelVersions).HasPrincipalKey(e => e.ModelName);
+    //        entity.Property(e => e.VersionDescription).HasMaxLength(32);
+    //        entity.Property(e => e.ModelVersionName).HasMaxLength(32);
+    //        entity.Property(e => e.ModelName).HasMaxLength(32);
+    //        entity.Property(e => e.DefaultTestingMode).HasMaxLength(32);
+    //        entity.Property(e => e.UserName).HasMaxLength(32);
+    //        entity.Property(e => e.ShellMaterialName).HasMaxLength(32);
+    //        entity.Property(e => e.CCNumber).HasMaxLength(32);
+    //        entity.Property(e => e.AccuracyClass).HasMaxLength(32);
+    //        entity.Property(e => e.Application).HasMaxLength(32);
+    //        entity.Property(e => e.NTEPCertificationId).HasMaxLength(32);
+    //        entity.Property(e => e.OIMLCertificationId).HasMaxLength(32);
+    //        //entity.HasData(ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
+    //        //    , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
+    //        //      ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
+    //        //      ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "GETVALUESFROMTESTINGFLOWTYPES", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")));
 
 
-        }
-    }
+    //    }
+    //}
 
-    public class DocumentDocumentTypeConfig : IEntityTypeConfiguration<DocumentDocumentType>
-    {
-        public void Configure(EntityTypeBuilder<DocumentDocumentType> entity)
-        {
-            entity.HasKey(e => new { e.DocumentName, e.ModelVersionId, e.ModelName, e.DocumentTypeName });
-            entity.Property(e => e.ModelName).HasMaxLength(FixedValues.ModelNameMaxLength);
-            entity.HasOne<DocumentType>(e => e.DocumentType).WithMany(e => e.DocumentDocumentTypes).HasForeignKey(e => new { e.DocumentTypeName });
-            entity.HasOne<Document>(e => e.Document).WithMany(e => e.DocumentDocumentTypes).HasForeignKey(e => new { e.DocumentName, e.ModelVersionId, e.ModelName });
-            //entity.HasData(
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Cabling", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Chroming", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Sealing", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Cabling", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Chroming", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
-            //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Sealing", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5"))
+    //public class DocumentDocumentTypeConfig : IEntityTypeConfiguration<DocumentDocumentType>
+    //{
+    //    public void Configure(EntityTypeBuilder<DocumentDocumentType> entity)
+    //    {
+    //        entity.HasKey(e => new { e.DocumentName, e.ModelVersionId, e.ModelName, e.DocumentTypeName });
+    //        entity.Property(e => e.ModelName).HasMaxLength(FixedValues.ModelNameMaxLength);
+    //        entity.HasOne<DocumentType>(e => e.DocumentType).WithMany(e => e.DocumentDocumentTypes).HasForeignKey(e => new { e.DocumentTypeName });
+    //        entity.HasOne<Document>(e => e.Document).WithMany(e => e.DocumentDocumentTypes).HasForeignKey(e => new { e.DocumentName, e.ModelVersionId, e.ModelName });
+    //        //entity.HasData(
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Cabling", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Chroming", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc A", "FIRSTMODELNAME", 1, "Sealing", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Cabling", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Chroming", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
+    //        //           DocumentDocumentType.Create("FIRSTMODELNAME ver1 DOc B", "FIRSTMODELNAME", 1, "Sealing", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5"))
 
-            //    );
+    //        //    );
 
 
 
-        }
-    }
+    //    }
+    //}
     // public class ModelTypeGroupPathConfig : IEntityTypeConfiguration<ModelTypeGroup>
     // {
     //     public void Configure(EntityTypeBuilder<ModelTypeGroup> entity)
