@@ -17,7 +17,7 @@ namespace DocumentVersionManager.BaseModels.Entities
         public required DateTime Timestamp { get; init; }
         public required string Stage { get; init; } = string.Empty;
         public string SubStage { get; init; } = string.Empty;
-        //public string InvoiceId { get; init; } = string.Empty;
+        public string InvoiceId { get; init; } = string.Empty;
         public string SalesOrderId { get; init; } = string.Empty;
         public required int CableLength { get; init; } = 0;
         public required int InspectionResult { get; init; } = 0;

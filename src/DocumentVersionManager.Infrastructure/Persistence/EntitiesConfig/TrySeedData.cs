@@ -29,9 +29,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelTypeGroup>
                             {
-                                ModelTypeGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")),
-                                ModelTypeGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")),
-                                ModelTypeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b"))
+                                ModelTypeGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
+                                ModelTypeGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
+                                ModelTypeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                             };
                             ctx.ModelTypeGroups.AddRange(data);
                             ctx.SaveChanges();
@@ -44,9 +44,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelType>
                             {
-                                ModelType.Create("FIRSTMODELTYPE", "LOADCELLS_GROUP", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelType.Create("SECONDMODELTYPE", "TESTLINKS_GROUP", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")),
-                                ModelType.Create("THIRDMODELTYPE", "SCALES/PAD", Guid.Parse("3c69923e-a68e-4348-b06c-7007f527355d"))
+                                ModelType.Create("FIRSTMODELTYPE", "LOADCELLS_GROUP", Guid.NewGuid()),
+                                ModelType.Create("SECONDMODELTYPE", "TESTLINKS_GROUP", Guid.NewGuid()),
+                                ModelType.Create("THIRDMODELTYPE", "SCALES/PAD", Guid.NewGuid())
                             };
                             ctx.ModelTypes.AddRange(data);
                             ctx.SaveChanges();
@@ -57,9 +57,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<Model>
                             {
-                                Model.Create("FIRSTMODELNAME", "FIRSTMODELTYPE", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                Model.Create("SECONDMODELNAME", "FIRSTMODELTYPE", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
-                                Model.Create("THIRDMODELNAME", "SECONDMODELTYPE", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b"))
+                                Model.Create("FIRSTMODELNAME", "FIRSTMODELTYPE", Guid.NewGuid()),
+                                Model.Create("SECONDMODELNAME", "FIRSTMODELTYPE", Guid.NewGuid()),
+                                Model.Create("THIRDMODELNAME", "SECONDMODELTYPE", Guid.NewGuid())
                             };
                             ctx.Models.AddRange(data);
                             ctx.SaveChanges();
@@ -73,10 +73,10 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ShellMaterial>
                             {
-                                ShellMaterial.Create("ShellMaterial1", true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ShellMaterial.Create("ShellMaterial2", true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ShellMaterial.Create("ShellMaterial3", true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ShellMaterial.Create("ShellMaterial4", true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63"))
+                                ShellMaterial.Create("ShellMaterial1", true, Guid.NewGuid()),
+                                ShellMaterial.Create("ShellMaterial2", true, Guid.NewGuid()),
+                                ShellMaterial.Create("ShellMaterial3", true, Guid.NewGuid()),
+                                ShellMaterial.Create("ShellMaterial4", true, Guid.NewGuid())
                             };
                             ctx.ShellMaterials.AddRange(data);
                             ctx.SaveChanges();
@@ -87,9 +87,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                             var data = new List<ModelVersion>
                                {
                                 ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
-                                                               , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
-                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "GETVALUESFROMTESTINGFLOWTYPES", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b"))
+                                                               , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "GETVALUESFROMTESTINGFLOWTYPES", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid())
                         
                                 
                                 
@@ -120,11 +120,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelVersionDocument>
                             {
-                                ModelVersionDocument.Create(1, "FIRSTMODELNAME",1, "DOC DESCRPTION", "CABLING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow, "USER1",Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelVersionDocument.Create(2, "FIRSTMODELNAME",1, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelVersionDocument.Create(1, "SECONDMODELNAME",2, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                ModelVersionDocument.Create(1, "SECONDMODELNAME", 3,"DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63"))
+                                ModelVersionDocument.Create(1, "FIRSTMODELNAME",1, "DOC DESCRPTION", "CABLING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow, "USER1",Guid.NewGuid()),
+                                ModelVersionDocument.Create(2, "FIRSTMODELNAME",1, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.NewGuid()),
+                                ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.NewGuid()),
+                                ModelVersionDocument.Create(1, "SECONDMODELNAME",2, "DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid()),
+                                ModelVersionDocument.Create(1, "SECONDMODELNAME", 3,"DOC DESCRPTION", "WIRING", "c:\\","DOCPATH", "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
                             };
                             ctx.ModelVersionDocuments.AddRange(data);
                             ctx.SaveChanges();
@@ -179,11 +179,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<TestPoint>
                             {
-                                TestPoint.Create( 1, "FIRSTMODELNAME",10000, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                TestPoint.Create(1,"FIRSTMODELNAME",  2000, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                TestPoint.Create(1, "FIRSTMODELNAME", 3000, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                TestPoint.Create(1, "FIRSTMODELNAME", 4000, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63")),
-                                TestPoint.Create(1, "SECONDMODELNAME", 49, Guid.Parse("b27c2c19-522b-49d1-83bf-e80d4dde8c63"))
+                                TestPoint.Create( 1, "FIRSTMODELNAME",10000, Guid.NewGuid()),
+                                TestPoint.Create(1,"FIRSTMODELNAME",  2000, Guid.NewGuid()),
+                                TestPoint.Create(1, "FIRSTMODELNAME", 3000, Guid.NewGuid()),
+                                TestPoint.Create(1, "FIRSTMODELNAME", 4000, Guid.NewGuid()),
+                                TestPoint.Create(1, "SECONDMODELNAME", 49, Guid.NewGuid())
                             };
                             ctx.TestPoints.AddRange(data);
                             ctx.SaveChanges();
