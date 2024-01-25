@@ -5,7 +5,7 @@ using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class CreateModelTypeGroupCommandHandler  :  IRequestHandler<CreateModelTypeGroupCommand, Either<GeneralFailure, Guid>>
+    public class CreateModelTypeGroupCommandHandler : IRequestHandler<CreateModelTypeGroupCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateModelTypeGroupCommandHandler> _logger;
@@ -17,7 +17,12 @@ namespace DocumentVersionManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelTypeGroupCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException("CreateModelTypeGroupCommand Not Yet Implemented");
+
+
+            var entity = Domain.Entities.ModelTypeGroup.Create(request.CreateModelTypeGroupDTO.modelTypeGroupName, request.CreateModelTypeGroupDTO.testingMode, request.CreateModelTypeGroupDTO.description, request.CreateModelTypeGroupDTO.guidId);
+            return (await _unitOfWork.ModelTypeGroupRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
+
             //Follow the format below , initial the entity variable by calling the entity Create method;
         }//var entity =null; Domain.Entities.ModelTypeGroup.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelTypeGroupRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
     }

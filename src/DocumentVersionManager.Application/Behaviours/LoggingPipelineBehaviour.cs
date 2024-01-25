@@ -46,7 +46,7 @@ namespace DocumentVersionManager.Application.Behaviours
 
             }
 
-            _logger.LogError("Completed request {@RequestName}, {@DateTimeUtc} ", typeof(TRequest).Name, DateTime.UtcNow);
+            _logger.LogInformation("Completed request {@RequestName}, {@DateTimeUtc} ", typeof(TRequest).Name, DateTime.UtcNow);
 
 
             return result;
