@@ -24,16 +24,16 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                     // if (await ctx.Database.EnsureCreatedAsync())
                     {
 
-                        var testData = ctx.ModelTypeGroups.Any();
+                        var testData = ctx.ModelVersionGroups.Any();
                         if (!testData)
                         {
-                            var data = new List<ModelTypeGroup>
+                            var data = new List<ModelVersionGroup>
                             {
-                                ModelTypeGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
-                                ModelTypeGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
-                                ModelTypeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                                ModelVersionGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
+                                ModelVersionGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
+                                ModelVersionGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                             };
-                            ctx.ModelTypeGroups.AddRange(data);
+                            ctx.ModelVersionGroups.AddRange(data);
                             ctx.SaveChanges();
 
 
@@ -44,9 +44,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelType>
                             {
-                                ModelType.Create("FIRSTMODELTYPE", "LOADCELLS_GROUP", Guid.NewGuid()),
-                                ModelType.Create("SECONDMODELTYPE", "TESTLINKS_GROUP", Guid.NewGuid()),
-                                ModelType.Create("THIRDMODELTYPE", "SCALES/PAD", Guid.NewGuid())
+                                ModelType.Create("FIRSTMODELTYPE",  Guid.NewGuid()),
+                                ModelType.Create("SECONDMODELTYPE",  Guid.NewGuid()),
+                                ModelType.Create("THIRDMODELTYPE",Guid.NewGuid())
                             };
                             ctx.ModelTypes.AddRange(data);
                             ctx.SaveChanges();
@@ -86,20 +86,18 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelVersion>
                                {
-                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
+                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME","LOADCELLS_GROUP", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
                                                                , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "GETVALUESFROMTESTINGFLOWTYPES", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid())
-                        
-                                
-                                
-                                
-                                
-                                
-                              
-                                
-                                
-                                
+                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "TESTLINKS_GROUP", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "SCALES/PAD", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(2, "INITIAL DESIGN TO INPROVE VERSION1", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "SCALES/PAD", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+
+
+
+
+
+                               // ModelVersionGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                         
                                 
                                 //   public static ModelVersion Create(int  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, int  capacity, Double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, int  minimumDeadLoad, Double  vMin, int  nMax, int  safeLoad, int  ultimateLoad, string  shellMaterialName, Boolean  alloy, int  defaultCableLength, int  numberOfGauges, int  resistance, string  cCNumber, string  accuracyClass, string  application, int  temperingHardnessLow, int  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, Boolean  testPointDirection, Guid  guidId)
 

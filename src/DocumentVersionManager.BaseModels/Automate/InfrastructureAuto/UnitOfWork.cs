@@ -18,14 +18,14 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
         public ModelTypeRepository _modelTypeRepository ;
         public IModelTypeRepository ModelTypeRepository => _modelTypeRepository  ??= new ModelTypeRepository(_ctx);
 
-        public ModelTypeGroupRepository _modelTypeGroupRepository ;
-        public IModelTypeGroupRepository ModelTypeGroupRepository => _modelTypeGroupRepository  ??= new ModelTypeGroupRepository(_ctx);
-
         public ModelVersionRepository _modelVersionRepository ;
         public IModelVersionRepository ModelVersionRepository => _modelVersionRepository  ??= new ModelVersionRepository(_ctx);
 
         public ModelVersionDocumentRepository _modelVersionDocumentRepository ;
         public IModelVersionDocumentRepository ModelVersionDocumentRepository => _modelVersionDocumentRepository  ??= new ModelVersionDocumentRepository(_ctx);
+
+        public ModelVersionGroupRepository _modelVersionGroupRepository ;
+        public IModelVersionGroupRepository ModelVersionGroupRepository => _modelVersionGroupRepository  ??= new ModelVersionGroupRepository(_ctx);
 
         public ProductRepository _productRepository ;
         public IProductRepository ProductRepository => _productRepository  ??= new ProductRepository(_ctx);

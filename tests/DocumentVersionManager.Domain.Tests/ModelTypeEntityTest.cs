@@ -16,11 +16,11 @@ namespace DocumentVersionManager.Domain.Tests
             //Expected exception message to match the equivalent of "ModelType Guid Value cannot be empty guidId", but "Value cannot be null. (Parameter 'modelTypeName')" does not.
 
             var modelTypeName = Faker.Name.First();//"ML101";
-            var nodelGrade = Faker.Name.First();//"SCALES/PAD";
+            //var nodelGrade = Faker.Name.First();//"SCALES/PAD";
             var guidId = Guid.Empty;
             var PropertyName = "ModelType Guid value cannot be empty guidId";
             //Act
-            Action act = () => ModelType.Create(modelTypeName, nodelGrade, guidId);
+            Action act = () => ModelType.Create(modelTypeName, guidId);
 
             //Assert
             act.Should().Throw<ArgumentException>().WithMessage($"*{PropertyName}*");
@@ -35,7 +35,7 @@ namespace DocumentVersionManager.Domain.Tests
             var modelTypeName = "";
             var guidId = Guid.NewGuid();
             //Act
-            Action act = () => ModelType.Create(null, null, guidId);
+            Action act = () => ModelType.Create(null, guidId);
             //Assert
             act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'modelTypeName')");
         }

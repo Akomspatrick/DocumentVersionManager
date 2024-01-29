@@ -7,23 +7,23 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class GetAllModelTypeGroupQueryHandler : IRequestHandler<GetAllModelTypeGroupQuery, Either<GeneralFailure, IEnumerable<ModelTypeGroupResponseDTO>>>
+    public class GetAllModelVersionGroupQueryHandler : IRequestHandler<GetAllModelVersionGroupQuery, Either<GeneralFailure, IEnumerable<ModelVersionGroupResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetAllModelTypeGroupQueryHandler> _logger;
-        public GetAllModelTypeGroupQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetAllModelTypeGroupQueryHandler> logger)
+        private readonly IAppLogger<GetAllModelVersionGroupQueryHandler> _logger;
+        public GetAllModelVersionGroupQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetAllModelVersionGroupQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, IEnumerable<ModelTypeGroupResponseDTO>>> Handle(GetAllModelTypeGroupQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, IEnumerable<ModelVersionGroupResponseDTO>>> Handle(GetAllModelVersionGroupQuery request, CancellationToken cancellationToken)
         {
-            return (await _unitOfWork.ModelTypeGroupRepository
-                    .GetAllAsync(s => true, new List<string>() { "ModelTypes" }, null, cancellationToken))
-                    .Map(task => task.Select(result => new ModelTypeGroupResponseDTO(result.ModelTypeGroupName, result.TestingMode, result.Description, result.GuidId)));// ;/);
+            return (await _unitOfWork.ModelVersionGroupRepository
+                    .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
+                    .Map(task => task.Select(result => new ModelVersionGroupResponseDTO(result.ModelVersionGroupName, result.DefaultTestingMode, result.Description, result.GuidId)));// ;/);
         }
-        //string  modelTypeGroupName, string  testingMode, string  description, Guid  guidId
+        //string  ModelVersionGroupName, string  testingMode, string  description, Guid  guidId
 
         //.GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
         //.Map(task => task.Select(result => new ModelResponseDTO(result.GuidId, result.ModelName, result.ModelTypeName, null)));

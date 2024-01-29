@@ -6,21 +6,21 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class GetModelTypeGroupQueryHandler : IRequestHandler<GetModelTypeGroupQuery, Either<GeneralFailure, ModelTypeGroupResponseDTO>>
+    public class GetModelVersionGroupQueryHandler : IRequestHandler<GetModelVersionGroupQuery, Either<GeneralFailure, ModelVersionGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetModelTypeGroupQueryHandler> _logger;
-        public GetModelTypeGroupQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetModelTypeGroupQueryHandler> logger)
+        private readonly IAppLogger<GetModelVersionGroupQueryHandler> _logger;
+        public GetModelVersionGroupQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetModelVersionGroupQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, ModelTypeGroupResponseDTO>> Handle(GetModelTypeGroupQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, ModelVersionGroupResponseDTO>> Handle(GetModelVersionGroupQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
-            //   return (await _unitOfWork.ModelTypeGroupRepository.GetMatch(s => (s.ModelTypeGroupName == request.RequestModelTypeGroupDTO.ModelTypeGroupName), null, cancellationToken)).
-            //     Map((result) => new ModelTypeGroupResponseDTO(result.GuidId, result.ModelTypeGroupName, null));
+            //   return (await _unitOfWork.ModelVersionGroupRepository.GetMatch(s => (s.ModelVersionGroupName == request.RequestModelVersionGroupDTO.ModelVersionGroupName), null, cancellationToken)).
+            //     Map((result) => new ModelVersionGroupResponseDTO(result.GuidId, result.ModelVersionGroupName, null));
 
 
             //    .GetMatch(s => (s.ModelName == request.RequestModelDTO.ModelName), null, cancellationToken))

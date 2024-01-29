@@ -16,7 +16,7 @@ namespace DocumentVersionManager.Domain.Entities
         public int CableLength    { get; init; } 
         public int InspectionResult    { get; init; } 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
-        public string ModelTypeGroupName    { get; init; }  = string.Empty; 
+        public string ModelVersionGroupName    { get; init; }  = string.Empty; 
         public string UsedTestingMode    { get; init; }  = string.Empty; 
         public string ThermexPurcharseOrderNo    { get; init; }  = string.Empty; 
         public string MachiningPurcharseOrderNo    { get; init; }  = string.Empty; 
@@ -25,7 +25,7 @@ namespace DocumentVersionManager.Domain.Entities
         public ModelVersion ModelVersion    { get; init; } 
         public Guid GuidId    { get; init; } 
         
-        public static Product Create(int  productId, int  modelVersionId, string  modelName, int  capacity, DateTime  timestamp, string  stage, string  subStage, string  invoiceId, string  salesOrderId, int  cableLength, int  inspectionResult, string  defaultTestingMode, string  modelTypeGroupName, string  usedTestingMode, string  thermexPurcharseOrderNo, string  machiningPurcharseOrderNo, string  steelPurcharseOrderNo, int  batcNo, Guid  guidId)
+        public static Product Create(int  productId, int  modelVersionId, string  modelName, int  capacity, DateTime  timestamp, string  stage, string  subStage, string  invoiceId, string  salesOrderId, int  cableLength, int  inspectionResult, string  defaultTestingMode, string  modelVersionGroupName, string  usedTestingMode, string  thermexPurcharseOrderNo, string  machiningPurcharseOrderNo, string  steelPurcharseOrderNo, int  batcNo, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -45,7 +45,7 @@ namespace DocumentVersionManager.Domain.Entities
             CableLength = cableLength ,
             InspectionResult = inspectionResult ,
             DefaultTestingMode = defaultTestingMode ,
-            ModelTypeGroupName = modelTypeGroupName ,
+            ModelVersionGroupName = modelVersionGroupName ,
             UsedTestingMode = usedTestingMode ,
             ThermexPurcharseOrderNo = thermexPurcharseOrderNo ,
             MachiningPurcharseOrderNo = machiningPurcharseOrderNo ,

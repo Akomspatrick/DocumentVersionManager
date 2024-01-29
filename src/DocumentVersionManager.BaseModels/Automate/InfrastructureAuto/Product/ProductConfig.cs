@@ -13,7 +13,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.Property(e => e.InvoiceId).HasMaxLength(32); 
             entity.Property(e => e.SalesOrderId).HasMaxLength(32); 
             entity.Property(e => e.DefaultTestingMode).HasMaxLength(32); 
-            entity.Property(e => e.ModelTypeGroupName).HasMaxLength(32); 
+            entity.Property(e => e.ModelVersionGroupName).HasMaxLength(32); 
             entity.Property(e => e.UsedTestingMode).HasMaxLength(32); 
             entity.Property(e => e.ThermexPurcharseOrderNo).HasMaxLength(32); 
             entity.Property(e => e.MachiningPurcharseOrderNo).HasMaxLength(32); 

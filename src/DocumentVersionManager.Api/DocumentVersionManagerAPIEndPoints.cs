@@ -23,9 +23,9 @@ namespace DocumentVersionManager.Api
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class ModelTypeGroup
+        public static class ModelVersionGroup
         {
-            public const string Controller = "ModelTypeGroups";
+            public const string Controller = "ModelVersionGroups";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";

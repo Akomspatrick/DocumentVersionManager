@@ -9,9 +9,6 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
         {
             entity.HasKey(e => new { e.ModelTypeName });
             entity.Property(e => e.ModelTypeName).HasMaxLength(32); 
-            entity.Property(e => e.ModelTypeGroupName).HasMaxLength(32); 
-            entity.Property(e => e.ModelTypeGroupName).IsRequired(); 
-            entity.HasOne<ModelTypeGroup>(e => e.ModelTypeGroup).WithMany(ad => ad.ModelTypes).HasForeignKey(e => new {e.ModelTypeGroupName});
         }
     }
 }

@@ -5,25 +5,25 @@ using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class CreateModelTypeGroupCommandHandler : IRequestHandler<CreateModelTypeGroupCommand, Either<GeneralFailure, Guid>>
+    public class CreateModelVersionGroupCommandHandler : IRequestHandler<CreateModelVersionGroupCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateModelTypeGroupCommandHandler> _logger;
-        public CreateModelTypeGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateModelTypeGroupCommandHandler> logger)
+        private readonly IAppLogger<CreateModelVersionGroupCommandHandler> _logger;
+        public CreateModelVersionGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateModelVersionGroupCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelTypeGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelVersionGroupCommand request, CancellationToken cancellationToken)
         {
-            //throw new NotImplementedException("CreateModelTypeGroupCommand Not Yet Implemented");
+            //throw new NotImplementedException("CreateModelVersionGroupCommand Not Yet Implemented");
 
 
-            var entity = Domain.Entities.ModelTypeGroup.Create(request.CreateModelTypeGroupDTO.modelTypeGroupName, request.CreateModelTypeGroupDTO.testingMode, request.CreateModelTypeGroupDTO.description, request.CreateModelTypeGroupDTO.guidId);
-            return (await _unitOfWork.ModelTypeGroupRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
+            var entity = Domain.Entities.ModelVersionGroup.Create(request.CreateModelVersionGroupDTO.ModelVersionGroupName, request.CreateModelVersionGroupDTO.testingMode, request.CreateModelVersionGroupDTO.description, request.CreateModelVersionGroupDTO.guidId);
+            return (await _unitOfWork.ModelVersionGroupRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
 
             //Follow the format below , initial the entity variable by calling the entity Create method;
-        }//var entity =null; Domain.Entities.ModelTypeGroup.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelTypeGroupRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
+        }//var entity =null; Domain.Entities.ModelVersionGroup.Create(request.modelTypeCreateDTO.ModelTypeName, request.modelTypeCreateDTO.Value.GuidId);return ( await _unitOfWork.ModelVersionGroupRepository.AddAsync(entity, cancellationToken)). Map((x) =>  entity.GuidId);
     }
 }

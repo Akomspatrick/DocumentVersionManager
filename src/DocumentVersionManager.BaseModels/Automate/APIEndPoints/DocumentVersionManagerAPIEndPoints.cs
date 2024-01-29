@@ -23,16 +23,6 @@ namespace DocumentVersionManager.Api
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class ModelTypeGroup
-        {
-            public const string Controller = "ModelTypeGroups";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
         public static class ModelVersion
         {
             public const string Controller = "ModelVersions";
@@ -46,6 +36,16 @@ namespace DocumentVersionManager.Api
         public static class ModelVersionDocument
         {
             public const string Controller = "ModelVersionDocuments";
+            public const string Create = $"{APIBase}/{Controller}";
+            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
+            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
+            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
+            public const string Get = $"{APIBase}/{Controller}";
+            public const string Update = $"{APIBase}/{Controller}";
+        }
+        public static class ModelVersionGroup
+        {
+            public const string Controller = "ModelVersionGroups";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";

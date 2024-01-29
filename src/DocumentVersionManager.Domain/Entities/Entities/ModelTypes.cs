@@ -45,14 +45,14 @@ namespace DocumentVersionManager.Domain.Entities
         //    }
 
         //}
-        //        public static ModelType Create(string modelTypeName, string modelTypeGroupName, Guid guidId)
+        //        public static ModelType Create(string modelTypeName, string ModelVersionGroupName, Guid guidId)
         //=> new()
         //{
         //    ModelTypeName = modelTypeName,
-        //    ModelTypeGroupName = modelTypeGroupName,
+        //    ModelVersionGroupName = ModelVersionGroupName,
         //    GuidId = guidId,
         //};
-        //public static ModelType Create(string modelTypeName, string modelTypeGroupName, Guid guidId)
+        //public static ModelType Create(string modelTypeName, string ModelVersionGroupName, Guid guidId)
         //{
         //    if (string.IsNullOrWhiteSpace(modelTypeName))
         //    {
@@ -72,7 +72,7 @@ namespace DocumentVersionManager.Domain.Entities
         //        var x = new ArgumentException($"ModelType Guid Value cannot be empty {nameof(guidId)}");
         //        throw x;
         //    }
-        //    return new ModelType() { GuidId = guidId, ModelTypeName = modelTypeName, ModelTypeGroupName = modelTypeGroupName };
+        //    return new ModelType() { GuidId = guidId, ModelTypeName = modelTypeName, ModelVersionGroupName = ModelVersionGroupName };
         //}
 
 
