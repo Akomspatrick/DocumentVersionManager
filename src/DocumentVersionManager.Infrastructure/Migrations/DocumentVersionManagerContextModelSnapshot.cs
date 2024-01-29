@@ -295,6 +295,11 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<int>("InspectionResult")
                         .HasColumnType("int");
 
+                    b.Property<string>("InvoiceId")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
                     b.Property<string>("MachiningPurcharseOrderNo")
                         .IsRequired()
                         .HasMaxLength(32)

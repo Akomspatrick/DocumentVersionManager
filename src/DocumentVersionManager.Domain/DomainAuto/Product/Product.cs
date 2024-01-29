@@ -11,6 +11,7 @@ namespace DocumentVersionManager.Domain.Entities
         public DateTime Timestamp    { get; init; } 
         public string Stage    { get; init; }  = string.Empty; 
         public string SubStage    { get; init; }  = string.Empty; 
+        public string InvoiceId    { get; init; }  = string.Empty; 
         public string SalesOrderId    { get; init; }  = string.Empty; 
         public int CableLength    { get; init; } 
         public int InspectionResult    { get; init; } 
@@ -24,7 +25,7 @@ namespace DocumentVersionManager.Domain.Entities
         public ModelVersion ModelVersion    { get; init; } 
         public Guid GuidId    { get; init; } 
         
-        public static Product Create(int  productId, int  modelVersionId, string  modelName, int  capacity, DateTime  timestamp, string  stage, string  subStage, string  salesOrderId, int  cableLength, int  inspectionResult, string  defaultTestingMode, string  modelTypeGroupName, string  usedTestingMode, string  thermexPurcharseOrderNo, string  machiningPurcharseOrderNo, string  steelPurcharseOrderNo, int  batcNo, Guid  guidId)
+        public static Product Create(int  productId, int  modelVersionId, string  modelName, int  capacity, DateTime  timestamp, string  stage, string  subStage, string  invoiceId, string  salesOrderId, int  cableLength, int  inspectionResult, string  defaultTestingMode, string  modelTypeGroupName, string  usedTestingMode, string  thermexPurcharseOrderNo, string  machiningPurcharseOrderNo, string  steelPurcharseOrderNo, int  batcNo, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -39,6 +40,7 @@ namespace DocumentVersionManager.Domain.Entities
             Timestamp = timestamp ,
             Stage = stage ,
             SubStage = subStage ,
+            InvoiceId = invoiceId ,
             SalesOrderId = salesOrderId ,
             CableLength = cableLength ,
             InspectionResult = inspectionResult ,

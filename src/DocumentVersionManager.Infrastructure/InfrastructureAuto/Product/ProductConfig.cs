@@ -10,6 +10,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.HasKey(e => new { e.ProductId });
             entity.Property(e => e.ModelName).HasMaxLength(32); 
             entity.Property(e => e.SubStage).HasMaxLength(32); 
+            entity.Property(e => e.InvoiceId).HasMaxLength(32); 
             entity.Property(e => e.SalesOrderId).HasMaxLength(32); 
             entity.Property(e => e.DefaultTestingMode).HasMaxLength(32); 
             entity.Property(e => e.ModelTypeGroupName).HasMaxLength(32); 

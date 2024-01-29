@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-    [Migration("20240122201734_ddds")]
-    partial class ddds
+    [Migration("20240129143703_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -297,6 +297,11 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<int>("InspectionResult")
                         .HasColumnType("int");
+
+                    b.Property<string>("InvoiceId")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("MachiningPurcharseOrderNo")
                         .IsRequired()
