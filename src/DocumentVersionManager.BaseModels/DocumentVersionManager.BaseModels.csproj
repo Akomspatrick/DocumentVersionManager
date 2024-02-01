@@ -13,6 +13,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Entities\Product_revoved.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="Entities\Product_revoved.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\DocumentVersionManager.DomainBase\DocumentVersionManager.DomainBase.csproj" />
 	</ItemGroup>
 
