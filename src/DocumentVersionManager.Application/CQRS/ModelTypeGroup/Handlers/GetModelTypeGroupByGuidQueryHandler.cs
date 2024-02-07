@@ -7,17 +7,17 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class GetModelVersionGroupByGuidQueryHandler  :  IRequestHandler<GetModelVersionGroupByGuidQuery, Either<GeneralFailure, ModelVersionGroupResponseDTO>>
+    public  class GetTestingModeGroupByGuidQueryHandler  :  IRequestHandler<GetTestingModeGroupByGuidQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetModelVersionGroupByGuidQueryHandler> _logger;
-        public GetModelVersionGroupByGuidQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetModelVersionGroupByGuidQueryHandler> logger)
+        private readonly IAppLogger<GetTestingModeGroupByGuidQueryHandler> _logger;
+        public GetTestingModeGroupByGuidQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetTestingModeGroupByGuidQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, ModelVersionGroupResponseDTO>> Handle(GetModelVersionGroupByGuidQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupByGuidQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

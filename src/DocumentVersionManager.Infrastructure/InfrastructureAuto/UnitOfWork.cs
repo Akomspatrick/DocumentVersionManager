@@ -24,14 +24,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
         public ModelVersionDocumentRepository _modelVersionDocumentRepository ;
         public IModelVersionDocumentRepository ModelVersionDocumentRepository => _modelVersionDocumentRepository  ??= new ModelVersionDocumentRepository(_ctx);
 
-        public ModelVersionGroupRepository _modelVersionGroupRepository ;
-        public IModelVersionGroupRepository ModelVersionGroupRepository => _modelVersionGroupRepository  ??= new ModelVersionGroupRepository(_ctx);
-
-        public ProductRepository _productRepository ;
-        public IProductRepository ProductRepository => _productRepository  ??= new ProductRepository(_ctx);
-
         public ShellMaterialRepository _shellMaterialRepository ;
         public IShellMaterialRepository ShellMaterialRepository => _shellMaterialRepository  ??= new ShellMaterialRepository(_ctx);
+
+        public TestingModeGroupRepository _testingModeGroupRepository ;
+        public ITestingModeGroupRepository TestingModeGroupRepository => _testingModeGroupRepository  ??= new TestingModeGroupRepository(_ctx);
 
         public TestPointRepository _testPointRepository ;
         public ITestPointRepository TestPointRepository => _testPointRepository  ??= new TestPointRepository(_ctx);

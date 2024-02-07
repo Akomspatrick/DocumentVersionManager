@@ -3,7 +3,7 @@
 namespace DocumentVersionManager.BaseModels.Entities
 {
     [BaseModelsForeignKeyAttribute("Model", "ModelVersions")]
-    [BaseModelsHardForeignKeyAttribute("ModelVersionGroup", "ModelVersions", ["ModelVersionGroupName"])]
+    [BaseModelsHardForeignKeyAttribute("TestingModeGroup", "ModelVersions", ["TestingModeGroupName"])]
     [BaseModelsHardForeignKeyAttribute("ShellMaterial", "ModelVersions", ["ShellMaterialName"])]
     public class ModelVersion : BaseEntity
     {
@@ -16,12 +16,12 @@ namespace DocumentVersionManager.BaseModels.Entities
 
         [BaseModelBasicAttribute(32, 0, true, true, false)]
         public string ModelName { get; init; } = string.Empty;
-        public string ModelVersionGroupName { get; private set; } = string.Empty;
+        public string TestingModeGroupName { get; private set; } = string.Empty;
         public string DefaultTestingMode { get; init; } = string.Empty; // Manual, Automatic for each product
         public DateTime Timestamp { get; init; }
         public string UserName { get; init; } = string.Empty;
         public ICollection<ModelVersionDocument> ModelVersionDocuments { get; init; }
-        public ICollection<Product> Products { get; set; }
+
         [BaseModelBasicAttribute(0, 0, false, false, false, true)]
         public int Capacity { get; init; }
         public double? NominalOutput { get; init; }
@@ -49,11 +49,8 @@ namespace DocumentVersionManager.BaseModels.Entities
         public string OIMLCertificationId { get; init; } = string.Empty;
         public DateTime? OIMLCertificationTimestamp { get; init; }
         public bool TestPointDirection { get; init; } = true;// true = increasing, false = decreasing
-
-
-
         public required ShellMaterial ShellMaterial { get; init; }
-        public required ModelVersionGroup ModelVersionGroup { get; init; }
+        public required TestingModeGroup TestingModeGroup { get; init; }
         public ICollection<TestPoint> TestPoints { get; set; } = new List<TestPoint>();
 
 

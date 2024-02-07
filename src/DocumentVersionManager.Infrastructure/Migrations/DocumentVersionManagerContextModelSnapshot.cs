@@ -98,11 +98,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<int>("MinimumDeadLoad")
                         .HasColumnType("int");
 
-                    b.Property<string>("ModelVersionGroupName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
                     b.Property<string>("ModelVersionName")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -156,6 +151,11 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<bool>("TestPointDirection")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("TestingModeGroupName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
 
@@ -182,9 +182,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.HasIndex("ModelName");
 
-                    b.HasIndex("ModelVersionGroupName");
-
                     b.HasIndex("ShellMaterialName");
+
+                    b.HasIndex("TestingModeGroupName");
 
                     b.ToTable("ModelVersions");
                 });
@@ -242,118 +242,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("ModelVersionDocuments");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionGroup", b =>
-                {
-                    b.Property<string>("ModelVersionGroupName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("DefaultTestingMode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("ModelVersionGroupName");
-
-                    b.ToTable("ModelVersionGroups");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("BatcNo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CableLength")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DefaultTestingMode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<int>("InspectionResult")
-                        .HasColumnType("int");
-
-                    b.Property<string>("InvoiceId")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("MachiningPurcharseOrderNo")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("ModelName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("ModelVersionGroupName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<int>("ModelVersionId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SalesOrderId")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("Stage")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("SteelPurcharseOrderNo")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("SubStage")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("ThermexPurcharseOrderNo")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UsedTestingMode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("ModelVersionId", "ModelName");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
                 {
                     b.Property<string>("ShellMaterialName")
@@ -391,6 +279,30 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("TestPoints");
                 });
 
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.TestingModeGroup", b =>
+                {
+                    b.Property<string>("TestingModeGroupName")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("DefaultTestingMode")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("TestingModeGroupName");
+
+                    b.ToTable("TestingModeGroups");
+                });
+
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Model", b =>
                 {
                     b.HasOne("DocumentVersionManager.Domain.Entities.ModelType", "ModelType")
@@ -410,40 +322,29 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DocumentVersionManager.Domain.Entities.ModelVersionGroup", "ModelVersionGroup")
-                        .WithMany("ModelVersions")
-                        .HasForeignKey("ModelVersionGroupName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DocumentVersionManager.Domain.Entities.ShellMaterial", "ShellMaterial")
                         .WithMany("ModelVersions")
                         .HasForeignKey("ShellMaterialName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DocumentVersionManager.Domain.Entities.TestingModeGroup", "TestingModeGroup")
+                        .WithMany("ModelVersions")
+                        .HasForeignKey("TestingModeGroupName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Model");
 
-                    b.Navigation("ModelVersionGroup");
-
                     b.Navigation("ShellMaterial");
+
+                    b.Navigation("TestingModeGroup");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionDocument", b =>
                 {
                     b.HasOne("DocumentVersionManager.Domain.Entities.ModelVersion", "ModelVersion")
                         .WithMany("ModelVersionDocuments")
-                        .HasForeignKey("ModelVersionId", "ModelName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ModelVersion");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("DocumentVersionManager.Domain.Entities.ModelVersion", "ModelVersion")
-                        .WithMany("Products")
                         .HasForeignKey("ModelVersionId", "ModelName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -476,17 +377,15 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 {
                     b.Navigation("ModelVersionDocuments");
 
-                    b.Navigation("Products");
-
                     b.Navigation("TestPoints");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionGroup", b =>
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
                 {
                     b.Navigation("ModelVersions");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.TestingModeGroup", b =>
                 {
                     b.Navigation("ModelVersions");
                 });

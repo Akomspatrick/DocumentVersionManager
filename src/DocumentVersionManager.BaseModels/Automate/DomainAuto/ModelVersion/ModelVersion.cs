@@ -15,8 +15,6 @@ namespace DocumentVersionManager.Domain.Entities
         public string UserName    { get; init; }  = string.Empty; 
         private  List <ModelVersionDocument> _ModelVersionDocuments { get;  set;}  = new List<ModelVersionDocument>();
         public  IReadOnlyCollection<ModelVersionDocument> ModelVersionDocuments => _ModelVersionDocuments;
-        private  List <Product> _Products { get;  set;}  = new List<Product>();
-        public  IReadOnlyCollection<Product> Products => _Products;
         public int Capacity    { get; init; } 
         public Double NominalOutput    { get; init; } 
         public decimal NominalOutputPercentage    { get; init; } 
@@ -42,7 +40,7 @@ namespace DocumentVersionManager.Domain.Entities
         public DateTime OIMLCertificationTimestamp    { get; init; } 
         public Boolean TestPointDirection    { get; init; } 
         public ShellMaterial ShellMaterial    { get; init; } 
-        public ModelVersionGroup ModelVersionGroup    { get; init; } 
+        public TestingModeGroup TestingModeGroup    { get; init; } 
         private  List <TestPoint> _TestPoints { get;  set;}  = new List<TestPoint>();
         public  IReadOnlyCollection<TestPoint> TestPoints => _TestPoints;
         public Guid GuidId    { get; init; } 

@@ -4,5 +4,5 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  record CreateModelVersionGroupCommand(ModelVersionGroupCreateRequestDTO  CreateModelVersionGroupDTO) :  IRequest<Either<GeneralFailure, Guid>>;
+    public  record CreateTestingModeGroupCommand(TestingModeGroupCreateRequestDTO  CreateTestingModeGroupDTO) :  IRequest<Either<GeneralFailure, Guid>>;
 }

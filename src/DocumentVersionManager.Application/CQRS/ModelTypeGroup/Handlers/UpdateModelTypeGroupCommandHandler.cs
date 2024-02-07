@@ -7,17 +7,17 @@ using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Contracts.ResponseDTO;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class UpdateModelVersionGroupCommandHandler  :  IRequestHandler<UpdateModelVersionGroupCommand, Either<GeneralFailure, int>>
+    public  class UpdateTestingModeGroupCommandHandler  :  IRequestHandler<UpdateTestingModeGroupCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<UpdateModelVersionGroupCommandHandler> _logger;
-        public UpdateModelVersionGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<UpdateModelVersionGroupCommandHandler> logger)
+        private readonly IAppLogger<UpdateTestingModeGroupCommandHandler> _logger;
+        public UpdateTestingModeGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<UpdateTestingModeGroupCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(UpdateModelVersionGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(UpdateTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

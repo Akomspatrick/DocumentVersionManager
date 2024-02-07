@@ -4,8 +4,8 @@ using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS{
-    public  record GetModelVersionGroupQuery(ModelVersionGroupGetRequestDTO  RequestModelVersionGroupDTO) :  IRequest<Either<GeneralFailure, ModelVersionGroupResponseDTO>>;
-    public  record GetModelVersionGroupByGuidQuery(ModelVersionGroupGetRequestByGuidDTO  RequestModelVersionGroupDTO) :  IRequest<Either<GeneralFailure, ModelVersionGroupResponseDTO>>;
-    public  record GetModelVersionGroupByIdQuery(ModelVersionGroupGetRequestByIdDTO  RequestModelVersionGroupDTO) :  IRequest<Either<GeneralFailure, ModelVersionGroupResponseDTO>>;
-    public  record GetAllModelVersionGroupQuery :  IRequest<Either<GeneralFailure, IEnumerable<ModelVersionGroupResponseDTO>>>;
+    public  record GetTestingModeGroupQuery(TestingModeGroupGetRequestDTO  RequestTestingModeGroupDTO) :  IRequest<Either<GeneralFailure, TestingModeGroupResponseDTO>>;
+    public  record GetTestingModeGroupByGuidQuery(TestingModeGroupGetRequestByGuidDTO  RequestTestingModeGroupDTO) :  IRequest<Either<GeneralFailure, TestingModeGroupResponseDTO>>;
+    public  record GetTestingModeGroupByIdQuery(TestingModeGroupGetRequestByIdDTO  RequestTestingModeGroupDTO) :  IRequest<Either<GeneralFailure, TestingModeGroupResponseDTO>>;
+    public  record GetAllTestingModeGroupQuery :  IRequest<Either<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>>;
 }

@@ -7,17 +7,17 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class DeleteModelVersionGroupCommandHandler  :  IRequestHandler<DeleteModelVersionGroupCommand, Either<GeneralFailure, int>>
+    public  class DeleteTestingModeGroupCommandHandler  :  IRequestHandler<DeleteTestingModeGroupCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<DeleteModelVersionGroupCommandHandler> _logger;
-        public DeleteModelVersionGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<DeleteModelVersionGroupCommandHandler> logger)
+        private readonly IAppLogger<DeleteTestingModeGroupCommandHandler> _logger;
+        public DeleteTestingModeGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<DeleteTestingModeGroupCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(DeleteModelVersionGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(DeleteTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

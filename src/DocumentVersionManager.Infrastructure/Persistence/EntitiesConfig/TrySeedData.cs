@@ -24,16 +24,16 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                     // if (await ctx.Database.EnsureCreatedAsync())
                     {
 
-                        var testData = ctx.ModelVersionGroups.Any();
+                        var testData = ctx.TestingModeGroups.Any();
                         if (!testData)
                         {
-                            var data = new List<ModelVersionGroup>
+                            var data = new List<TestingModeGroup>
                             {
-                                ModelVersionGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
-                                ModelVersionGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
-                                ModelVersionGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                                TestingModeGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
+                                TestingModeGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
+                                TestingModeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                             };
-                            ctx.ModelVersionGroups.AddRange(data);
+                            ctx.TestingModeGroups.AddRange(data);
                             ctx.SaveChanges();
 
 
@@ -96,7 +96,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
 
 
 
-                               // ModelVersionGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                               // TestingModeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                          
                                 
                                 //   public static ModelVersion Create(int  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, int  capacity, Double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, int  minimumDeadLoad, Double  vMin, int  nMax, int  safeLoad, int  ultimateLoad, string  shellMaterialName, Boolean  alloy, int  defaultCableLength, int  numberOfGauges, int  resistance, string  cCNumber, string  accuracyClass, string  application, int  temperingHardnessLow, int  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, Boolean  testPointDirection, Guid  guidId)
@@ -145,37 +145,37 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         }
 
 
-                        var products = ctx.Products.Any();
-                        if (!products)
-                        {
-                            var data = new List<Product>
-                            {
-                            Product.Create(1, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(2, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(3, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(4, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(5, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(6, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //var products = ctx.Products.Any();
+                        //if (!products)
+                        //{
+                        //    var data = new List<Product>
+                        //    {
+                        //    Product.Create(1, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(2, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(3, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(4, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(5, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(6, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
 
-                            Product.Create(7, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(8, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
-                            Product.Create(9, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 2, Guid.NewGuid()),
-                            Product.Create(10, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID2", "SALESORDERID2", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO2", "MACHININGPURCHARSEORDERNO2", "STEELPURCHARSEORDERNO2", 2, Guid.NewGuid()),
-                            Product.Create(11, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID3", "SALESORDERID3", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO3", "MACHININGPURCHARSEORDERNO3", "STEELPURCHARSEORDERNO3", 2, Guid.NewGuid()),
-                            Product.Create(12, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID4", "SALESORDERID4", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO4", "MACHININGPURCHARSEORDERNO4", "STEELPURCHARSEORDERNO4", 2, Guid.NewGuid()),
-                            Product.Create(13, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID5", "SALESORDERID5", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO5", "MACHININGPURCHARSEORDERNO5", "STEELPURCHARSEORDERNO5", 2, Guid.NewGuid()),
-                            Product.Create(14, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID6", "SALESORDERID6", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO6", "MACHININGPURCHARSEORDERNO6", "STEELPURCHARSEORDERNO6", 2, Guid.NewGuid()),
-                            Product.Create(15, 1, "FIRSTMODELNAME", 100, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID7", "SALESORDERID7", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO7", "MACHININGPURCHARSEORDERNO7", "STEELPURCHARSEORDERNO7", 2, Guid.NewGuid()),
+                        //    Product.Create(7, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(8, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "AUTOMATIC", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 1, Guid.NewGuid()),
+                        //    Product.Create(9, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID1", "SALESORDERID1", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO1", "MACHININGPURCHARSEORDERNO1", "STEELPURCHARSEORDERNO1", 2, Guid.NewGuid()),
+                        //    Product.Create(10, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID2", "SALESORDERID2", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO2", "MACHININGPURCHARSEORDERNO2", "STEELPURCHARSEORDERNO2", 2, Guid.NewGuid()),
+                        //    Product.Create(11, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID3", "SALESORDERID3", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO3", "MACHININGPURCHARSEORDERNO3", "STEELPURCHARSEORDERNO3", 2, Guid.NewGuid()),
+                        //    Product.Create(12, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID4", "SALESORDERID4", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO4", "MACHININGPURCHARSEORDERNO4", "STEELPURCHARSEORDERNO4", 2, Guid.NewGuid()),
+                        //    Product.Create(13, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID5", "SALESORDERID5", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO5", "MACHININGPURCHARSEORDERNO5", "STEELPURCHARSEORDERNO5", 2, Guid.NewGuid()),
+                        //    Product.Create(14, 1, "FIRSTMODELNAME", 10000, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID6", "SALESORDERID6", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO6", "MACHININGPURCHARSEORDERNO6", "STEELPURCHARSEORDERNO6", 2, Guid.NewGuid()),
+                        //    Product.Create(15, 1, "FIRSTMODELNAME", 100, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID7", "SALESORDERID7", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO7", "MACHININGPURCHARSEORDERNO7", "STEELPURCHARSEORDERNO7", 2, Guid.NewGuid()),
 
-                            Product.Create(16, 1, "SECONDMODELNAME", 100, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID8", "SALESORDERID8", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO8", "MACHININGPURCHARSEORDERNO8", "STEELPURCHARSEORDERNO8", 2, Guid.NewGuid()),
-                            Product.Create(17, 1, "SECONDMODELNAME", 49, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID9", "SALESORDERID9", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO9", "MACHININGPURCHARSEORDERNO9", "STEELPURCHARSEORDERNO9", 2, Guid.NewGuid()),
-                            Product.Create(18, 1, "SECONDMODELNAME", 49, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID10", "SALESORDERID10", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO10", "MACHININGPURCHARSEORDERNO10", "STEELPURCHARSEORDERNO10", 2, Guid.NewGuid()),
-                            };
-                            ctx.Products.AddRange(data);
-                            var x = ctx.SaveChanges();
-                            var r = x.ToString();
+                        //    Product.Create(16, 1, "SECONDMODELNAME", 100, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID8", "SALESORDERID8", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO8", "MACHININGPURCHARSEORDERNO8", "STEELPURCHARSEORDERNO8", 2, Guid.NewGuid()),
+                        //    Product.Create(17, 1, "SECONDMODELNAME", 49, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID9", "SALESORDERID9", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO9", "MACHININGPURCHARSEORDERNO9", "STEELPURCHARSEORDERNO9", 2, Guid.NewGuid()),
+                        //    Product.Create(18, 1, "SECONDMODELNAME", 49, DateTime.UtcNow, "STAGE1", "SUBSTAGE1", "INVOICEID10", "SALESORDERID10", 100, 1, "MANUAL", "LOADCELLS_GROUP", "MANUAL", "THERMEXPURCHARSEORDERNO10", "MACHININGPURCHARSEORDERNO10", "STEELPURCHARSEORDERNO10", 2, Guid.NewGuid()),
+                        //    };
+                        //    ctx.Products.AddRange(data);
+                        //    var x = ctx.SaveChanges();
+                        //    var r = x.ToString();
 
-                        }
+                        //}
 
 
                     }

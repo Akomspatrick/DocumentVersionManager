@@ -8,10 +8,10 @@ namespace DocumentVersionManager.Contracts.RequestDTO
 {
 
 
-    public record ModelTypeCreateRequestDTO(Guid GuidId, string ModelTypeName, string ModelVersionGroupName);
+    public record ModelTypeCreateRequestDTO(Guid GuidId, string ModelTypeName, string TestingModeGroupName);
 
 
-    public record ModelTypeUpdateRequestDTO(Guid ModelTypeId, string ModelTypeName, string ModelVersionGroupName);
+    public record ModelTypeUpdateRequestDTO(Guid ModelTypeId, string ModelTypeName, string TestingModeGroupName);
     public record ModelTypeGetRequestByGuidDTO(Guid ModelTypeId);
     public record ModelTypeGetRequestByIdDTO(string ModelTypeId);
     public record ModelTypeGetRequestDTO(string ModelTypeName);
