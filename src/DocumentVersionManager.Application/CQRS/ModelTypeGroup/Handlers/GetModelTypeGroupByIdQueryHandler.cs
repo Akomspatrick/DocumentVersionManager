@@ -7,7 +7,7 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class GetTestingModeGroupByIdQueryHandler  :  IRequestHandler<GetTestingModeGroupByIdQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
+    public class GetTestingModeGroupByIdQueryHandler : IRequestHandler<GetTestingModeGroupByIdQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetTestingModeGroupByIdQueryHandler> _logger;
@@ -19,7 +19,15 @@ namespace DocumentVersionManager.Application.CQRS
 
         public async Task<Either<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            List<string> includes = null;// new List<string>() { "Models" };
+            return (await _unitOfWork.TestingModeGroupRepository
+                            //==4
+                            //.GetMatch(s => s.ModelTypeName == request.modelTypeRequestDTO.Value.ModelTypeId, includes, cancellationToken))
+                            //.Map((result) => new ApplicationModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
+
+                            .GetMatch(s => s.TestingModeGroupName.Equals(request.RequestTestingModeGroupDTO.TestingModeGroupName), includes, cancellationToken))
+                            .Map((result) => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId));
+
         }
     }
 }

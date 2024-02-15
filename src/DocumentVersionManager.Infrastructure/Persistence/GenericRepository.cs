@@ -195,7 +195,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
                     }
                 }
                 var entity = await query.AsNoTracking().FirstOrDefaultAsync(expression, cancellationToken);
-                return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(expression.ToString());
+                return entity != null ? entity : GeneralFailures.DataNotFoundInRepository("NOT FOUND");
 
             }
             catch (MySqlException ex)
