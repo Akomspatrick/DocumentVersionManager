@@ -17,7 +17,7 @@ namespace DocumentVersionManager.Api.Extensions
         private static IActionResult Match<L, R>(this Either<L, R> either) =>
             either.Match<IActionResult>(
                 Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(400, l)),
-                Right: r => new OkObjectResult(new ApiOkResponse(r)));
+                Right: r => new OkObjectResult(r));
 
         //private async static Task<IActionResult> Match(Either<GeneralFailure, Task> either) =>
         //    await either.MatchAsync<IActionResult>(
@@ -36,7 +36,7 @@ namespace DocumentVersionManager.Api.Extensions
             either.Match<IActionResult>(
                                Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l)),
 
-                                              Right: r => new OkObjectResult(new ApiOkResponse(r)));
+                                              Right: r => new OkObjectResult(r));
         //private async static Task<IActionResult> Match404(Either<GeneralFailure, Task> either) =>
         //    await either.MatchAsync<IActionResult>(
         //    RightAsync: async t => { await t; return new OkResult(); },
