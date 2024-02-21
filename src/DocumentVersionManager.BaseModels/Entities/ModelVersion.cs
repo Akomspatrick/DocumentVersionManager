@@ -28,25 +28,26 @@ namespace DocumentVersionManager.BaseModels.Entities
         public decimal? NominalOutputPercentage { get; init; }
         public decimal? NonlinearityPercentage { get; init; }
         public int? MinimumDeadLoad { get; init; }
+        [BaseModelBasicAttribute(11, 1, false)]
         public double? vMin { get; init; }
         public int? nMax { get; init; }
         public int? SafeLoad { get; init; }
         public int? UltimateLoad { get; init; }
         [BaseModelBasicAttribute(32, 0, false, false, true)]
-        public string ShellMaterialName { get; init; } = string.Empty;
+        public string? ShellMaterialName { get; init; } = string.Empty;
         public bool Alloy { get; init; }
         public int? DefaultCableLength { get; init; }
         public int? NumberOfGauges { get; init; }
         public int? Resistance { get; init; }
-        public string CCNumber { get; init; } = string.Empty;
-        public string AccuracyClass { get; init; } = string.Empty;
-        public string Application { get; init; } = string.Empty;
+        public string? CCNumber { get; init; }
+        public string? AccuracyClass { get; init; } = string.Empty;
+        public string? Application { get; init; } = string.Empty;
         public int? TemperingHardnessLow { get; init; }
         public int? TemperingHardnessHigh { get; init; }
-        public string NTEPCertificationId { get; init; } = string.Empty;
+        public string? NTEPCertificationId { get; init; } = string.Empty;
         public DateTime? NTEPCertificationTimestamp { get; init; }
 
-        public string OIMLCertificationId { get; init; } = string.Empty;
+        public string? OIMLCertificationId { get; init; } = string.Empty;
         public DateTime? OIMLCertificationTimestamp { get; init; }
         public bool TestPointDirection { get; init; } = true;// true = increasing, false = decreasing
         public required ShellMaterial ShellMaterial { get; init; }

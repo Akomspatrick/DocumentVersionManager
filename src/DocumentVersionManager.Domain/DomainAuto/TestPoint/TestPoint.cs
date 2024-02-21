@@ -4,13 +4,13 @@ namespace DocumentVersionManager.Domain.Entities
     public partial class TestPoint  : BaseEntity
     {
         private TestPoint(){}
-        public int ModelVersionId    { get; init; } 
+        public Int32 ModelVersionId    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
-        public int CapacityTestPoint    { get; init; } 
+        public Int32 CapacityTestPoint    { get; init; } 
         public ModelVersion ModelVersion    { get; init; } 
         public Guid GuidId    { get; init; } 
         
-        public static TestPoint Create(int  modelVersionId, string  modelName, int  capacityTestPoint, Guid  guidId)
+        public static TestPoint Create(Int32  modelVersionId, string  modelName, Int32  capacityTestPoint, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {

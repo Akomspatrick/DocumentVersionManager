@@ -4,14 +4,14 @@ namespace DocumentVersionManager.Domain.Entities
     public partial class TestingModeGroup  : BaseEntity
     {
         private TestingModeGroup(){}
-        public string ModelVersionGroupName    { get; init; }  = string.Empty; 
+        public string TestingModeGroupName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public string Description    { get; init; }  = string.Empty; 
         private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
         public Guid GuidId    { get; init; } 
         
-        public static TestingModeGroup Create(string  modelVersionGroupName, string  defaultTestingMode, string  description, Guid  guidId)
+        public static TestingModeGroup Create(string  testingModeGroupName, string  defaultTestingMode, string  description, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -19,7 +19,7 @@ namespace DocumentVersionManager.Domain.Entities
     }
         return  new()
         {
-            ModelVersionGroupName = modelVersionGroupName ,
+            TestingModeGroupName = testingModeGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Description = description ,
             GuidId = guidId ,

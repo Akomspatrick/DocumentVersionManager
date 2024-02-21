@@ -11,7 +11,7 @@ namespace DocumentVersionManager.Domain.Entities
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
         public Guid GuidId    { get; init; } 
         
-        public static TestingModeGroup Create(string  TestingModeGroupName, string  defaultTestingMode, string  description, Guid  guidId)
+        public static TestingModeGroup Create(string  testingModeGroupName, string  defaultTestingMode, string  description, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -19,7 +19,7 @@ namespace DocumentVersionManager.Domain.Entities
     }
         return  new()
         {
-            TestingModeGroupName = TestingModeGroupName ,
+            TestingModeGroupName = testingModeGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Description = description ,
             GuidId = guidId ,

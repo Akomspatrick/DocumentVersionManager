@@ -3,6 +3,7 @@ using System;
 using DocumentVersionManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-    partial class DocumentVersionManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20240220200909_nullable4")]
+    partial class nullable4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,16 +67,21 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("AccuracyClass")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<bool>("Alloy")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Application")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("CCNumber")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
@@ -98,28 +106,29 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("NTEPCertificationId")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<DateTime?>("NTEPCertificationTimestamp")
                         .HasColumnType("datetime(6)");
 
                     b.Property<double?>("NominalOutput")
-                        .HasPrecision(18, 6)
                         .HasColumnType("double");
 
                     b.Property<decimal?>("NominalOutputPercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("decimal(18,6)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal?>("NonlinearityPercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("decimal(18,6)");
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int?>("NumberOfGauges")
                         .HasColumnType("int");
 
                     b.Property<string>("OIMLCertificationId")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<DateTime?>("OIMLCertificationTimestamp")
                         .HasColumnType("datetime(6)");
@@ -131,6 +140,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ShellMaterialName")
+                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
@@ -168,7 +178,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<double?>("vMin")
-                        .HasPrecision(11, 1)
                         .HasColumnType("double");
 
                     b.HasKey("ModelVersionId", "ModelName");
@@ -317,7 +326,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.HasOne("DocumentVersionManager.Domain.Entities.ShellMaterial", "ShellMaterial")
                         .WithMany("ModelVersions")
-                        .HasForeignKey("ShellMaterialName");
+                        .HasForeignKey("ShellMaterialName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DocumentVersionManager.Domain.Entities.TestingModeGroup", "TestingModeGroup")
                         .WithMany("ModelVersions")

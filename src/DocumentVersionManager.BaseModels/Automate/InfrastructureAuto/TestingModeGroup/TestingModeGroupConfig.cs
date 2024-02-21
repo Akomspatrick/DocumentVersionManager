@@ -7,11 +7,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
     {
         public void Configure(EntityTypeBuilder<TestingModeGroup> entity)
         {
-            entity.HasKey(e => new { e.ModelVersionGroupName });
-            entity.Property(e => e.ModelVersionGroupName).HasMaxLength(32); 
+            entity.HasKey(e => new { e.TestingModeGroupName });
+            entity.Property(e => e.TestingModeGroupName).HasMaxLength(32); 
             entity.Property(e => e.DefaultTestingMode).HasMaxLength(32); 
             entity.Property(e => e.Description).HasMaxLength(64); 
-            entity.Property(e => e.ModelVersionGroupName).IsRequired(); 
+            entity.Property(e => e.TestingModeGroupName).IsRequired(); 
         }
     }
 }

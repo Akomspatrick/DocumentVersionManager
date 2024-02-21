@@ -6,7 +6,7 @@ namespace DocumentVersionManager.Domain.Entities
         private Model(){}
         public string ModelName    { get; init; }  = string.Empty; 
         public string ModelTypeName    { get; init; }  = string.Empty; 
-        public ModelType ModelType    { get; init; } 
+        public ModelType? ModelType    { get; init; } 
         private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
         public Guid GuidId    { get; init; } 
