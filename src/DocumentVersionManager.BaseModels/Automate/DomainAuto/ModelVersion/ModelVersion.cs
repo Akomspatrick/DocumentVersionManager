@@ -9,7 +9,7 @@ namespace DocumentVersionManager.Domain.Entities
         public string ModelVersionName    { get; init; }  = string.Empty; 
         public Model Model    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
-        public string ModelVersionGroupName    { get; init; }  = string.Empty; 
+        public string TestingModeGroupName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public DateTime Timestamp    { get; init; } 
         public string UserName    { get; init; }  = string.Empty; 
@@ -45,7 +45,7 @@ namespace DocumentVersionManager.Domain.Entities
         public  IReadOnlyCollection<TestPoint> TestPoints => _TestPoints;
         public Guid GuidId    { get; init; } 
         
-        public static ModelVersion Create(int  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  modelVersionGroupName, string  defaultTestingMode, DateTime  timestamp, string  userName, int  capacity, Double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, int  minimumDeadLoad, Double  vMin, int  nMax, int  safeLoad, int  ultimateLoad, string  shellMaterialName, Boolean  alloy, int  defaultCableLength, int  numberOfGauges, int  resistance, string  cCNumber, string  accuracyClass, string  application, int  temperingHardnessLow, int  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, Boolean  testPointDirection, Guid  guidId)
+        public static ModelVersion Create(int  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  testingModeGroupName, string  defaultTestingMode, DateTime  timestamp, string  userName, int  capacity, Double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, int  minimumDeadLoad, Double  vMin, int  nMax, int  safeLoad, int  ultimateLoad, string  shellMaterialName, Boolean  alloy, int  defaultCableLength, int  numberOfGauges, int  resistance, string  cCNumber, string  accuracyClass, string  application, int  temperingHardnessLow, int  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, Boolean  testPointDirection, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -57,7 +57,7 @@ namespace DocumentVersionManager.Domain.Entities
             VersionDescription = versionDescription ,
             ModelVersionName = modelVersionName ,
             ModelName = modelName ,
-            ModelVersionGroupName = modelVersionGroupName ,
+            TestingModeGroupName = testingModeGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Timestamp = timestamp ,
             UserName = userName ,

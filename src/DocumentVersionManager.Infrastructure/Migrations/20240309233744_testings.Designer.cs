@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-    [Migration("20240207140003_testimodegroup")]
-    partial class testimodegroup
+    [Migration("20240309233744_testings")]
+    partial class testings
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,15 +209,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
-                    b.Property<string>("DocumentDrive")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("DocumentPath")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)");
+                    b.Property<Guid>("DocumentGuid")
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Documentname")
                         .IsRequired()

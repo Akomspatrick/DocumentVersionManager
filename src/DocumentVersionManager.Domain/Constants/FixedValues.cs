@@ -19,6 +19,7 @@ namespace DocumentVersionManager.Domain.Constants
 
         public const string DBClientConnectionStringName = "ClientConstr";
         public const string Client = "";
+        public const string ApplicationName = "RegistrationManager";
         //ModelType Constants
         public const int modelTypesNameMaxLength = 128;
         public const int modelTypesNameMinLength = 2;
