@@ -36,4 +36,10 @@
 		<ProjectReference Include="..\DocumentVersionManager.Infrastructure\DocumentVersionManager.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="RMCLink.Interop">
+	    <HintPath>..\..\..\MassFussion20240125\Libs\RMCLink.Interop.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 </Project>

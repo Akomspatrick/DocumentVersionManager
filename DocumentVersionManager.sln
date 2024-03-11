@@ -57,7 +57,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Doma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Infrastructure", "src\DocumentVersionManager.Infrastructure\DocumentVersionManager.Infrastructure.csproj", "{A040952A-E7E2-40C7-9AD8-0DA252D6FFDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentVersionManager.Architecture.Tests", "tests\DocumentVersionManager.Architecture.Tests\DocumentVersionManager.Architecture.Tests.csproj", "{46DC804A-E96E-4333-BBBF-470DDDF86F0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Architecture.Tests", "tests\DocumentVersionManager.Architecture.Tests\DocumentVersionManager.Architecture.Tests.csproj", "{46DC804A-E96E-4333-BBBF-470DDDF86F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryRMCWebApi", "TryRMCWebApi\TryRMCWebApi.csproj", "{D62785A3-A1E2-4DEB-830B-AD4F26816681}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +147,10 @@ Global
 		{46DC804A-E96E-4333-BBBF-470DDDF86F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46DC804A-E96E-4333-BBBF-470DDDF86F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46DC804A-E96E-4333-BBBF-470DDDF86F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62785A3-A1E2-4DEB-830B-AD4F26816681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62785A3-A1E2-4DEB-830B-AD4F26816681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62785A3-A1E2-4DEB-830B-AD4F26816681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62785A3-A1E2-4DEB-830B-AD4F26816681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

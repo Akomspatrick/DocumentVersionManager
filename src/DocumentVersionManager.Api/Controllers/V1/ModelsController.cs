@@ -8,12 +8,14 @@ using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RMCLinkNET;
 using System.Linq;
 using System.Threading;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
     public class ModelsController : TheBaseController<ModelsController>
     {
+
 
         public ModelsController(ILogger<ModelsController> logger, ISender sender) : base(logger, sender) { }
 
@@ -25,10 +27,12 @@ namespace DocumentVersionManager.Api.Controllers.v1
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.Model.GetById, Name = DocumentVersionManagerAPIEndPoints.Model.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
-            return Guid.TryParse(NameOrGuid, out Guid guid) ?
-                (_sender.Send(new GetModelByGuidQuery(new ModelGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
-                :
-                (_sender.Send(new GetModelByIdQuery(new ModelGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+            //    return Guid.TryParse(NameOrGuid, out Guid guid) ?
+            //        (_sender.Send(new GetModelByGuidQuery(new ModelGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+            //        :
+            //        (_sender.Send(new GetModelByIdQuery(new ModelGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+            //
+
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
