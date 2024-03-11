@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 namespace DocumentVersionManager.Infrastructure.Persistence
 {
-    public class DocumentVersionManagerContext : DbContext
+    public class DocumentVersionManagerContext :   DbContext
     {
         private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -9,7 +9,7 @@ namespace DocumentVersionManager.Domain.Entities
         public ModelType? ModelType    { get; init; } 
         private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
-        public Guid GuidId    { get; init; } 
+        // public Guid GuidId    { get; init; } 
         
         public static Model Create(string  modelName, string  modelTypeName, Guid  guidId)
     {

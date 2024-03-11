@@ -4,9 +4,9 @@ namespace DocumentVersionManager.Domain.Entities
     public partial class ModelVersionDocument  : BaseEntity
     {
         private ModelVersionDocument(){}
-        public int ModelVersionId    { get; init; } 
+        public Int32 ModelVersionId    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
-        public int ModelVersionDocumentId    { get; init; } 
+        public Int32 ModelVersionDocumentId    { get; init; } 
         public string DocumentDescription    { get; init; }  = string.Empty; 
         public string Stage    { get; init; }  = string.Empty; 
         public Guid DocumentGuid    { get; init; } 
@@ -14,9 +14,9 @@ namespace DocumentVersionManager.Domain.Entities
         public DateTime Timestamp    { get; init; } 
         public ModelVersion ModelVersion    { get; init; } 
         public string UserName    { get; init; }  = string.Empty; 
-        public Guid GuidId    { get; init; } 
+        // public Guid GuidId    { get; init; } 
         
-        public static ModelVersionDocument Create(int  modelVersionId, string  modelName, int  modelVersionDocumentId, string  documentDescription, string  stage, Guid  documentGuid, string  documentname, DateTime  timestamp, string  userName, Guid  guidId)
+        public static ModelVersionDocument Create(Int32  modelVersionId, string  modelName, Int32  modelVersionDocumentId, string  documentDescription, string  stage, Guid  documentGuid, string  documentname, DateTime  timestamp, string  userName, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {

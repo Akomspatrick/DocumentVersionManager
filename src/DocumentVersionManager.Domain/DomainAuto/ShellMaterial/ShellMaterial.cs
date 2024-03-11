@@ -8,7 +8,7 @@ namespace DocumentVersionManager.Domain.Entities
         public bool Alloy    { get; init; } 
         private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
-        public Guid GuidId    { get; init; } 
+        // public Guid GuidId    { get; init; } 
         
         public static ShellMaterial Create(string  shellMaterialName, bool  alloy, Guid  guidId)
     {

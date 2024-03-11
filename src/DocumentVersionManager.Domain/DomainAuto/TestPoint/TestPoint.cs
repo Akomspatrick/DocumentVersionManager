@@ -8,7 +8,7 @@ namespace DocumentVersionManager.Domain.Entities
         public string ModelName    { get; init; }  = string.Empty; 
         public Int32 CapacityTestPoint    { get; init; } 
         public ModelVersion ModelVersion    { get; init; } 
-        public Guid GuidId    { get; init; } 
+        // public Guid GuidId    { get; init; } 
         
         public static TestPoint Create(Int32  modelVersionId, string  modelName, Int32  capacityTestPoint, Guid  guidId)
     {

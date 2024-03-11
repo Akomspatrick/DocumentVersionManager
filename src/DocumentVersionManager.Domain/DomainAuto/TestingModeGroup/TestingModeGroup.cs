@@ -9,7 +9,7 @@ namespace DocumentVersionManager.Domain.Entities
         public string Description    { get; init; }  = string.Empty; 
         private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
         public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
-        public Guid GuidId    { get; init; } 
+        // public Guid GuidId    { get; init; } 
         
         public static TestingModeGroup Create(string  testingModeGroupName, string  defaultTestingMode, string  description, Guid  guidId)
     {
