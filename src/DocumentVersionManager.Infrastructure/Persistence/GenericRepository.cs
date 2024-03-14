@@ -1,6 +1,7 @@
 ﻿using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.DomainBase;
+using DocumentVersionManager.DomainBase.Result;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
@@ -253,5 +254,19 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
         }
+
+        //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
+        //{
+        //    try
+        //    {
+        //        var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
+        //        return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(entity.GuidId.ToString());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Log this error properly
+        //        return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString());
+        //    }
+        //}
     }
 }
