@@ -2,11 +2,14 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.DomainBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using DocumentVersionManager.DomainBase.Result;
 using DocumentVersionManager.DomainBase.Result;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Http.HttpResults;
 =======
+=======
+>>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using LanguageExt;
 >>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using Microsoft.EntityFrameworkCore;
@@ -258,6 +261,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
                 return GeneralFailures.ErrorRetrievingListDataFromRepository(ex.ToString());
             }
         }
+<<<<<<< HEAD
 
         public async Task<Result<GeneralFailure, T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
         {
@@ -273,5 +277,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             }
 
         }
+=======
+>>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
     }
 }
