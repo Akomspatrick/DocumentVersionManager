@@ -25,9 +25,11 @@ namespace DocumentVersionManager.DomainBase.Result
             _value = value;
             _message = message;
         }
+
         public bool IsSuccess => _isSuccess;
 
         public static implicit operator Result<TError, TValue>(TValue value) => new(value);
+
         public static implicit operator Result<TError, TValue>(TError error) => new(error);
 
         public TResult Match<TResult>(Func<TValue, TResult> onSuccess, Func<TError, TResult> onError)
@@ -62,6 +64,13 @@ namespace DocumentVersionManager.DomainBase.Result
 
         }
 
+        public Task<TResult> Map<TResult>(Func<TValue, Task<TResult>> map)
+        {
+            return
+
+                _isSuccess ? map(_value!) : default!;
+
+        }
 
 
 

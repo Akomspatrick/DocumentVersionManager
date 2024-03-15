@@ -20,10 +20,17 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
         }
         public async Task<Result<GeneralFailure, IEnumerable<ModelResponseDTO>>> Handle(GetAllModelQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
             //return (await _unitOfWork.ModelRepository
             //        .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
             //        .Map(task => task.Select(result => new ModelResponseDTO(result.GuidId, result.ModelName, result.ModelTypeName, null)));
+
+            var x = (await _unitOfWork.ModelRepository
+                   .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
+                   .Map(task => task.Select(result => new ModelResponseDTO(result.GuidId, result.ModelName, result.ModelTypeName, null)));
+            var p = Task.FromResult<IEnumerable<int>>(x);
+            return x;
+
         }
     }
 

@@ -22,8 +22,8 @@ namespace DocumentVersionManager.Application.CQRS
             //return (await _unitOfWork.TestingModeGroupRepository
             //        .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
             //        .Map(task => task.Select(result => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId)));// ;/);
-
-            return new Result<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>();
+            var t = new Result<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>();
+            return t;
 
         }
         //string  TestingModeGroupName, string  testingMode, string  description, Guid  guidId
