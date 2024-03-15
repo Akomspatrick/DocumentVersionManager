@@ -26,9 +26,9 @@ namespace LanguageExtTestingConsoleApp
 
             Either<string, int> CreateAge() => Readage();
 
-            //Either<string, int> CreateAge() => Console.ReadLine().TryParse<int>();
+            //Result<string, int> CreateAge() => Console.ReadLine().TryParse<int>();
 
-           Either<Unit, int> getAge() =>
+            Either<Unit, int> getAge() =>
                                                 CreateAge().Match(
                                                       Right: (age) => Console.WriteLine($"Your age is {age}"),
                                                         Left: (error) => getAge()
@@ -74,7 +74,7 @@ namespace LanguageExtTestingConsoleApp
         //    // to put your transformation result back in the Box, while Map doesn't.
         //    // Both methods 'manage' your user defined transform function by running it only if
         //    // it deems it should (validation passes) and then depending on the specific function,
-        //    // it will either lisft the result of the transformation(map) or require that your
+        //    // it will Result lisft the result of the transformation(map) or require that your
         //    // transformation function's signature explicitly says it will it it itself (bind)
 
         //    // This means, with a you dont have to return a Box (like you do when you with Bind),
@@ -106,4 +106,3 @@ namespace LanguageExtTestingConsoleApp
         //}
     }
 }
-    

@@ -1,8 +1,8 @@
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS.ModelType.Commands
 {
-    public  record DeleteModelTypeCommand(ModelTypeDeleteRequestDTO  DeleteModelTypeDTO) :  IRequest<Either<GeneralFailure, int>>;
+    public  record DeleteModelTypeCommand(ModelTypeDeleteRequestDTO  DeleteModelTypeDTO) :  IRequest<Result<GeneralFailure, int>>;
 }

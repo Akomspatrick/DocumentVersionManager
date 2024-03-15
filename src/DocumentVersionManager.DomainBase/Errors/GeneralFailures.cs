@@ -29,10 +29,7 @@ namespace DocumentVersionManager.Domain.Errors
     //    DataNotFoundInRepository,
     //}
 
-    public record GeneralFailure(string Code, string OriginalError, string ErrorDescription) : IGeneralFailure
-    {
-        public static GeneralFailure None => new(string.Empty, "NONE", string.Empty);
-    }
+    public record GeneralFailure(string Code, string ErrorType, string ErrorDescription) : IGeneralFailure;
     public static class GeneralFailures
     {
         public static GeneralFailure DuplicatemodelTypesName(string? value) => new("A01", $"{value} :DuplicatemodelTypesName", "Data  already Exist in Repository");

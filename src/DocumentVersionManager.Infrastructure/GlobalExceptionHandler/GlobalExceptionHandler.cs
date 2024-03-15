@@ -34,8 +34,7 @@ namespace DocumentVersionManager.Infrastructure.GlobalExceptionHandler
                 InvalidCastException invalidCastException => (400, invalidCastException.Message),
                 AggregateException aggregateException => (400, aggregateException.Message),
                 ArgumentNullException argumentNullException => (400, argumentNullException.Message),
-                ArgumentException argumentException => (500, argumentException.Message),
-
+                ArgumentException argumentException => (400, argumentException.Message),
                 // ValidationException validationException => (400, validationException.Message),
                 KeyNotFoundException keyNotFoundException => (404, keyNotFoundException.Message),
                 FormatException formatException => (400, formatException.Message),
@@ -44,9 +43,6 @@ namespace DocumentVersionManager.Infrastructure.GlobalExceptionHandler
                 BadHttpRequestException => (400, "Bad request"),
                 NotImplementedException notImplementedException => (400, notImplementedException.Message),
                 // NotFoundException notfnotfound => (404, "Directory not found"),
-
-                UnauthorizedAccessException unauthorizedAccessException => (401, unauthorizedAccessException.Message),
-                InvalidOperationException invalidOperationException => (500, invalidOperationException.Message),
                 _ => (500, "An error occured @" + exception.Message)
             };
 

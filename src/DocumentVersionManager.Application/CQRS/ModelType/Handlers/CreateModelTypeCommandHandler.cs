@@ -2,12 +2,12 @@
 using DocumentVersionManager.Application.CQRS.ModelType.Commands;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
-    public sealed class CreateModelTypeCommandHandler : IRequestHandler<CreateModelTypeCommand, Either<GeneralFailure, Guid>>
+    public sealed class CreateModelTypeCommandHandler : IRequestHandler<CreateModelTypeCommand, Result<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateModelTypeCommandHandler> _logger;
@@ -20,7 +20,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
         }
 
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelTypeCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, Guid>> Handle(CreateModelTypeCommand request, CancellationToken cancellationToken)
         {
             var entity = Domain.Entities.ModelType.Create(request.CreateModelTypeDTO.ModelTypeName, request.CreateModelTypeDTO.GuidId);
             return (await _unitOfWork.ModelTypeRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);

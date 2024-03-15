@@ -1,9 +1,9 @@
 
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS.ModelType.Commands
 {
-    public  record UpdateModelTypeCommand(ModelTypeUpdateRequestDTO  UpdateModelTypeDTO) :  IRequest<Either<GeneralFailure, int>>;
+    public  record UpdateModelTypeCommand(ModelTypeUpdateRequestDTO  UpdateModelTypeDTO) :  IRequest<Result<GeneralFailure, int>>;
 }

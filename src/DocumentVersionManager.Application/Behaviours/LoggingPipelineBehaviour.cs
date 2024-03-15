@@ -1,5 +1,5 @@
 ﻿using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using LanguageExt.Pretty;
 using LanguageExt.Pipes;
 using LanguageExt.SomeHelp;
@@ -17,12 +17,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DocumentVersionManager.DomainBase.Result;
 namespace DocumentVersionManager.Application.Behaviours
 {
     public class LoggingPipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
-           where TResponse : IEither // Specify the type of Result 
+           where TResponse : IResult<TRequest, TResponse> // Specify the type of Result 
     {
         private readonly ILogger<LoggingPipelineBehaviour<TRequest, TResponse>> _logger;
 
@@ -38,9 +38,11 @@ namespace DocumentVersionManager.Application.Behaviours
             _logger.LogInformation("Starting request {@RequestName}, {@DateTimeUtc} ", typeof(TRequest).Name, DateTime.UtcNow);
 
             var result = await next();
-            if (result.IsLeft)
+            if (!result.IsSuccess)
             {
-                result.MatchUntyped(_ => CreateSuccessLog(result), error => CreateErrorLog(error));
+                // try to get the actual error later 
+                var response = result.GetErrorOrDefault(request);
+                // result.MatchUntyped(_ => CreateSuccessLog(result), error => CreateErrorLog(error));
                 _logger.LogError("Error occured in request {@RequestName}, {@DateTimeUtc} ", typeof(TRequest).Name, DateTime.UtcNow);
 
 
@@ -58,9 +60,9 @@ namespace DocumentVersionManager.Application.Behaviours
             {
                 var error = (GeneralFailure)theerror;
 
-                _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
+                _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.ErrorType, error.ErrorDescription);
 
-                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName} :, {@ErrorCode},{@ErrorType},{@ErrorDescription}", DateTime.UtcNow, typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
+                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName} :, {@ErrorCode},{@ErrorType},{@ErrorDescription}", DateTime.UtcNow, typeof(GeneralFailure).Name, error.Code, error.ErrorType, error.ErrorDescription);
 
             }
             catch (Exception ex)

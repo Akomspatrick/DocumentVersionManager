@@ -1,13 +1,13 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Contracts.ResponseDTO;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class UpdateTestPointCommandHandler  :  IRequestHandler<UpdateTestPointCommand, Either<GeneralFailure, int>>
+    public  class UpdateTestPointCommandHandler  :  IRequestHandler<UpdateTestPointCommand, Result<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<UpdateTestPointCommandHandler> _logger;
@@ -17,7 +17,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(UpdateTestPointCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, int>> Handle(UpdateTestPointCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

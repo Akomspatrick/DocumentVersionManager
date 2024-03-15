@@ -65,6 +65,6 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-    // await TrySeedData.EnsureUsers(app);
+    await TrySeedData.EnsureUsers(app);
 }
 app.Run();

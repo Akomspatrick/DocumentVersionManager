@@ -2,12 +2,12 @@
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 
 namespace DocumentVersionManager.Application.CQRS.Model.Handlers
 {
-    public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, Either<GeneralFailure, int>>
+    public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, Result<GeneralFailure, int>>
     {
         private readonly IAppLogger<UpdateModelCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
@@ -19,7 +19,7 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
         }
 
 
-        public async Task<Either<GeneralFailure, int>> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, int>> Handle(UpdateModelCommand request, CancellationToken cancellationToken)
         {
             var entity = Domain.Entities.Model.Create(request.UpdateModelDTO.ModelName, request.UpdateModelDTO.ModelTypesName, Guid.NewGuid());
 

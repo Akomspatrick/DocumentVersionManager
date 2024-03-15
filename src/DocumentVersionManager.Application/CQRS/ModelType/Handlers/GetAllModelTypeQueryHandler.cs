@@ -3,12 +3,12 @@ using DocumentVersionManager.Application.CQRS.ModelType.Queries;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
-    public class GetAllModelTypeQueryHandler : IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>
+    public class GetAllModelTypeQueryHandler : IRequestHandler<GetAllModelTypeQuery, Result<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetAllModelTypeQueryHandler> _logger;
@@ -19,13 +19,13 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
         }
 
 
-        async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>.Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
+        async Task<Result<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> IRequestHandler<GetAllModelTypeQuery, Result<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>.Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
         {
-
-            return (await _unitOfWork.ModelTypeRepository
-                  .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
-                  .Map(task => task
-                 .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
+            throw new NotImplementedException("Work on the IEnumerable version");
+            //return (await _unitOfWork.ModelTypeRepository
+            //      .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
+            //      .Map(task => task
+            //     .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));
         }
 
         private ICollection<ModelResponseDTO> ConvertTo(IEnumerable<Domain.Entities.Model> models)

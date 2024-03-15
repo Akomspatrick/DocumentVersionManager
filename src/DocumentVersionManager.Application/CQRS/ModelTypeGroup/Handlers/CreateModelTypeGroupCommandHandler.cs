@@ -1,11 +1,11 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class CreateTestingModeGroupCommandHandler : IRequestHandler<CreateTestingModeGroupCommand, Either<GeneralFailure, Guid>>
+    public class CreateTestingModeGroupCommandHandler : IRequestHandler<CreateTestingModeGroupCommand, Result<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateTestingModeGroupCommandHandler> _logger;
@@ -15,7 +15,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateTestingModeGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, Guid>> Handle(CreateTestingModeGroupCommand request, CancellationToken cancellationToken)
         {
             //throw new NotImplementedException("CreateTestingModeGroupCommand Not Yet Implemented");
 
