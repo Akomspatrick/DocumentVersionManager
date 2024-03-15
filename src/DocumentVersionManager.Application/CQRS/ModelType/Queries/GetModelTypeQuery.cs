@@ -2,7 +2,8 @@
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-
+using DocumentVersionManager.DomainBase.Result;
+using DocumentVersionManager.DomainBase.Result;
 using LanguageExt.Common;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;

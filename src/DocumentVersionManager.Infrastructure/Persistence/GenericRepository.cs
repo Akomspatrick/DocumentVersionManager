@@ -3,14 +3,11 @@ using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.DomainBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 using DocumentVersionManager.DomainBase.Result;
 using DocumentVersionManager.DomainBase.Result;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Http.HttpResults;
 =======
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 =======
 >>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using LanguageExt;
@@ -280,9 +277,6 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             }
 
         }
-<<<<<<< HEAD
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 =======
 >>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
     }
