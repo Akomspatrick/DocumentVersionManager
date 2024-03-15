@@ -1,7 +1,6 @@
 ﻿using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.DomainBase;
-using DocumentVersionManager.DomainBase.Result;
 using LanguageExt;
 >>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using Microsoft.EntityFrameworkCore;
@@ -255,18 +254,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
         }
 <<<<<<< HEAD
 
-        public async Task<Result<GeneralFailure, T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
-                return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(entity.GuidId.ToString());
-            }
-            catch (Exception ex)
-            {
-                //Log this error properly
-                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString());
-            }
+        }
 
         //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
         //{
