@@ -3,12 +3,12 @@ using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 
 namespace DocumentVersionManager.Application.CQRS.Model.Handlers
 {
-    public class GetModelQueryHandler : IRequestHandler<GetModelQuery, Either<GeneralFailure, ModelResponseDTO>>
+    public class GetModelQueryHandler : IRequestHandler<GetModelQuery, Result<GeneralFailure, ModelResponseDTO>>
     {
 
         private readonly IUnitOfWork _unitOfWork;
@@ -18,7 +18,7 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-        public async Task<Either<GeneralFailure, ModelResponseDTO>> Handle(GetModelQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, ModelResponseDTO>> Handle(GetModelQuery request, CancellationToken cancellationToken)
         {
 
             return (await _unitOfWork.ModelRepository

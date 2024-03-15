@@ -4,5 +4,5 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  record DeleteShellMaterialCommand(ShellMaterialDeleteRequestDTO  DeleteShellMaterialDTO) :  IRequest<Either<GeneralFailure, int>>;
+    public  record DeleteShellMaterialCommand(ShellMaterialDeleteRequestDTO  DeleteShellMaterialDTO) :  IRequest<Result<GeneralFailure, int>>;
 }

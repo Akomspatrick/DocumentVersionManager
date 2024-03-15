@@ -2,11 +2,11 @@ using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class GetModelVersionQueryHandler  :  IRequestHandler<GetModelVersionQuery, Either<GeneralFailure, ModelVersionResponseDTO>>
+    public  class GetModelVersionQueryHandler  :  IRequestHandler<GetModelVersionQuery, Result<GeneralFailure, ModelVersionResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetModelVersionQueryHandler> _logger;
@@ -16,7 +16,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, ModelVersionResponseDTO>> Handle(GetModelVersionQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, ModelVersionResponseDTO>> Handle(GetModelVersionQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

@@ -3,11 +3,11 @@ using DocumentVersionManager.Application.Contracts.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.DomainBase.Result;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class GetAllTestingModeGroupQueryHandler : IRequestHandler<GetAllTestingModeGroupQuery, Either<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>>
+    public class GetAllTestingModeGroupQueryHandler : IRequestHandler<GetAllTestingModeGroupQuery, Result<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetAllTestingModeGroupQueryHandler> _logger;
@@ -17,11 +17,14 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>> Handle(GetAllTestingModeGroupQuery request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>> Handle(GetAllTestingModeGroupQuery request, CancellationToken cancellationToken)
         {
-            return (await _unitOfWork.TestingModeGroupRepository
-                    .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
-                    .Map(task => task.Select(result => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId)));// ;/);
+            //return (await _unitOfWork.TestingModeGroupRepository
+            //        .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
+            //        .Map(task => task.Select(result => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId)));// ;/);
+
+            return new Result<GeneralFailure, IEnumerable<TestingModeGroupResponseDTO>>();
+
         }
         //string  TestingModeGroupName, string  testingMode, string  description, Guid  guidId
 

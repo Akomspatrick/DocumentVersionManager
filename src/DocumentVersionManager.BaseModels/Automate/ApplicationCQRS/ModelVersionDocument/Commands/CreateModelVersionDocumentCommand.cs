@@ -4,5 +4,5 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  record CreateModelVersionDocumentCommand(ModelVersionDocumentCreateRequestDTO  CreateModelVersionDocumentDTO) :  IRequest<Either<GeneralFailure, Guid>>;
+    public  record CreateModelVersionDocumentCommand(ModelVersionDocumentCreateRequestDTO  CreateModelVersionDocumentDTO) :  IRequest<Result<GeneralFailure, Guid>>;
 }

@@ -5,7 +5,7 @@ using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class CreateShellMaterialCommandHandler  :  IRequestHandler<CreateShellMaterialCommand, Either<GeneralFailure, Guid>>
+    public  class CreateShellMaterialCommandHandler  :  IRequestHandler<CreateShellMaterialCommand, Result<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateShellMaterialCommandHandler> _logger;
@@ -15,7 +15,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateShellMaterialCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, Guid>> Handle(CreateShellMaterialCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;

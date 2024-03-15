@@ -122,7 +122,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                                 ModelVersionDocument.Create(2, "FIRSTMODELNAME",2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.NewGuid()),
                                 ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.NewGuid()),
                                 ModelVersionDocument.Create(2, "SECONDMODELNAME", 2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid()),
-                                ModelVersionDocument.Create(3, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
+                                ModelVersionDocument.Create(2, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
                             };
                             ctx.ModelVersionDocuments.AddRange(data);
                             ctx.SaveChanges();

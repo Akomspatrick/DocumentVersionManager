@@ -5,7 +5,7 @@ using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class CreateModelVersionCommandHandler  :  IRequestHandler<CreateModelVersionCommand, Either<GeneralFailure, Guid>>
+    public  class CreateModelVersionCommandHandler  :  IRequestHandler<CreateModelVersionCommand, Result<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateModelVersionCommandHandler> _logger;
@@ -15,7 +15,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelVersionCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, Guid>> Handle(CreateModelVersionCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;

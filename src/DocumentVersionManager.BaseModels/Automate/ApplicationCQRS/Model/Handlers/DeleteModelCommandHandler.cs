@@ -7,7 +7,7 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class DeleteModelCommandHandler  :  IRequestHandler<DeleteModelCommand, Either<GeneralFailure, int>>
+    public  class DeleteModelCommandHandler  :  IRequestHandler<DeleteModelCommand, Result<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<DeleteModelCommandHandler> _logger;
@@ -17,7 +17,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
+        public async Task<Result<GeneralFailure, int>> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

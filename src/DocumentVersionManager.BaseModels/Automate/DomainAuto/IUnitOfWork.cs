@@ -4,7 +4,7 @@ namespace DocumentVersionManager.Domain.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        Task<Either<GeneralFailure, int>> CommitAllChanges(CancellationToken cancellationToken);
+        Task<Result<GeneralFailure, int>> CommitAllChanges(CancellationToken cancellationToken);
         IModelRepository ModelRepository { get; }
         IModelTypeRepository ModelTypeRepository { get; }
         IModelVersionRepository ModelVersionRepository { get; }

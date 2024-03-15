@@ -1,14 +1,12 @@
 ﻿using DocumentVersionManager.Domain.Errors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using LanguageExt;
+
 
 namespace DocumentVersionManager.DomainBase.Result
 {
-    public readonly struct Result<TValue, TError>
+    public readonly struct Result<TError, TValue> : IResult<TError, TValue>
+
+    //public readonly struct Result<TError, TValue>
     {
         private readonly TValue? _value;
         private readonly TError? _error;
@@ -16,26 +14,79 @@ namespace DocumentVersionManager.DomainBase.Result
         private readonly string? _message;
 
 
-        private Result(TValue value, string? message = "")
+        public Result(TValue value, string? message = "")
         {
-            if (_isSuccess & _error != null ||
-                               !_isSuccess & _error == null)
-            {
-                throw new ArgumentException("Attempt to call an error a success");
-            }
+            //if (_isSuccess & _error != null ||
+            //                   !_isSuccess & _error == null)
+            //{
+            //    throw new ArgumentException("Attempt to call an error a success");
+            //}
             _isSuccess = true;
             _value = value;
             _message = message;
         }
+        public bool IsSuccess => _isSuccess;
 
-        private Result(TError error, string? message = "")
+        public static implicit operator Result<TError, TValue>(TValue value) => new(value);
+        public static implicit operator Result<TError, TValue>(TError error) => new(error);
+
+        public TResult Match<TResult>(Func<TValue, TResult> onSuccess, Func<TError, TResult> onError)
         {
-            if (_isSuccess & _error != null ||
-                               !_isSuccess & _error == null)
+            if (_isSuccess)
             {
-                throw new ArgumentException("Attempt to call an error a success");
+                return onSuccess(_value!);
             }
-            _isSuccess = true;
+            else
+            {
+                return onError(_error!);
+            }
+        }
+
+        //        private static IActionResult Match<L, R>(this Result<L, R> Result) =>
+        //        public static Task<IActionResult> ToActionResult<L, R>(this Task<Result<L, R>> Result)
+        //=> Result.Map(Match);
+
+        //public TResult Map<TResult>(Func<TValue, TResult> map)
+        //{
+        //    return
+
+        //        _isSuccess ? map(_value!) : default!;
+
+        //}
+
+        public TResult Map<TResult>(Func<TValue, TResult> map)
+        {
+            return
+
+                _isSuccess ? map(_value!) : default!;
+
+        }
+
+
+
+
+        public TValue GetValueOrDefault(TValue value) => _isSuccess ? _value! : value;
+
+        public TValue GetValueOrDefault(Func<TValue> valueFactory) => _isSuccess ? _value! : valueFactory();
+
+        public TError GetErrorOrDefault(TError error) => !_isSuccess ? _error! : error;
+
+        public TError GetErrorOrDefault(Func<TError> errorFactory) => !_isSuccess ? _error! : errorFactory();
+
+        public override string ToString() => _isSuccess ? _value!.ToString() : _error!.ToString();
+
+        public override int GetHashCode() => _isSuccess ? _value!.GetHashCode() : _error!.GetHashCode();
+
+
+
+        public Result(TError error, string? message = "")
+        {
+            //if (_isSuccess & _error != null ||
+            //                   !_isSuccess & _error == null)
+            //{
+            //    throw new ArgumentException("Attempt to call an error a success");
+            //}
+            _isSuccess = false;
             _error = error;
             _message = message;
         }
