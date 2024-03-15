@@ -10,11 +10,12 @@ namespace LanguageExtTestingConsoleApp
 
         public static void Main()
         {
+
             Either<string, int> Readage()
             {
                 Console.WriteLine("Please Enter your age");
                 var ans = Console.ReadLine();
-
+                int res = ("123").IfNone(0);
                 int n;
                 if (!int.TryParse(ans, out n))
                 {
@@ -28,11 +29,11 @@ namespace LanguageExtTestingConsoleApp
 
             //Either<string, int> CreateAge() => Console.ReadLine().TryParse<int>();
 
-           Either<Unit, int> getAge() =>
-                                                CreateAge().Match(
-                                                      Right: (age) => Console.WriteLine($"Your age is {age}"),
-                                                        Left: (error) => getAge()
-                                                         );
+            Either<Unit, int> getAge() =>
+                                                 CreateAge().Match(
+                                                       Right: (age) => Console.WriteLine($"Your age is {age}"),
+                                                         Left: (error) => getAge()
+                                                          );
 
 
             getAge();
@@ -106,4 +107,3 @@ namespace LanguageExtTestingConsoleApp
         //}
     }
 }
-    

@@ -7,7 +7,7 @@ using System.Security.AccessControl;
 
 namespace DocumentVersionManager.Api.Extensions
 {
-    public static class EitherToActionResult
+    public static class EitherToActionResultExtensions
     {
         public static Task<IActionResult> ToActionResult<L, R>(this Task<Either<L, R>> either)
         => either.Map(Match);
@@ -26,8 +26,10 @@ namespace DocumentVersionManager.Api.Extensions
 
 
         //404
-        public static Task<IActionResult> ToActionResult404<L, R>(this Task<Either<L, R>> either)
-         => either.Map((x) => Match404(x));
+        public static Task<IActionResult> EitherToActionResult1<L, R>(this Task<Either<L, R>> either)
+         => either.Map((x) => Match404(x)
+
+         );
 
         //public static Task<IActionResult> ToActionResult404(this Task<Either<GeneralFailure, Task>> either) =>
         //    either.Bind(Match404);
