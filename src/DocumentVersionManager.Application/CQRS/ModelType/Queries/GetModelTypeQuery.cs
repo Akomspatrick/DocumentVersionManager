@@ -2,9 +2,7 @@
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.DomainBase.Result;
-using DocumentVersionManager.DomainBase.Result;
-using LanguageExt.Common;
+using LanguageExt;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 namespace DocumentVersionManager.Application.CQRS.ModelType.Queries
