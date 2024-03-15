@@ -3,11 +3,11 @@ using DocumentVersionManager.Application.Contracts.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Contracts.ResponseDTO;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class GetTestingModeGroupByGuidQueryHandler : IRequestHandler<GetTestingModeGroupByGuidQuery, Result<GeneralFailure, TestingModeGroupResponseDTO>>
+    public class GetTestingModeGroupByGuidQueryHandler : IRequestHandler<GetTestingModeGroupByGuidQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetTestingModeGroupByGuidQueryHandler> _logger;
@@ -17,7 +17,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Result<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupByGuidQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupByGuidQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = null;// new List<string>() { "Models" };
             return (await _unitOfWork.TestingModeGroupRepository

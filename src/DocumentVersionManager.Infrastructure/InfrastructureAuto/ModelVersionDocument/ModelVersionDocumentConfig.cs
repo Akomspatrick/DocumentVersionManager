@@ -11,6 +11,8 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.Property(e => e.ModelName).HasMaxLength(32); 
             entity.Property(e => e.DocumentDescription).HasMaxLength(64); 
             entity.Property(e => e.Stage).HasMaxLength(32); 
+            entity.Property(e => e.DocumentDrive).HasMaxLength(32); 
+            entity.Property(e => e.DocumentPath).HasMaxLength(128); 
             entity.Property(e => e.Documentname).HasMaxLength(128); 
             entity.Property(e => e.UserName).HasMaxLength(32); 
             entity.HasOne<ModelVersion>(e => e.ModelVersion).WithMany(ad => ad.ModelVersionDocuments).HasForeignKey(e => new {e.ModelVersionId,e.ModelName});

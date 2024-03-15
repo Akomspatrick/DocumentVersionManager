@@ -1,8 +1,8 @@
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS.ModelType.Commands
 {
-    public  record CreateModelTypeCommand(ModelTypeCreateRequestDTO  CreateModelTypeDTO) :  IRequest<Result<GeneralFailure, Guid>>;
+    public  record CreateModelTypeCommand(ModelTypeCreateRequestDTO  CreateModelTypeDTO) :  IRequest<Either<GeneralFailure, Guid>>;
 }

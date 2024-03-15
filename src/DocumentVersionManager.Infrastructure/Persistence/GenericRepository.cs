@@ -1,20 +1,8 @@
 ﻿using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.DomainBase;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 using DocumentVersionManager.DomainBase.Result;
-using DocumentVersionManager.DomainBase.Result;
-using LanguageExt.Common;
-using Microsoft.AspNetCore.Http.HttpResults;
-=======
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using LanguageExt;
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using System.Linq.Expressions;
@@ -29,7 +17,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             _ctx = ctx;
         }
 
-        async Task<Result<GeneralFailure, int>> IGenericRepository<T>.AddAsync(T entity, CancellationToken cancellationToken)
+        async Task<Either<GeneralFailure, int>> IGenericRepository<T>.AddAsync(T entity, CancellationToken cancellationToken)
         {
             //try
             //{
@@ -68,7 +56,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
         }
-        //async Task<Result<GeneralFailure, Task<IReadOnlyList<T>>>> IGenericRepository<T>.GetAllAsync(CancellationToken cancellationToken)
+        //async Task<Either<GeneralFailure, Task<IReadOnlyList<T>>>> IGenericRepository<T>.GetAllAsync(CancellationToken cancellationToken)
         //{
 
         //    try
@@ -87,7 +75,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
         //}
 
 
-        //public async Task<Result<GeneralFailure, T>> GetMatch(Expression<Func<T, bool>> match, CancellationToken cancellationToken)
+        //public async Task<Either<GeneralFailure, T>> GetMatch(Expression<Func<T, bool>> match, CancellationToken cancellationToken)
         //{
         //    try
         //    {
@@ -103,7 +91,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
         //}
 
 
-        async Task<Result<GeneralFailure, int>> IGenericRepository<T>.UpdateAsync(T entity, CancellationToken cancellationToken)
+        async Task<Either<GeneralFailure, int>> IGenericRepository<T>.UpdateAsync(T entity, CancellationToken cancellationToken)
         {
             try
             {
@@ -125,7 +113,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             }
 
         }
-        async Task<Result<GeneralFailure, int>> IGenericRepository<T>.DeleteAsync(T entity, CancellationToken cancellationToken)
+        async Task<Either<GeneralFailure, int>> IGenericRepository<T>.DeleteAsync(T entity, CancellationToken cancellationToken)
         {
             try
             {
@@ -143,7 +131,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
 
-        public async Task<Result<GeneralFailure, T>> GetByGuidAsync(Guid guid, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, T>> GetByGuidAsync(Guid guid, CancellationToken cancellationToken)
         {
             try
             {
@@ -157,7 +145,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async Task<Result<GeneralFailure, Task<IReadOnlyList<T>>>> GetAllAsyncUsingReadOnly(Expression<Func<T, bool>> expression = null, List<string> includes = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, CancellationToken cancellationToken = default)
+        public async Task<Either<GeneralFailure, Task<IReadOnlyList<T>>>> GetAllAsyncUsingReadOnly(Expression<Func<T, bool>> expression = null, List<string> includes = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -195,7 +183,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
 
-        public async Task<Result<GeneralFailure, T>> GetMatch(Expression<Func<T, bool>> expression, List<string> includes = null, CancellationToken cancellationToken = default)
+        public async Task<Either<GeneralFailure, T>> GetMatch(Expression<Func<T, bool>> expression, List<string> includes = null, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -230,7 +218,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
 
-        async Task<Result<GeneralFailure, List<T>>> IGenericRepository<T>.GetAllAsync(Expression<Func<T, bool>> expression, List<string> includes, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy, CancellationToken cancellationToken)
+        async Task<Either<GeneralFailure, List<T>>> IGenericRepository<T>.GetAllAsync(Expression<Func<T, bool>> expression, List<string> includes, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy, CancellationToken cancellationToken)
         {
             try
             {
@@ -263,27 +251,22 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
                 //Log this error properly
                 return GeneralFailures.ErrorRetrievingListDataFromRepository(ex.ToString());
             }
-        }
-<<<<<<< HEAD
 
-        public async Task<Result<GeneralFailure, T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
-                return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(entity.GuidId.ToString());
-            }
-            catch (Exception ex)
-            {
-                //Log this error properly
-                return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString());
-            }
 
         }
-<<<<<<< HEAD
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
-=======
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
+
+        //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
+        //{
+        //    try
+        //    {
+        //        var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
+        //        return entity != null ? entity : GeneralFailures.DataNotFoundInRepository(entity.GuidId.ToString());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Log this error properly
+        //        return GeneralFailures.ErrorRetrievingSingleDataFromRepository(guid.ToString());
+        //    }
+        //}
     }
 }

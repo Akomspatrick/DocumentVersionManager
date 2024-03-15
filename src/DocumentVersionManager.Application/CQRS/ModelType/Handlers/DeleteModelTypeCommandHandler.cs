@@ -2,12 +2,12 @@
 using DocumentVersionManager.Application.CQRS.ModelType.Commands;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
-    public class DeleteModelTypeCommandHandler : IRequestHandler<DeleteModelTypeCommand, Result<GeneralFailure, int>>
+    public class DeleteModelTypeCommandHandler : IRequestHandler<DeleteModelTypeCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<DeleteModelTypeCommandHandler> _logger;
@@ -19,14 +19,14 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
         }
 
 
-        public async Task<Result<GeneralFailure, int>> Handle(DeleteModelTypeCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(DeleteModelTypeCommand request, CancellationToken cancellationToken)
         {
             return (
                 await _unitOfWork.ModelTypeRepository
                 .GetMatch(s => (s.GuidId.Equals(request.DeleteModelTypeDTO.guid)), null, cancellationToken))
-                .Match(x => _unitOfWork.ModelTypeRepository
+                .Match(Left: x => x, Right: x => _unitOfWork.ModelTypeRepository
                 .DeleteAsync(x, cancellationToken)
-                .Result, x => x);
+                .Result);
 
         }
 

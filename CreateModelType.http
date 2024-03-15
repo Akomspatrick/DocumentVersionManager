@@ -1,5 +1,5 @@
 //create a sample post to localhost:2341
-//'http://localhost:5007/ModelType/PostResult
+//'http://localhost:5007/ModelType/PostEither
 @baseUrl = http://localhost:5007/api
 
 

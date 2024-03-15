@@ -5,7 +5,7 @@ using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RMCLinkNET;

@@ -4,7 +4,7 @@ using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Api.Extensions;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

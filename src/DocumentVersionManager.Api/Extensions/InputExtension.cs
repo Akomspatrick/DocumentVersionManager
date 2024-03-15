@@ -1,12 +1,12 @@
-﻿using DocumentVersionManager.DomainBase.Result;
+﻿using LanguageExt;
 
 namespace DocumentVersionManager.Api.Extentions
 {
     public static class InputExtension
     {
-        public static Result<L, R> EnsureInputIsNotNull<L, R>(this R theInput, L errorMsg)
+        public static Either<L, R> EnsureInputIsNotNull<L, R>(this R theInput, L errorMsg)
         {
-            if (theInput != null)
+            if (theInput.IsNull())
             {
                 return errorMsg;
             }
@@ -14,9 +14,9 @@ namespace DocumentVersionManager.Api.Extentions
 
 
         }
-        public static Result<Task<L>, Task<R>> EnsureInputIsNotNullAsync<L, R>(this R theInput, L errorMsg)
+        public static Either<Task<L>, Task<R>> EnsureInputIsNotNullAsync<L, R>(this R theInput, L errorMsg)
         {
-            if (theInput != null)
+            if (theInput.IsNull())
             {
                 return Task.FromResult(errorMsg);
             }
@@ -24,7 +24,7 @@ namespace DocumentVersionManager.Api.Extentions
 
 
         }
-        public static Result<L, R> EnsureInputIsNotEmpty<L, R>(this R theInput, L errorMsg)
+        public static Either<L, R> EnsureInputIsNotEmpty<L, R>(this R theInput, L errorMsg)
         {
             if (theInput.ToString() == string.Empty)
             {

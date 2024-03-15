@@ -27,10 +27,10 @@ namespace DocumentVersionManager.BaseModels.Entities
 
         public string Stage { get; init; } = string.Empty;
 
-        //public string DocumentDrive { get; init; } = string.Empty;
-        //[BaseModelBasicAttribute(128, 0, false, false)]
-        //public string DocumentPath { get; init; } = string.Empty;
-        public Guid DocumentGuid { get; init; } 
+        public string DocumentDrive { get; init; } = string.Empty;
+        [BaseModelBasicAttribute(128, 0, false, false)]
+        public string DocumentPath { get; init; } = string.Empty;
+        public Guid DocumentGuid { get; init; }
         [BaseModelBasicAttribute(128, 0, false, false)]
         public string Documentname { get; init; }
 

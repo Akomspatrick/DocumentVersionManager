@@ -1,11 +1,11 @@
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Application.Contracts.Logging;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class CreateProductCommandHandler  :  IRequestHandler<CreateProductCommand, Result<GeneralFailure, Guid>>
+    public  class CreateProductCommandHandler  :  IRequestHandler<CreateProductCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<CreateProductCommandHandler> _logger;
@@ -15,7 +15,7 @@ namespace DocumentVersionManager.Application.CQRS
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Result<GeneralFailure, Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //Follow the format below , initial the entity variable by calling the entity Create method;

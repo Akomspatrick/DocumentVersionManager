@@ -3,13 +3,13 @@ using DocumentVersionManager.Application.CQRS.ModelType.Queries;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.DomainBase.Result;
+using LanguageExt;
 using MediatR;
 
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
-    public class GetModelTypeByIdQueryHandler : IRequestHandler<GetModelTypeByIdQuery, Result<GeneralFailure, ModelTypeResponseDTO>>
+    public class GetModelTypeByIdQueryHandler : IRequestHandler<GetModelTypeByIdQuery, Either<GeneralFailure, ModelTypeResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAppLogger<GetModelTypeByIdQueryHandler> _logger;
@@ -20,7 +20,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
             _logger = logger;
         }
 
-        public async Task<Result<GeneralFailure, ModelTypeResponseDTO>> Handle(GetModelTypeByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, ModelTypeResponseDTO>> Handle(GetModelTypeByIdQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = new List<string>() { "Models" };
             return (await _unitOfWork.ModelTypeRepository
