@@ -37,7 +37,7 @@ namespace DocumentVersionManager.Infrastructure.APIResponse
                 ProblemDetails = new ProblemDetails
                 {
                     //  Detail = exception.Message, //details are not passes to the client but are logged
-                    Detail = $"{error.OriginalError} {error.Code}",
+                    Detail = $"{error.ErrorType} {error.Code}",
                     //Type = nameof(exception),
                     Title = error.ErrorDescription,//"An error occured from " + exception.Source,
                     Status = status,// (int)HttpStatusCode.InternalServerError,

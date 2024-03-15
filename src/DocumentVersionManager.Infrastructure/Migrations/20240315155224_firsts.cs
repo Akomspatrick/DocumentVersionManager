@@ -6,7 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:src/DocumentVersionManager.Infrastructure/Migrations/20240315155224_firsts.cs
     public partial class firsts : Migration
+========
+    public partial class testings : Migration
+>>>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc):src/DocumentVersionManager.Infrastructure/Migrations/20240309233744_testings.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,34 +106,34 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     UserName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    NominalOutput = table.Column<double>(type: "double", precision: 18, scale: 6, nullable: true),
-                    NominalOutputPercentage = table.Column<decimal>(type: "decimal(18,6)", precision: 18, scale: 6, nullable: true),
-                    NonlinearityPercentage = table.Column<decimal>(type: "decimal(18,6)", precision: 18, scale: 6, nullable: true),
-                    MinimumDeadLoad = table.Column<int>(type: "int", nullable: true),
-                    vMin = table.Column<double>(type: "double", precision: 11, scale: 1, nullable: true),
-                    nMax = table.Column<int>(type: "int", nullable: true),
-                    SafeLoad = table.Column<int>(type: "int", nullable: true),
-                    UltimateLoad = table.Column<int>(type: "int", nullable: true),
-                    ShellMaterialName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: true)
+                    NominalOutput = table.Column<double>(type: "double", nullable: false),
+                    NominalOutputPercentage = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    NonlinearityPercentage = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    MinimumDeadLoad = table.Column<int>(type: "int", nullable: false),
+                    vMin = table.Column<double>(type: "double", nullable: false),
+                    nMax = table.Column<int>(type: "int", nullable: false),
+                    SafeLoad = table.Column<int>(type: "int", nullable: false),
+                    UltimateLoad = table.Column<int>(type: "int", nullable: false),
+                    ShellMaterialName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Alloy = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    DefaultCableLength = table.Column<int>(type: "int", nullable: true),
-                    NumberOfGauges = table.Column<int>(type: "int", nullable: true),
-                    Resistance = table.Column<int>(type: "int", nullable: true),
-                    CCNumber = table.Column<string>(type: "longtext", nullable: true)
+                    DefaultCableLength = table.Column<int>(type: "int", nullable: false),
+                    NumberOfGauges = table.Column<int>(type: "int", nullable: false),
+                    Resistance = table.Column<int>(type: "int", nullable: false),
+                    CCNumber = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AccuracyClass = table.Column<string>(type: "longtext", nullable: true)
+                    AccuracyClass = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Application = table.Column<string>(type: "longtext", nullable: true)
+                    Application = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TemperingHardnessLow = table.Column<int>(type: "int", nullable: true),
-                    TemperingHardnessHigh = table.Column<int>(type: "int", nullable: true),
-                    NTEPCertificationId = table.Column<string>(type: "longtext", nullable: true)
+                    TemperingHardnessLow = table.Column<int>(type: "int", nullable: false),
+                    TemperingHardnessHigh = table.Column<int>(type: "int", nullable: false),
+                    NTEPCertificationId = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    NTEPCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    OIMLCertificationId = table.Column<string>(type: "longtext", nullable: true)
+                    NTEPCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    OIMLCertificationId = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OIMLCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    OIMLCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     TestPointDirection = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
@@ -146,7 +150,8 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         name: "FK_ModelVersions_ShellMaterials_ShellMaterialName",
                         column: x => x.ShellMaterialName,
                         principalTable: "ShellMaterials",
-                        principalColumn: "ShellMaterialName");
+                        principalColumn: "ShellMaterialName",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ModelVersions_TestingModeGroups_TestingModeGroupName",
                         column: x => x.TestingModeGroupName,

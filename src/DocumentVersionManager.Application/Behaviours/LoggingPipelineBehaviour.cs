@@ -60,9 +60,9 @@ namespace DocumentVersionManager.Application.Behaviours
             {
                 var error = (GeneralFailure)theerror;
 
-                _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
+                _logger.LogInformation(DateTime.UtcNow.ToString(), typeof(GeneralFailure).Name, error.Code, error.ErrorType, error.ErrorDescription);
 
-                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName} :, {@ErrorCode},{@ErrorType},{@ErrorDescription}", DateTime.UtcNow, typeof(GeneralFailure).Name, error.Code, error.OriginalError, error.ErrorDescription);
+                _logger.LogInformation("{@DateTimeUtc} Completed request {@RequestName} :, {@ErrorCode},{@ErrorType},{@ErrorDescription}", DateTime.UtcNow, typeof(GeneralFailure).Name, error.Code, error.ErrorType, error.ErrorDescription);
 
             }
             catch (Exception ex)
