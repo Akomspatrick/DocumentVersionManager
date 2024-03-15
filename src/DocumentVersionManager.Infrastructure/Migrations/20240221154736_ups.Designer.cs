@@ -11,13 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-<<<<<<<< HEAD:src/DocumentVersionManager.Infrastructure/Migrations/20240315155224_firsts.Designer.cs
-    [Migration("20240315155224_firsts")]
-    partial class firsts
-========
     [Migration("20240221154736_ups")]
     partial class ups
->>>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc):src/DocumentVersionManager.Infrastructure/Migrations/20240221154736_ups.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

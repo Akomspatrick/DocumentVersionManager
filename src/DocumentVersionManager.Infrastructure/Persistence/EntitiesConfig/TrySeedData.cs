@@ -118,19 +118,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelVersionDocument>
                             {
-<<<<<<< HEAD
-                                ModelVersionDocument.Create(1, "FIRSTMODELNAME",1, "DOC DESCRPTION", "CABLING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow, "USER1",Guid.NewGuid()),
-                                ModelVersionDocument.Create(2, "FIRSTMODELNAME",2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.NewGuid()),
-                                ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.NewGuid()),
-                                ModelVersionDocument.Create(2, "SECONDMODELNAME", 2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid()),
-                                ModelVersionDocument.Create(2, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
-=======
                                 ModelVersionDocument.Create(1, "FIRSTMODELNAME",1, "DOC DESCRPTION", "CABLING", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow, "USER1",Guid.NewGuid()),
                                 ModelVersionDocument.Create(2, "FIRSTMODELNAME",2, "DOC DESCRPTION", "WIRING", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.NewGuid()),
                                 ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.NewGuid()),
                                 ModelVersionDocument.Create(2, "SECONDMODELNAME", 2, "DOC DESCRPTION", "WIRING", Guid.NewGuid(), "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid()),
                                 ModelVersionDocument.Create(3, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
->>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc)
                             };
                             ctx.ModelVersionDocuments.AddRange(data);
                             ctx.SaveChanges();

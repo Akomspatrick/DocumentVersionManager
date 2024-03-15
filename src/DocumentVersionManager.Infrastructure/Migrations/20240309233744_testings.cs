@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:src/DocumentVersionManager.Infrastructure/Migrations/20240315155224_firsts.cs
-    public partial class firsts : Migration
-========
     public partial class testings : Migration
->>>>>>>> parent of 1e8c4a3 (added drivepath and doc name back to modelversion doc):src/DocumentVersionManager.Infrastructure/Migrations/20240309233744_testings.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -172,10 +168,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     DocumentDescription = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Stage = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DocumentDrive = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DocumentPath = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DocumentGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Documentname = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
