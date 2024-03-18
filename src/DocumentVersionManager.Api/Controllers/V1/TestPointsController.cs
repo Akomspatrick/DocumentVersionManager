@@ -11,10 +11,10 @@ using System.Linq;
 using System.Threading;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
-    public  class TestPointsController  : TheBaseController<TestPointsController>
+    public class TestPointsController : TheBaseController<TestPointsController>
     {
 
-        public TestPointsController(ILogger<TestPointsController> logger, ISender sender) : base(logger, sender){}
+        public TestPointsController(ILogger<TestPointsController> logger, ISender sender) : base(logger, sender) { }
 
         [ProducesResponseType(typeof(IEnumerable<TestPointResponseDTO>), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestPoint.Get, Name = DocumentVersionManagerAPIEndPoints.TestPoint.Get)]
@@ -24,16 +24,16 @@ namespace DocumentVersionManager.Api.Controllers.v1
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestPoint.GetById, Name = DocumentVersionManagerAPIEndPoints.TestPoint.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
-            return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetTestPointByGuidQuery(new TestPointGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+            return Guid.TryParse(NameOrGuid, out Guid guid) ?
+                (_sender.Send(new GetTestPointByGuidQuery(new TestPointGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetTestPointByIdQuery(new TestPointGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetTestPointByIdQuery(new TestPointGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestPoint.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.TestPoint.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] TestPointGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetTestPointQuery(request), cancellationToken)) .ToActionResult404();
+                => (_sender.Send(new GetTestPointQuery(request), cancellationToken)).ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.TestPoint.Create, Name = DocumentVersionManagerAPIEndPoints.TestPoint.Create)]
         public Task<IActionResult> Create(TestPointCreateRequestDTO request, CancellationToken cancellationToken)
@@ -41,12 +41,12 @@ namespace DocumentVersionManager.Api.Controllers.v1
 
         [HttpPut(template: DocumentVersionManagerAPIEndPoints.TestPoint.Update, Name = DocumentVersionManagerAPIEndPoints.TestPoint.Update)]
         public Task<IActionResult> Update(TestPointUpdateRequestDTO request, CancellationToken cancellationToken)
-            => (_sender.Send(new UpdateTestPointCommand(request), cancellationToken)) .ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.TestPoint.Create}", request);
+            => (_sender.Send(new UpdateTestPointCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.TestPoint.Create}", request);
 
 
         [HttpDelete(template: DocumentVersionManagerAPIEndPoints.TestPoint.Delete, Name = DocumentVersionManagerAPIEndPoints.TestPoint.Delete)]
         public Task<IActionResult> Delete([FromRoute] Guid request, CancellationToken cancellationToken)
-            =>_sender.Send(new DeleteTestPointCommand(new TestPointDeleteRequestDTO(request)), cancellationToken).ToActionResult();
+            => _sender.Send(new DeleteTestPointCommand(new TestPointDeleteRequestDTO(request)), cancellationToken).ToActionResult();
 
     }
 }

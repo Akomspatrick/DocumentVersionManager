@@ -15,7 +15,7 @@ namespace LanguageExtTestingConsoleApp
             {
                 Console.WriteLine("Please Enter your age");
                 var ans = Console.ReadLine();
-                int res = ("123").IfNone(0);
+
                 int n;
                 if (!int.TryParse(ans, out n))
                 {

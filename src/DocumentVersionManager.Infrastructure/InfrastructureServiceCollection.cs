@@ -30,6 +30,7 @@ namespace DocumentVersionManager.Infrastructure
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
             return services;
         }
     }

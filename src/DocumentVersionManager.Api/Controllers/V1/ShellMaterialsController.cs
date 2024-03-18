@@ -11,10 +11,10 @@ using System.Linq;
 using System.Threading;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
-    public  class ShellMaterialsController  : TheBaseController<ShellMaterialsController>
+    public class ShellMaterialsController : TheBaseController<ShellMaterialsController>
     {
 
-        public ShellMaterialsController(ILogger<ShellMaterialsController> logger, ISender sender) : base(logger, sender){}
+        public ShellMaterialsController(ILogger<ShellMaterialsController> logger, ISender sender) : base(logger, sender) { }
 
         [ProducesResponseType(typeof(IEnumerable<ShellMaterialResponseDTO>), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.Get, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.Get)]
@@ -24,16 +24,16 @@ namespace DocumentVersionManager.Api.Controllers.v1
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.GetById, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
-            return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetShellMaterialByGuidQuery(new ShellMaterialGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+            return Guid.TryParse(NameOrGuid, out Guid guid) ?
+                (_sender.Send(new GetShellMaterialByGuidQuery(new ShellMaterialGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetShellMaterialByIdQuery(new ShellMaterialGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetShellMaterialByIdQuery(new ShellMaterialGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ShellMaterialGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetShellMaterialQuery(request), cancellationToken)) .ToActionResult404();
+                => (_sender.Send(new GetShellMaterialQuery(request), cancellationToken)).ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.Create, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.Create)]
         public Task<IActionResult> Create(ShellMaterialCreateRequestDTO request, CancellationToken cancellationToken)
@@ -41,12 +41,12 @@ namespace DocumentVersionManager.Api.Controllers.v1
 
         [HttpPut(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.Update, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.Update)]
         public Task<IActionResult> Update(ShellMaterialUpdateRequestDTO request, CancellationToken cancellationToken)
-            => (_sender.Send(new UpdateShellMaterialCommand(request), cancellationToken)) .ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ShellMaterial.Create}", request);
+            => (_sender.Send(new UpdateShellMaterialCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ShellMaterial.Create}", request);
 
 
         [HttpDelete(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.Delete, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.Delete)]
         public Task<IActionResult> Delete([FromRoute] Guid request, CancellationToken cancellationToken)
-            =>_sender.Send(new DeleteShellMaterialCommand(new ShellMaterialDeleteRequestDTO(request)), cancellationToken).ToActionResult();
+            => _sender.Send(new DeleteShellMaterialCommand(new ShellMaterialDeleteRequestDTO(request)), cancellationToken).ToActionResult();
 
     }
 }

@@ -28,9 +28,9 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid) ?
-                (_sender.Send(new GetModelByGuidQuery(new ModelGetRequestByGuidDTO(guid)), cancellationToken)).EitherToActionResult()
+                (_sender.Send(new GetModelByGuidQuery(new ModelGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetModelByIdQuery(new ModelGetRequestByIdDTO(NameOrGuid)), cancellationToken)).EitherToActionResult();
+                (_sender.Send(new GetModelByIdQuery(new ModelGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
 
 
         }
@@ -39,7 +39,7 @@ namespace DocumentVersionManager.Api.Controllers.v1
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.Model.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.Model.GetByJSONBody)]
 
         public Task<IActionResult> GetByJSONBody([FromBody] ModelGetRequestDTO request, CancellationToken cancellationToken)
-                => (_sender.Send(new GetModelQuery(request), cancellationToken)).EitherToActionResult();
+                => (_sender.Send(new GetModelQuery(request), cancellationToken)).ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.Model.Create, Name = DocumentVersionManagerAPIEndPoints.Model.Create)]
         public Task<IActionResult> Create(ModelCreateRequestDTO request, CancellationToken cancellationToken)

@@ -1,15 +1,13 @@
 using DocumentVersionManager.Api;
-using DocumentVersionManager.Api.Filters;
-using DocumentVersionManager.Api.Middleware;
-
 using DocumentVersionManager.Application;
 using DocumentVersionManager.Infrastructure;
-using DocumentVersionManager.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    //builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
     // Add services to the container.
     builder.Services.AddControllers();
     // if I want to use Filters fr error handling
@@ -24,6 +22,7 @@ var builder = WebApplication.CreateBuilder(args);
     //});
     builder.Services.AddAPIServices(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
+
     builder.Services.AddApplicationServices(builder.Configuration);
 }
 
@@ -50,6 +49,33 @@ app.UseCors(builder =>
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
+app.MapHealthChecks("/healthy", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions()
+{
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        var result = System.Text.Json.JsonSerializer.Serialize(
+                       new
+                       {
+                           status = report.Status.ToString(),
+                           checksPoints = report.Entries.Select(e => new
+                           {
+                               Name = e.Key,
+                               value = Enum.GetName(typeof(Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus), e.Value.Status),
+                               description = e.Value.Description,
+                               data = e.Value.Data,
+                               exception = e.Value.Exception?.Message,
+                               duration = e.Value.Duration.ToString(),
+                               tags = e.Value.Tags,
+                           }),
+
+
+
+
+                       });
+        await context.Response.WriteAsync(result);
+    }
+});
 //app.UseAuthorization();
 app.MapControllers();
 

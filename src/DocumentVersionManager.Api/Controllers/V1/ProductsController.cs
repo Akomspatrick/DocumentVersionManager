@@ -25,15 +25,15 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetProductByGuidQuery(new ProductGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetProductByGuidQuery(new ProductGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetProductByIdQuery(new ProductGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetProductByIdQuery(new ProductGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.Product.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.Product.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ProductGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetProductQuery(request), cancellationToken)) .ToActionResult404();
+                => ( _sender.Send(new GetProductQuery(request), cancellationToken)) .ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.Product.Create, Name = DocumentVersionManagerAPIEndPoints.Product.Create)]
         public Task<IActionResult> Create(ProductCreateRequestDTO request, CancellationToken cancellationToken)

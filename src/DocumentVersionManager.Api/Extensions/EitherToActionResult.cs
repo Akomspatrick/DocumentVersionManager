@@ -26,12 +26,12 @@ namespace DocumentVersionManager.Api.Extensions
 
 
         //404
-        public static Task<IActionResult> EitherToActionResult1<L, R>(this Task<Either<L, R>> either)
+        public static Task<IActionResult> ToEitherActionResult<L, R>(this Task<Either<L, R>> either)
          => either.Map((x) => Match404(x)
 
          );
 
-        //public static Task<IActionResult> ToActionResult404(this Task<Either<GeneralFailure, Task>> either) =>
+        //public static Task<IActionResult> ToEitherActionResult(this Task<Either<GeneralFailure, Task>> either) =>
         //    either.Bind(Match404);
 
         private static IActionResult Match404<L, R>(this Either<L, R> either) =>

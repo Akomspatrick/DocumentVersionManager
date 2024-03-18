@@ -25,15 +25,15 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid) ?
-                (_sender.Send(new GetTestingModeGroupByGuidQuery(new TestingModeGroupGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetTestingModeGroupByGuidQuery(new TestingModeGroupGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetTestingModeGroupByIdQuery(new TestingModeGroupGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetTestingModeGroupByIdQuery(new TestingModeGroupGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] TestingModeGroupGetRequestDTO request, CancellationToken cancellationToken)
-                => (_sender.Send(new GetTestingModeGroupQuery(request), cancellationToken)).ToActionResult404();
+                => (_sender.Send(new GetTestingModeGroupQuery(request), cancellationToken)).ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create)]
         public Task<IActionResult> Create(TestingModeGroupCreateRequestDTO request, CancellationToken cancellationToken)

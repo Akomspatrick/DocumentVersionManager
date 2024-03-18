@@ -38,6 +38,9 @@ namespace DocumentVersionManager.Integration.Tests
         public async Task GetModelShouldRetunHttpStatusCode_OK(string path, string item)
         {
             // act
+            // Create whaever you are trying to check dont depent on init else thus test will not be repeatable
+            // use a faker to create a model
+            // use docker also for testing
             var response = await _httpClient.GetAsync(path + item);
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -229,7 +232,7 @@ namespace DocumentVersionManager.Integration.Tests
 
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        
+
         }
 
 
