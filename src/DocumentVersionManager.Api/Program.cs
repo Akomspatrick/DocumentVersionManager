@@ -1,6 +1,7 @@
 using DocumentVersionManager.Api;
 using DocumentVersionManager.Application;
 using DocumentVersionManager.Infrastructure;
+using DocumentVersionManager.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
 
 
@@ -91,6 +92,6 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-    // await TrySeedData.EnsureUsers(app);
+    await TrySeedData.EnsureUsers(app);
 }
 app.Run();
