@@ -1,85 +1,45 @@
-﻿
-using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Infrastructure.APIResponse;
+﻿using DocumentVersionManager.Infrastructure.APIResponse;
 using LanguageExt;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.AccessControl;
 
 namespace DocumentVersionManager.Api.Extensions
 {
     public static class EitherToActionResultExtensions
     {
         public static Task<IActionResult> ToActionResult<L, R>(this Task<Either<L, R>> either)
-        => either.Map(Match);
-        //public static Task<IActionResult> ToActionResult(this Task<Either<GeneralFailure, Task>> either) =>
-        //    either.Bind(Match);
+        {
+            return either.Map(Match);
+        }
 
-        private static IActionResult Match<L, R>(this Either<L, R> either) =>
-            either.Match<IActionResult>(
+        private static IActionResult Match<L, R>(this Either<L, R> either)
+        {
+            return either.Match<IActionResult>(
                 Left: l => new BadRequestObjectResult(new ApiBadRequestResponse(400, l)),
                 Right: r => new OkObjectResult(r));
+        }
 
-        //private async static Task<IActionResult> Match(Either<GeneralFailure, Task> either) =>
-        //    await either.MatchAsync<IActionResult>(
-        //        RightAsync: async t => { await t; return new OkResult(); },
-        //        Left: e => new BadRequestObjectResult(e));
-
-
-        //404
         public static Task<IActionResult> ToEitherActionResult<L, R>(this Task<Either<L, R>> either)
-         => either.Map((x) => Match404(x)
+        {
+            return either.Map(MatchEitherActionResult);
+        }
 
-         );
+        private static IActionResult MatchEitherActionResult<L, R>(this Either<L, R> either)
+        {
+            return either.Match<IActionResult>(
+                Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l)),
+                Right: r => new OkObjectResult(r));
+        }
 
-        //public static Task<IActionResult> ToEitherActionResult(this Task<Either<GeneralFailure, Task>> either) =>
-        //    either.Bind(Match404);
-
-        private static IActionResult Match404<L, R>(this Either<L, R> either) =>
-            either.Match<IActionResult>(
-                               Left: l => new NotFoundObjectResult(new ApiBadRequestResponse(404, l)),
-
-                                              Right: r => new OkObjectResult(r));
-        //private async static Task<IActionResult> Match404(Either<GeneralFailure, Task> either) =>
-        //    await either.MatchAsync<IActionResult>(
-        //    RightAsync: async t => { await t; return new OkResult(); },
-        //                             Left: e => new NotFoundObjectResult(e));
-
-
-
-        //ToActionResultCreated
         public static Task<IActionResult> ToActionResultCreated<L, R>(this Task<Either<L, R>> either, string endPoint, object data)
-         => either.Map((x) => MatchCreated(x, endPoint, data));
-
-        //public static Task<IActionResult> ToActionResultCreated(this Task<Either<GeneralFailure, Task>> either) =>
-        //    either.Bind(MatchCreated);
+        {
+            return either.Map(x => MatchCreated(x, endPoint, data));
+        }
 
         private static IActionResult MatchCreated<L, R>(this Either<L, R> either, string endPoint, object data)
         {
-
-            var p = either;
-            var x = endPoint;
-            var y = data;
-
             return either.Match<IActionResult>(
-                                Left: l => new BadRequestObjectResult(l),
-                                               Right: r =>
-                                               {
-                                                   var t = r.ToString();
-                                                   var p = new CreatedResult($"{endPoint}/{r}", data);
-                                                   return p;
-                                               });
+                Left: l => new BadRequestObjectResult(l),
+                Right: r => new CreatedResult($"{endPoint}/{r}", data));
         }
-
-        //private async static Task<IActionResult> MatchCreated(Either<GeneralFailure, Task> either) =>
-        //    await either.MatchAsync<IActionResult>(
-        //    RightAsync: async t => { await t; return new OkResult(); },
-        //                             Left: e => new BadRequestObjectResult(e));
-
-
-
-
-
-
-        //
     }
 }
