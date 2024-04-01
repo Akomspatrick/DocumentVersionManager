@@ -1,4 +1,4 @@
-namespace DocumentVersionManager.Contracts.RequestDTO
+namespace DocumentVersionManager.Contracts.RequestDTO.V1
 {
     public record ModelGetRequestByGuidDTO(Guid guid);
     public record ModelGetRequestByIdDTO(string ModelName);

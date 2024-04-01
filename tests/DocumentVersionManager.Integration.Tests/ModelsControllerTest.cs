@@ -4,9 +4,7 @@ using System.Net.Http.Json;
 using System.Net;
 using DocumentVersionManager.Api;
 using FluentAssertions;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using Newtonsoft.Json;
-using DocumentVersionManager.Contracts.RequestDTO;
 using LanguageExt.Pipes;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Http.Headers;
@@ -16,6 +14,8 @@ using Bogus;
 using AutoBogus;
 using LanguageExt.Common;
 using Microsoft.AspNetCore.Http;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 
 namespace DocumentVersionManager.Integration.Tests
 {

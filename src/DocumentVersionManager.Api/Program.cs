@@ -3,6 +3,7 @@ using DocumentVersionManager.Application;
 using DocumentVersionManager.Infrastructure;
 using DocumentVersionManager.Infrastructure.Persistence;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
     // if I want to use Filters fr error handling
     //builder.Services.AddControllers(option=> option.Filters.Add<ErrorHandlingFilterAttribute>());
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                     .ReadFrom.Configuration(hostingContext.Configuration)
+                     .Enrich.FromLogContext()
+                   //  .MinimumLevel.Information()
+                     .WriteTo.Console());
+
     builder.Services.AddEndpointsApiExplorer();
     //builder.Services.AddSwaggerGen();
     builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo { Title = "DocumentVersionManager.Api", Version = "v7" }));
@@ -36,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseSerilogRequestLogging();
 app.UseCors(builder =>
 {
     builder.AllowAnyOrigin()

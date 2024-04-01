@@ -1,5 +1,7 @@
-namespace DocumentVersionManager.Contracts.ResponseDTO
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
+
+namespace DocumentVersionManager.Contracts.ResponseDTO.V1
 {
     public record ModelResponseDTO(Guid GuidId, string ModelName, string ModelTypeName, ICollection<ModelVersionResponseDTO>? ModelVersions);
-                  
+
 }

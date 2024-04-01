@@ -1,4 +1,4 @@
-﻿namespace DocumentVersionManager.Infrastructure.APIResponse
+﻿namespace DocumentVersionManager.Api.APIResponse
 {
     public class ApiOkResponse : ApiResponse
     {

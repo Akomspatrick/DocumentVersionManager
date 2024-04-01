@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DocumentVersionManager.Contracts.RequestDTO
+namespace DocumentVersionManager.Contracts.RequestDTO.V1
 {
 
 

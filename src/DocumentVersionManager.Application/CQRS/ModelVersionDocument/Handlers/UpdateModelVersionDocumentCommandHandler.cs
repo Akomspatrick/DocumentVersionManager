@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using LanguageExt;
 using MediatR;
@@ -10,8 +10,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class UpdateModelVersionDocumentCommandHandler  :  IRequestHandler<UpdateModelVersionDocumentCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<UpdateModelVersionDocumentCommandHandler> _logger;
-        public UpdateModelVersionDocumentCommandHandler(IUnitOfWork unitOfWork, IAppLogger<UpdateModelVersionDocumentCommandHandler> logger)
+        private readonly ILogger<UpdateModelVersionDocumentCommandHandler> _logger;
+        public UpdateModelVersionDocumentCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateModelVersionDocumentCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

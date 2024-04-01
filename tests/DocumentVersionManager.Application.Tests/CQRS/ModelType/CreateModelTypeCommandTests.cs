@@ -1,18 +1,19 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 using DocumentVersionManager.Application.CQRS.ModelType.Commands;
 using DocumentVersionManager.Application.CQRS.ModelType.Handlers;
-using DocumentVersionManager.Contracts.RequestDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using FluentAssertions;
 using LanguageExt;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
 
 namespace DocumentVersionManager.Application.Tests.CQRS.ModelType
 {
@@ -23,12 +24,12 @@ namespace DocumentVersionManager.Application.Tests.CQRS.ModelType
         private static readonly CreateModelTypeCommand createModelTypeCommand = new(CreateModelTypeDTO: modelTypeCreateDTO);
         private readonly CreateModelTypeCommandHandler createModelTypeCommandHandler;
         private readonly IUnitOfWork _unitOfWorkMock;
-        private readonly IAppLogger<CreateModelTypeCommandHandler> _loggerMock;
-
+        //private readonly ILogger<CreateModelTypeCommandHandler> _loggerMock;
+        private readonly ILogger<CreateModelTypeCommandHandler> _loggerMock;
         public CreateModelTypeCommandTests()
         {
             _unitOfWorkMock = Substitute.For<IUnitOfWork>();
-            _loggerMock = Substitute.For<IAppLogger<CreateModelTypeCommandHandler>>();
+            _loggerMock = Substitute.For<ILogger<CreateModelTypeCommandHandler>>();
             createModelTypeCommandHandler = new CreateModelTypeCommandHandler(_unitOfWorkMock, _loggerMock);
         }
 

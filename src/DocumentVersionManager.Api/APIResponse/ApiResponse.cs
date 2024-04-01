@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DocumentVersionManager.Infrastructure.APIResponse
+namespace DocumentVersionManager.Api.APIResponse
 {
     public class ApiResponse
     {

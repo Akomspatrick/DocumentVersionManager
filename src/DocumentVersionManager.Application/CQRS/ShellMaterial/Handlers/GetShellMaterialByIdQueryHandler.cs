@@ -1,17 +1,17 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using LanguageExt;
 using MediatR;
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
 namespace DocumentVersionManager.Application.CQRS
 {
     public  class GetShellMaterialByIdQueryHandler  :  IRequestHandler<GetShellMaterialByIdQuery, Either<GeneralFailure, ShellMaterialResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetShellMaterialByIdQueryHandler> _logger;
-        public GetShellMaterialByIdQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetShellMaterialByIdQueryHandler> logger)
+        private readonly ILogger<GetShellMaterialByIdQueryHandler> _logger;
+        public GetShellMaterialByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetShellMaterialByIdQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

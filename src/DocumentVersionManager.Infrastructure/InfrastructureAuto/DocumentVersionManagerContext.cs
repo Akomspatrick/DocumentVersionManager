@@ -1,5 +1,6 @@
 using DocumentVersionManager.Domain.Entities;
 using DocumentVersionManager.Domain.Utils;
+using DocumentVersionManager.DomainBase;
 using DocumentVersionManager.Infrastructure.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,5 +32,20 @@ namespace DocumentVersionManager.Infrastructure.Persistence
         public DbSet<ShellMaterial> ShellMaterials { get; private set; }
         public DbSet<TestingModeGroup> TestingModeGroups { get; private set; }
         public DbSet<TestPoint> TestPoints { get; private set; }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, System.Threading.CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                if (entry.Entity.GetType().Name.Contains("Group")  && (entry.Entity is BaseEntity entity) )
+                {
+                    entity.GuidId = Guid.NewGuid(); 
+
+                }
+            }   
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
     }
 }

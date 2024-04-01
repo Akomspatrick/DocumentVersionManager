@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
@@ -8,8 +8,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class CreateModelVersionCommandHandler  :  IRequestHandler<CreateModelVersionCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateModelVersionCommandHandler> _logger;
-        public CreateModelVersionCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateModelVersionCommandHandler> logger)
+        private readonly ILogger<CreateModelVersionCommandHandler> _logger;
+        public CreateModelVersionCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateModelVersionCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

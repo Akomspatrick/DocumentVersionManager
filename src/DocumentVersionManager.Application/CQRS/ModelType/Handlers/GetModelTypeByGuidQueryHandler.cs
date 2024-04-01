@@ -1,10 +1,10 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.ModelType.Queries;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using LanguageExt;
 using MediatR;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
@@ -13,9 +13,9 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetModelTypeByGuidQueryHandler> _logger;
+        private readonly ILogger<GetModelTypeByGuidQueryHandler> _logger;
 
-        public GetModelTypeByGuidQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetModelTypeByGuidQueryHandler> logger)
+        public GetModelTypeByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelTypeByGuidQueryHandler> logger)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;

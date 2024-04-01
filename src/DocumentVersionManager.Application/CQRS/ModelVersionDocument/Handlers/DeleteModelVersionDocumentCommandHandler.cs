@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
@@ -10,8 +10,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class DeleteModelVersionDocumentCommandHandler  :  IRequestHandler<DeleteModelVersionDocumentCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<DeleteModelVersionDocumentCommandHandler> _logger;
-        public DeleteModelVersionDocumentCommandHandler(IUnitOfWork unitOfWork, IAppLogger<DeleteModelVersionDocumentCommandHandler> logger)
+        private readonly ILogger<DeleteModelVersionDocumentCommandHandler> _logger;
+        public DeleteModelVersionDocumentCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteModelVersionDocumentCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

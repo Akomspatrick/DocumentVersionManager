@@ -1,15 +1,16 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
+using Microsoft.Extensions.Logging;
 namespace DocumentVersionManager.Application.CQRS
 {
     public class CreateTestingModeGroupCommandHandler : IRequestHandler<CreateTestingModeGroupCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateTestingModeGroupCommandHandler> _logger;
-        public CreateTestingModeGroupCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateTestingModeGroupCommandHandler> logger)
+        private readonly ILogger<CreateTestingModeGroupCommandHandler> _logger;
+        public CreateTestingModeGroupCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateTestingModeGroupCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

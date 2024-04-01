@@ -1,9 +1,8 @@
-﻿
-using DocumentVersionManager.Api.Extensions;
+﻿using DocumentVersionManager.Api.Extensions;
 using DocumentVersionManager.Application.CQRS.ModelType.Commands;
 using DocumentVersionManager.Application.CQRS.ModelType.Queries;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

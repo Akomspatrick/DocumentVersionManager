@@ -1,9 +1,10 @@
-﻿using DocumentVersionManager.Api.Extensions;
+﻿using Asp.Versioning;
+using DocumentVersionManager.Api.Extensions;
 using DocumentVersionManager.Api.Extentions;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Threading;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
+    [ApiVersion(1)]
     public class ModelsController : TheBaseController<ModelsController>
     {
 

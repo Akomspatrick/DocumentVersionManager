@@ -24,7 +24,6 @@ public static class APIServiceCollection
         var applicationAssembly = typeof(APIServiceCollection).Assembly;
         services.AddAutoMapper(applicationAssembly);
         services.AddExceptionHandler<GlobalExceptionHandler>();
-        //services.AddExceptionHandler<GlobalExceptionHandler.GlobalExceptionHandler>();
         services.AddProblemDetails();
         services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 
@@ -34,13 +33,19 @@ public static class APIServiceCollection
             {
                 option.ReportApiVersions = true;
                 option.AssumeDefaultVersionWhenUnspecified = true;
-                option.DefaultApiVersion = new ApiVersion(2, 0);
+                option.DefaultApiVersion = new ApiVersion(2);// ApiVersion.Default;// new ApiVersion(2, 0);
                 option.ApiVersionReader = ApiVersionReader.Combine(
                     new QueryStringApiVersionReader("api-version"),
                     new HeaderApiVersionReader("api-version"),
-                    new MediaTypeApiVersionReader("version")
+                    new MediaTypeApiVersionReader("version"),
+                    new UrlSegmentApiVersionReader()
                     );
 
+
+            }).AddApiExplorer(option =>
+            {
+                option.GroupNameFormat = "'v'V";
+                option.SubstituteApiVersionInUrl = true;
 
             });
 

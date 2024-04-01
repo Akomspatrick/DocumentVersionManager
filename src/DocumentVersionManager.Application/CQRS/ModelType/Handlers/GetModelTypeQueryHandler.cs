@@ -1,19 +1,19 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 using DocumentVersionManager.Application.CQRS.ModelType.Queries;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using LanguageExt;
 using MediatR;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
     public class GetModelTypeQueryHandler : IRequestHandler<GetModelTypeQuery, Either<GeneralFailure, ModelTypeResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetModelTypeQueryHandler> _logger;
-        public GetModelTypeQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetModelTypeQueryHandler> logger)
+        private readonly ILogger<GetModelTypeQueryHandler> _logger;
+        public GetModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelTypeQueryHandler> logger)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;

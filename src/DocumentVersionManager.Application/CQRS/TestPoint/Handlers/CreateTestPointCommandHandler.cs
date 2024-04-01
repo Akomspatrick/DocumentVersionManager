@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
@@ -8,8 +8,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class CreateTestPointCommandHandler  :  IRequestHandler<CreateTestPointCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateTestPointCommandHandler> _logger;
-        public CreateTestPointCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateTestPointCommandHandler> logger)
+        private readonly ILogger<CreateTestPointCommandHandler> _logger;
+        public CreateTestPointCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateTestPointCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

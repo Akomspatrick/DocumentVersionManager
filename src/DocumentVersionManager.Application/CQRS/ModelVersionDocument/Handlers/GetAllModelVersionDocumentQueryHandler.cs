@@ -1,17 +1,17 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
 namespace DocumentVersionManager.Application.CQRS
 {
     public  class GetAllModelVersionDocumentQueryHandler  :  IRequestHandler<GetAllModelVersionDocumentQuery, Either<GeneralFailure, IEnumerable<ModelVersionDocumentResponseDTO>>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetAllModelVersionDocumentQueryHandler> _logger;
-        public GetAllModelVersionDocumentQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetAllModelVersionDocumentQueryHandler> logger)
+        private readonly ILogger<GetAllModelVersionDocumentQueryHandler> _logger;
+        public GetAllModelVersionDocumentQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelVersionDocumentQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

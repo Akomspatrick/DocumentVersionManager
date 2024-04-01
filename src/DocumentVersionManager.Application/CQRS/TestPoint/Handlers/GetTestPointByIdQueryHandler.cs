@@ -1,17 +1,17 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using LanguageExt;
 using MediatR;
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
 namespace DocumentVersionManager.Application.CQRS
 {
     public  class GetTestPointByIdQueryHandler  :  IRequestHandler<GetTestPointByIdQuery, Either<GeneralFailure, TestPointResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetTestPointByIdQueryHandler> _logger;
-        public GetTestPointByIdQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetTestPointByIdQueryHandler> logger)
+        private readonly ILogger<GetTestPointByIdQueryHandler> _logger;
+        public GetTestPointByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetTestPointByIdQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

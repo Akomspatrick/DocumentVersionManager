@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Domain.Errors;
@@ -10,8 +10,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class DeleteTestPointCommandHandler  :  IRequestHandler<DeleteTestPointCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<DeleteTestPointCommandHandler> _logger;
-        public DeleteTestPointCommandHandler(IUnitOfWork unitOfWork, IAppLogger<DeleteTestPointCommandHandler> logger)
+        private readonly ILogger<DeleteTestPointCommandHandler> _logger;
+        public DeleteTestPointCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteTestPointCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

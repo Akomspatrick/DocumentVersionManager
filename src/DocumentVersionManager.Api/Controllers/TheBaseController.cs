@@ -3,7 +3,7 @@ using AutoMapper;
 using DocumentVersionManager.Api.Mapping;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-namespace DocumentVersionManager.Api.Controllers.v1
+namespace DocumentVersionManager.Api.Controllers
 {
     // [Route("api/[controller]")]
     // [ApiVersion("2.0")]
@@ -14,7 +14,7 @@ namespace DocumentVersionManager.Api.Controllers.v1
     {
         protected ILogger<T> _logger;
         protected ISender _sender;
-    
+
         public TheBaseController(ILogger<T> logger, ISender sender)
         {
             _logger = logger;

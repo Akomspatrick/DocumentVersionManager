@@ -1,19 +1,20 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿
 using DocumentVersionManager.Application.CQRS.ModelType.Commands;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
 using LanguageExt;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 {
     public sealed class CreateModelTypeCommandHandler : IRequestHandler<CreateModelTypeCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateModelTypeCommandHandler> _logger;
+        private readonly ILogger<CreateModelTypeCommandHandler> _logger;
 
 
-        public CreateModelTypeCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateModelTypeCommandHandler> logger)
+        public CreateModelTypeCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateModelTypeCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

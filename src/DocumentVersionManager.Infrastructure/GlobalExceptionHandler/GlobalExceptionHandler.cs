@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MySqlConnector;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace DocumentVersionManager.Infrastructure.GlobalExceptionHandler
         }
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
-            _logger.LogError(exception, $"Exception occured {exception.Message} {exception.Source}");
+         
 
             var exceptionHandlerFeature = httpContext.Features.Get<IExceptionHandlerFeature>();
 
@@ -60,8 +61,9 @@ namespace DocumentVersionManager.Infrastructure.GlobalExceptionHandler
                 Title = title,//"An error occured from " + exception.Source,
                 Status = statusCode,// (int)HttpStatusCode.InternalServerError,
                 Instance = exceptionHandlerFeature?.Endpoint?.ToString() ?? httpContext.Request.Path,
+            //    Extensions = { { "traceId", httpContext.TraceIdentifier  } }
             };
-
+            _logger.LogError("Exception and problem details {0},{1}", JsonConvert.SerializeObject(problemDetails),  exception);
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = statusCode;
             await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);

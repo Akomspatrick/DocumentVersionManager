@@ -1,7 +1,5 @@
 using DocumentVersionManager.Api.Extentions;
 using DocumentVersionManager.Application.CQRS;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Api.Extensions;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
@@ -9,6 +7,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading;
+using DocumentVersionManager.Contracts.RequestDTO.V1.auto;
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
     public class TestingModeGroupsController : TheBaseController<TestingModeGroupsController>

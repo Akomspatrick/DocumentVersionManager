@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using LanguageExt;
 using MediatR;
@@ -10,8 +10,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class UpdateTestPointCommandHandler  :  IRequestHandler<UpdateTestPointCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<UpdateTestPointCommandHandler> _logger;
-        public UpdateTestPointCommandHandler(IUnitOfWork unitOfWork, IAppLogger<UpdateTestPointCommandHandler> logger)
+        private readonly ILogger<UpdateTestPointCommandHandler> _logger;
+        public UpdateTestPointCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateTestPointCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

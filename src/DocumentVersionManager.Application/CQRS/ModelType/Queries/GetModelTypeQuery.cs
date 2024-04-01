@@ -1,6 +1,5 @@
-﻿
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
+﻿using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 using MediatR;

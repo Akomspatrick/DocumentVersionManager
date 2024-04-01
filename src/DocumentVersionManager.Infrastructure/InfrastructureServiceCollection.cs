@@ -1,7 +1,7 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿
 using DocumentVersionManager.Domain.Interfaces;
 using DocumentVersionManager.Domain.Utils;
-using DocumentVersionManager.Infrastructure.Logging;
+
 using DocumentVersionManager.Infrastructure.Persistence;
 using DocumentVersionManager.Infrastructure.Persistence.Repositories;
 using DocumentVersionManager.Infrastructure.Utils;
@@ -27,7 +27,7 @@ namespace DocumentVersionManager.Infrastructure
             services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+           // services.AddScoped(typeof(ILogger<>), typeof(LoggerAdapter<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");

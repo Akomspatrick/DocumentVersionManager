@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
@@ -8,8 +8,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class CreateProductCommandHandler  :  IRequestHandler<CreateProductCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateProductCommandHandler> _logger;
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateProductCommandHandler> logger)
+        private readonly ILogger<CreateProductCommandHandler> _logger;
+        public CreateProductCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateProductCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

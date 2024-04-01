@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 
-namespace DocumentVersionManager.Infrastructure.APIResponse
+namespace DocumentVersionManager.Api.APIResponse
 {
     public class ApiBadRequestResponse : ApiResponse
     {

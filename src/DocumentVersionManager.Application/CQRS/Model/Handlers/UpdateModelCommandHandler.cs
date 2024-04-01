@@ -1,4 +1,4 @@
-﻿using DocumentVersionManager.Application.Contracts.Logging;
+﻿using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Domain.Errors;
 using DocumentVersionManager.Domain.Interfaces;
@@ -9,10 +9,10 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
 {
     public class UpdateModelCommandHandler : IRequestHandler<UpdateModelCommand, Either<GeneralFailure, int>>
     {
-        private readonly IAppLogger<UpdateModelCommandHandler> _logger;
+        private readonly ILogger<UpdateModelCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateModelCommandHandler(IAppLogger<UpdateModelCommandHandler> logger, IUnitOfWork unitOfWork)
+        public UpdateModelCommandHandler(ILogger<UpdateModelCommandHandler> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));

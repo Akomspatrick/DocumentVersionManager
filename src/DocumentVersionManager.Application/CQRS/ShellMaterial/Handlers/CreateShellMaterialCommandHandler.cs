@@ -1,5 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using LanguageExt;
 using MediatR;
 using DocumentVersionManager.Domain.Errors;
@@ -8,8 +8,8 @@ namespace DocumentVersionManager.Application.CQRS
     public  class CreateShellMaterialCommandHandler  :  IRequestHandler<CreateShellMaterialCommand, Either<GeneralFailure, Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<CreateShellMaterialCommandHandler> _logger;
-        public CreateShellMaterialCommandHandler(IUnitOfWork unitOfWork, IAppLogger<CreateShellMaterialCommandHandler> logger)
+        private readonly ILogger<CreateShellMaterialCommandHandler> _logger;
+        public CreateShellMaterialCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateShellMaterialCommandHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));

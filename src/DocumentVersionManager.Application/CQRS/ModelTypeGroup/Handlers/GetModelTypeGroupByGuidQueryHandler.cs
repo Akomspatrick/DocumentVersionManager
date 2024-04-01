@@ -1,17 +1,18 @@
 using DocumentVersionManager.Domain.Interfaces;
-using DocumentVersionManager.Application.Contracts.Logging;
+using Microsoft.Extensions.Logging;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Domain.Errors;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using LanguageExt;
 using MediatR;
+using Microsoft.Extensions.Logging;
+using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
 namespace DocumentVersionManager.Application.CQRS
 {
     public class GetTestingModeGroupByGuidQueryHandler : IRequestHandler<GetTestingModeGroupByGuidQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppLogger<GetTestingModeGroupByGuidQueryHandler> _logger;
-        public GetTestingModeGroupByGuidQueryHandler(IUnitOfWork unitOfWork, IAppLogger<GetTestingModeGroupByGuidQueryHandler> logger)
+        private readonly ILogger<GetTestingModeGroupByGuidQueryHandler> _logger;
+        public GetTestingModeGroupByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetTestingModeGroupByGuidQueryHandler> logger)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
