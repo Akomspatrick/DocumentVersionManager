@@ -4,6 +4,7 @@ using DocumentVersionManager.Api.Extentions;
 using DocumentVersionManager.Application.CQRS.Model.Commands;
 using DocumentVersionManager.Application.CQRS.Model.Queries;
 using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
