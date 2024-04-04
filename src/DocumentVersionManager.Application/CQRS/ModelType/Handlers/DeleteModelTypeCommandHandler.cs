@@ -28,6 +28,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
                 .DeleteAsync(x, cancellationToken)
                 .Result);
 
+
         }
 
 
