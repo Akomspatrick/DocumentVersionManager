@@ -10,12 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoBogus" Version="2.13.1" />
-    <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.3" />
-    <PackageReference Include="FluentAssertions.LanguageExt" Version="0.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageReference Include="EntityFrameworkCore.Testing.NSubstitute" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
-    <PackageReference Include="Testcontainers.MySql" Version="3.8.0" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DocumentVersionManager.Api\DocumentVersionManager.Api.csproj" />
+    <ProjectReference Include="..\..\src\DocumentVersionManager.Infrastructure\DocumentVersionManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

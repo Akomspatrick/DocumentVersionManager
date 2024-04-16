@@ -11,17 +11,18 @@ using Microsoft.AspNetCore.Http;
 using DocumentVersionManager.Contracts.RequestDTO.V1;
 using DocumentVersionManager.Contracts.ResponseDTO.V1;
 
-namespace DocumentVersionManager.Integration.Tests
+namespace DocumentVersionManager.Integration.Tests.ModelsController
 {
-    public class ModelsControllerTest : IClassFixture<WebApplicationFactory<APIAssemblyRefrenceMarker>>, IAsyncLifetime
+    public class ModelsControllerTest : BaseIntegrationTests
     {
+
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl = "http://localhost:5007/api/";
         private readonly List<Guid> createdGuids = new();
 
-        public ModelsControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)
+        public ModelsControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
         {
-            _httpClient = _appFactory.CreateClient();
+            _httpClient = factory.CreateClient();
             _httpClient.BaseAddress = new Uri(_baseUrl);
         }
 

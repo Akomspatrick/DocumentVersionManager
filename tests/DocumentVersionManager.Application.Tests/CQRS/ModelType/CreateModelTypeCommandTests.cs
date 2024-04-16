@@ -43,6 +43,9 @@ namespace DocumentVersionManager.Application.Tests.CQRS.ModelType
             //Assert
 
             result.IsRight.Should().BeTrue();
+            result.Match(
+                                        Right: r => r.Should().NotBe(Arg.Any<Guid>()),
+                                         Left: l => l.Should().BeEquivalentTo(GeneralFailures.ProblemAddingEntityIntoDbContext("2a7c336a-163c-487d-88ca-c41cc129f118")));//INTERESTED ONLY IN LEFT SIDE
 
         }
         // implement below for exception handling
