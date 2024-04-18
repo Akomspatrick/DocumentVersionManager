@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Net;
-using DocumentVersionManager.Api;
 using FluentAssertions;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
@@ -10,33 +8,53 @@ using AutoBogus;
 using Microsoft.AspNetCore.Http;
 using DocumentVersionManager.Contracts.RequestDTO.V1;
 using DocumentVersionManager.Contracts.ResponseDTO.V1;
+using DocumentVersionManager.Api.Controllers;
 
 namespace DocumentVersionManager.Integration.Tests.ModelsController
 {
     public class ModelsControllerTest : BaseIntegrationTests
     {
 
-        private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://localhost:5007/api/";
-        private readonly List<Guid> createdGuids = new();
+        //private readonly HttpClient _httpClient1;
+        //private readonly HttpClient _httpClient2;
+        private readonly string _baseUrl = "http://localhost:5007/api/v1/";
+        //private readonly List<Guid> createdGuids = new();
 
         public ModelsControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
         {
-            _httpClient = factory.CreateClient();
+            //_httpClient1 = factory.CreateClient();
+            //_httpClient2 = factory.CreateClient();
             _httpClient.BaseAddress = new Uri(_baseUrl);
+            //  _httpClient.BaseAddress = new Uri($"{_baseUrl}{DocumentVersionManagerAPIEndPoints.APIBase}/");
         }
 
         [Theory]
-        [InlineData("Models/", "SECONDMODELNAME")]
-        [InlineData("Models/", "7808711f-544a-423d-8d99-f00c31e35be5")]
+        [InlineData("TestingModeGroups/", "SECONDMODELNAME")]
+        [InlineData("TestingModeGroups/", "7808711f-544a-423d-8d99-f00c31e35be5")]
         // [InlineData("Models/", "")]
         public async Task GetModelShouldRetunHttpStatusCode_OK(string path, string item)
         {
             // act
+            //            INSERT INTO `TestDocumentVersionManagerDB`.`TestingModeGroups`
+            //(`TestingModeGroupName`,
+            //`DefaultTestingMode`,
+            //`Description`,
+            //`GuidId`)
+            //VALUES
+            //("1232", "2342", "1223", uuid());
+
             // Create whaever you are trying to check dont depent on init else thus test will not be repeatable
             // use a faker to create a model
             // use docker also for testing
             var response = await _httpClient.GetAsync(path + item);
+            var response2 = await _httpClient.GetAsync(path);
+            var response3 = await _httpClient.GetAsync("TestingModeGroups/");
+
+            var response4 = await _httpClient.GetAsync("TestingModeGroups/");
+            var response6 = await _httpClient.GetAsync("/TestingModeGroups");
+            var response5 = await _httpClient.GetAsync("/TestingModeGroups/");
+            var response7 = await _httpClient.GetAsync("/TestingModeGroups/Get");
+            var response8 = await _httpClient.GetAsync("/api/TestingModeGroups/Get/");
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
