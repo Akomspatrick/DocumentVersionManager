@@ -16,7 +16,7 @@ namespace DocumentVersionManager.Integration.Tests
     public class ModelsControllerTest : IClassFixture<WebApplicationFactory<APIAssemblyRefrenceMarker>>, IAsyncLifetime
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://localhost:5007/api/";
+        private readonly string _baseUrl = "http://localhost:5007/api/v1";
         private readonly List<Guid> createdGuids = new();
 
         public ModelsControllerTest(WebApplicationFactory<APIAssemblyRefrenceMarker> _appFactory)

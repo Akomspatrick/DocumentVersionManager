@@ -12,16 +12,18 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetModelByIdQueryHandler> _logger;
-        public GetModelByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelByIdQueryHandler> logger)
+        private readonly IModelRepository _modelRepository;
+        public GetModelByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelByIdQueryHandler> logger, IModelRepository modelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _modelRepository = modelRepository;
         }
 
         public async Task<Either<GeneralFailure, ModelResponseDTO>> Handle(GetModelByIdQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = new List<string>() { "ModelVersions" };
-            return (await _unitOfWork.ModelRepository
+            return (await _modelRepository
                             .GetMatch(s => s.ModelName == request.RequestModelDTO.ModelName, includes, cancellationToken))
                             .Map((result) => new ModelResponseDTO(result.GuidId, result.ModelName, result.ModelTypeName, null
                             //convertToModelDto(result.Models

@@ -14,16 +14,17 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetModelTypeByGuidQueryHandler> _logger;
-
-        public GetModelTypeByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelTypeByGuidQueryHandler> logger)
+        private readonly IModelTypeRepository _modelTypeRepository;
+        public GetModelTypeByGuidQueryHandler(IUnitOfWork unitOfWork, ILogger<GetModelTypeByGuidQueryHandler> logger, IModelTypeRepository modelTypeRepository)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _modelTypeRepository = modelTypeRepository;
         }
         public async Task<Either<GeneralFailure, ModelTypeResponseDTO>> Handle(GetModelTypeByGuidQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = new List<string>() { "Models" };
-            return (await _unitOfWork.ModelTypeRepository
+            return (await _modelTypeRepository
                             .GetMatch(s => s.GuidId == request.RequestModelTypeDTO.ModelTypeId, includes, cancellationToken))
                             .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
         }

@@ -13,17 +13,19 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<GetAllModelTypeQueryHandler> _logger;
-        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger)
+        private readonly IModelTypeRepository _modelTypeRepository;
+        public GetAllModelTypeQueryHandler(IUnitOfWork unitOfWork, ILogger<GetAllModelTypeQueryHandler> logger, IModelTypeRepository modelTypeRepository)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _modelTypeRepository = modelTypeRepository;
         }
 
 
         async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>.Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
         {
 
-            return (await _unitOfWork.ModelTypeRepository
+            return (await _modelTypeRepository
                   .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
                   .Map(task => task
                  .Select(result => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, ConvertTo(result.Models))));

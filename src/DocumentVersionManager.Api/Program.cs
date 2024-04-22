@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                      .ReadFrom.Configuration(hostingContext.Configuration)
                      .Enrich.FromLogContext()
-                   //  .MinimumLevel.Information()
+                     //  .MinimumLevel.Information()
                      .WriteTo.Console());
 
     builder.Services.AddEndpointsApiExplorer();
@@ -28,6 +28,7 @@ var builder = WebApplication.CreateBuilder(args);
     //{
     //    options.UseMySql(builder.Configuration.GetConnectionString("constr"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("constr")));
     //});
+
     builder.Services.AddAPIServices(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -100,6 +101,6 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-   // await TrySeedData.EnsureUsers(app);
+    // await TrySeedData.EnsureUsers(app);
 }
 app.Run();

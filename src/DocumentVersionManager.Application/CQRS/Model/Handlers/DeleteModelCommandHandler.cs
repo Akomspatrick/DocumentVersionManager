@@ -12,19 +12,19 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<DeleteModelCommandHandler> _logger;
-
-        public DeleteModelCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteModelCommandHandler> logger)
+        private readonly IModelRepository _modelRepository;
+        public DeleteModelCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteModelCommandHandler> logger, IModelRepository modelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _modelRepository = modelRepository;
         }
         public async Task<Either<GeneralFailure, int>> Handle(DeleteModelCommand request, CancellationToken cancellationToken)
         {
             return (
-                  await _unitOfWork.ModelRepository
+                  await _modelRepository
                   .GetMatch(s => (s.GuidId == request.DeleteModelDTO.guid), null, cancellationToken))
-                  .Match(Left: x => x, Right: x => _unitOfWork
-                  .ModelRepository
+                  .Match(Left: x => x, Right: x => _modelRepository
                   .DeleteAsync(x, cancellationToken)
                   .Result);
         }

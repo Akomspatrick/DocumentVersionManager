@@ -44,12 +44,15 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             {
                 //Log this error properly
                 // throw ex;
-                return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
+                return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
+                //   return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
             }
             catch (Exception ex)
             {
                 //Log this error properly
-                throw ex;
+                return GeneralFailures.ExceptionThrown("GenericRepository-AddAsync", "Problem Adding Entity with Guid" + entity.GuidId, ex?.InnerException?.Message);
+
+                //  throw ex;
                 // return GeneralFailures.ProblemAddingEntityIntoDbContext(entity.GuidId.ToString());
             }
 

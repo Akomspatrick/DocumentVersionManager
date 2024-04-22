@@ -11,11 +11,12 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<CreateModelCommandHandler> _logger;
-
-        public CreateModelCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateModelCommandHandler> logger)
+        private readonly IModelRepository _modelRepository;
+        public CreateModelCommandHandler(IUnitOfWork unitOfWork, ILogger<CreateModelCommandHandler> logger, IModelRepository modelRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _modelRepository = modelRepository;
         }
 
         public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelCommand request, CancellationToken cancellationToken)
@@ -23,7 +24,7 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
             _logger.LogInformation($"AddNewModelTypeCommandHandler- Attempt to   Add New Model {request.CreateModelDTO.ModelName}");
             var entity = Domain.Entities.Model.Create(request.CreateModelDTO.ModelName, request.CreateModelDTO.ModelTypesName, request.CreateModelDTO.GuidId);
 
-            var result = await _unitOfWork.ModelRepository.AddAsync(entity, cancellationToken);
+            var result = await _modelRepository.AddAsync(entity, cancellationToken);
             return result.Map(x => entity.GuidId);
         }
     }

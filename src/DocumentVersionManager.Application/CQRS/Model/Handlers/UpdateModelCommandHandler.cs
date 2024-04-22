@@ -11,11 +11,13 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
     {
         private readonly ILogger<UpdateModelCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IModelRepository _modelRepository;
 
-        public UpdateModelCommandHandler(ILogger<UpdateModelCommandHandler> logger, IUnitOfWork unitOfWork)
+        public UpdateModelCommandHandler(ILogger<UpdateModelCommandHandler> logger, IUnitOfWork unitOfWork, IModelRepository modelRepository)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _modelRepository = modelRepository;
         }
 
 
@@ -26,7 +28,7 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
 
             //entity.AddDomainEvent(new ModelUpdatedEvent(entity));
 
-            return await _unitOfWork.ModelRepository.UpdateAsync(entity, cancellationToken);
+            return await _modelRepository.UpdateAsync(entity, cancellationToken);
 
 
 

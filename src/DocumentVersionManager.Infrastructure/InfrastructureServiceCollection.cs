@@ -19,6 +19,14 @@ namespace DocumentVersionManager.Infrastructure
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             services.AddDbContext<DocumentVersionManagerContext>(option => option.UseMySql(configuration.GetConnectionString(constr)!, GeneralUtils.GetMySqlVersion()));
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
+            services.AddScoped<IModelVersionRepository, ModelVersionRepository>();
+            services.AddScoped<IModelVersionDocumentRepository, ModelVersionDocumentRepository>();
+            services.AddScoped<IShellMaterialRepository, ShellMaterialRepository>();
+            services.AddScoped<ITestingModeGroupRepository, TestingModeGroupRepository>();
+            services.AddScoped<ITestPointRepository, TestPointRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("Database");
             return services;

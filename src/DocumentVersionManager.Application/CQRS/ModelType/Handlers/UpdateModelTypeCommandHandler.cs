@@ -13,17 +13,18 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
     {
         private readonly ILogger<UpdateModelTypeCommandHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
-
-        public UpdateModelTypeCommandHandler(ILogger<UpdateModelTypeCommandHandler> logger, IUnitOfWork unitOfWork)
+        private readonly IModelTypeRepository _modelTypeRepository;
+        public UpdateModelTypeCommandHandler(ILogger<UpdateModelTypeCommandHandler> logger, IUnitOfWork unitOfWork, IModelTypeRepository modelTypeRepository)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _modelTypeRepository = modelTypeRepository;
         }
         public async Task<Either<GeneralFailure, int>> Handle(UpdateModelTypeCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException("Operation Not Allowed ");
             var entity = Domain.Entities.ModelType.Create(request.UpdateModelTypeDTO.ModelTypeName, request.UpdateModelTypeDTO.ModelTypeId);
-            return await _unitOfWork.ModelTypeRepository.UpdateAsync(entity, cancellationToken);
+            return await _modelTypeRepository.UpdateAsync(entity, cancellationToken);
             //_logger.LogInformation("AddNewModelTypeCommandHandler- New data Added");
         }
 
