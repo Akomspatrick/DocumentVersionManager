@@ -1,16 +1,14 @@
-using DocumentVersionManager.Api.Extentions;
-using DocumentVersionManager.Application.CQRS;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Api.Extensions;
-using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.Application.CQRS;
+using Asp.Versioning;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using MediatR;
+using DocumentVersionManager.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-namespace DocumentVersionManager.Api.Controllers.v1
+namespace DocumentVersionManager.Api.Controllers.V1
 {
+     [ApiVersion(1)]
     public  class ShellMaterialsController  : TheBaseController<ShellMaterialsController>
     {
 
@@ -25,15 +23,15 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetShellMaterialByGuidQuery(new ShellMaterialGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetShellMaterialByGuidQuery(new ShellMaterialGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetShellMaterialByIdQuery(new ShellMaterialGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetShellMaterialByIdQuery(new ShellMaterialGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ShellMaterialResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ShellMaterialGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetShellMaterialQuery(request), cancellationToken)) .ToActionResult404();
+                => ( _sender.Send(new GetShellMaterialQuery(request), cancellationToken)) .ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.ShellMaterial.Create, Name = DocumentVersionManagerAPIEndPoints.ShellMaterial.Create)]
         public Task<IActionResult> Create(ShellMaterialCreateRequestDTO request, CancellationToken cancellationToken)

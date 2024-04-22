@@ -13,7 +13,10 @@ namespace DocumentVersionManager.Contracts.RequestDTO.V1
 
     public record ModelTypeUpdateRequestDTO(Guid ModelTypeId, string ModelTypeName, string TestingModeGroupName);
     public record ModelTypeGetRequestByGuidDTO(Guid ModelTypeId);
-    public record ModelTypeGetRequestByIdDTO(string ModelTypeId);
-    public record ModelTypeGetRequestDTO(string ModelTypeName);
+    public record ModelTypeGetRequestByIdDTO(string EntityNameId);
+    public record ModelTypeGetRequestDTO(string JSONValue);
     public record ModelTypeDeleteRequestDTO(Guid guid);
+
+
+
 }

@@ -1,4 +1,4 @@
-using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
+
 
 namespace DocumentVersionManager.Contracts.ResponseDTO.V1
 {

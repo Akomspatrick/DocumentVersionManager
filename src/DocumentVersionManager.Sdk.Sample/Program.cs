@@ -5,7 +5,7 @@ using Refit;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Newtonsoft.Json;
-using DocumentVersionManager.Contracts.RequestDTO.V1.auto;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
 
@@ -20,14 +20,14 @@ class Program
         try
         {
             var documentApi = Refit.RestService.For<IDocumentVersionApi>("https://localhost:7181");
-            var response =  await documentApi.Get(CancellationToken.None);
-   
+            var response = await documentApi.Get(CancellationToken.None);
+
             var document = "dddd";
         }
         catch (Exception ex)
         {
 
-            throw ;
+            throw;
         }
         //try
         //{

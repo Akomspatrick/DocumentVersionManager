@@ -2,7 +2,7 @@ namespace DocumentVersionManager.Api
 {
     public static class DocumentVersionManagerAPIEndPoints
     {
-        public const string APIBase = "api";
+        public const string APIBase = "api/v{version:apiVersion}";
         public static class Model
         {
             public const string Controller = "Models";

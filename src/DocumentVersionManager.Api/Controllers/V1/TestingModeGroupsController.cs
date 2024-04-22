@@ -7,8 +7,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading;
-using DocumentVersionManager.Contracts.RequestDTO.V1.auto;
-using DocumentVersionManager.Contracts.ResponseDTO.V1.auto;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using Asp.Versioning;
 namespace DocumentVersionManager.Api.Controllers.v1

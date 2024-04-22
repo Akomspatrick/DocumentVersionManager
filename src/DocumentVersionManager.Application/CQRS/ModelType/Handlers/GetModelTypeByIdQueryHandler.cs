@@ -30,7 +30,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
                             //.GetMatch(s => s.ModelTypeName == request.modelTypeRequestDTO.Value.ModelTypeId, includes, cancellationToken))
                             //.Map((result) => new ApplicationModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
 
-                            .GetMatch(s => s.ModelTypeName == request.RequestModelTypeDTO.ModelTypeId, includes, cancellationToken))
+                            .GetMatch(s => s.ModelTypeName == request.RequestModelTypeDTO.EntityNameId, includes, cancellationToken))
                             .Map((result) => new ModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
         }
 

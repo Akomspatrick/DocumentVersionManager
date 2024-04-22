@@ -24,7 +24,7 @@ namespace DocumentVersionManager.Application.CQRS.Model.Handlers
         {
             List<string> includes = new List<string>() { "ModelVersions" };
             return (await _modelRepository
-                            .GetMatch(s => s.ModelName == request.RequestModelDTO.ModelName, includes, cancellationToken))
+                            .GetMatch(s => s.ModelName == request.RequestModelDTO.EntityNameId, includes, cancellationToken))
                             .Map((result) => new ModelResponseDTO(result.GuidId, result.ModelName, result.ModelTypeName, null
                             //convertToModelDto(result.Models
 

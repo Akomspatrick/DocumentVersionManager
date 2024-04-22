@@ -1,4 +1,4 @@
-﻿using DocumentVersionManager.Contracts.RequestDTO.V1.auto;
+﻿using DocumentVersionManager.Contracts.RequestDTO.V1;
 using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using DocumentVersionManager.Domain.Errors;
 using LanguageExt;
@@ -45,8 +45,8 @@ namespace DocumentVersionManager.Sdk
         //    return response;
         //}
 
-         [Get("/api/v1/Models")]
-         Task<IActionResult> Get(CancellationToken cToken);
+        [Get("/api/v1/Models")]
+        Task<IActionResult> Get(CancellationToken cToken);
 
 
 
@@ -56,7 +56,7 @@ namespace DocumentVersionManager.Sdk
 
         public async Task<Either<GeneralFailure, TestingModeGroupCreateRequestDTO>> Post([Body] TestingModeGroupCreateRequestDTO request)
         {
-            var response = await PostInternal( request);
+            var response = await PostInternal(request);
             return response;
         }
 

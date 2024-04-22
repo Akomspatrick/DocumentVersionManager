@@ -1,16 +1,14 @@
-using DocumentVersionManager.Api.Extentions;
-using DocumentVersionManager.Application.CQRS;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Api.Extensions;
-using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.Application.CQRS;
+using Asp.Versioning;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using MediatR;
+using DocumentVersionManager.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-namespace DocumentVersionManager.Api.Controllers.v1
+namespace DocumentVersionManager.Api.Controllers.V1
 {
+     [ApiVersion(1)]
     public  class ModelVersionDocumentsController  : TheBaseController<ModelVersionDocumentsController>
     {
 
@@ -25,15 +23,15 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetModelVersionDocumentByGuidQuery(new ModelVersionDocumentGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetModelVersionDocumentByGuidQuery(new ModelVersionDocumentGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetModelVersionDocumentByIdQuery(new ModelVersionDocumentGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetModelVersionDocumentByIdQuery(new ModelVersionDocumentGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
-        [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ModelVersionDocumentResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ModelVersionDocumentGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetModelVersionDocumentQuery(request), cancellationToken)) .ToActionResult404();
+                => ( _sender.Send(new GetModelVersionDocumentQuery(request), cancellationToken)) .ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create, Name = DocumentVersionManagerAPIEndPoints.ModelVersionDocument.Create)]
         public Task<IActionResult> Create(ModelVersionDocumentCreateRequestDTO request, CancellationToken cancellationToken)

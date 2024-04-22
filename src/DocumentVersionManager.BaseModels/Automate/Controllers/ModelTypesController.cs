@@ -1,16 +1,14 @@
-using DocumentVersionManager.Api.Extentions;
-using DocumentVersionManager.Application.CQRS;
-using DocumentVersionManager.Contracts.RequestDTO;
-using DocumentVersionManager.Contracts.ResponseDTO;
 using DocumentVersionManager.Api.Extensions;
-using DocumentVersionManager.Domain.Errors;
-using LanguageExt;
+using DocumentVersionManager.Application.CQRS;
+using Asp.Versioning;
+using DocumentVersionManager.Contracts.RequestDTO.V1;
+using DocumentVersionManager.Contracts.ResponseDTO.V1;
 using MediatR;
+using DocumentVersionManager.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-namespace DocumentVersionManager.Api.Controllers.v1
+namespace DocumentVersionManager.Api.Controllers.V1
 {
+     [ApiVersion(1)]
     public  class ModelTypesController  : TheBaseController<ModelTypesController>
     {
 
@@ -25,15 +23,15 @@ namespace DocumentVersionManager.Api.Controllers.v1
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid)  ?
-                (_sender.Send(new GetModelTypeByGuidQuery(new ModelTypeGetRequestByGuidDTO(guid)), cancellationToken)).ToActionResult404()
+                (_sender.Send(new GetModelTypeByGuidQuery(new ModelTypeGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetModelTypeByIdQuery(new ModelTypeGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToActionResult404();
+                (_sender.Send(new GetModelTypeByIdQuery(new ModelTypeGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
         [HttpGet(template: DocumentVersionManagerAPIEndPoints.ModelType.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ModelType.GetByJSONBody)]
         public Task<IActionResult> GetByJSONBody([FromBody] ModelTypeGetRequestDTO request, CancellationToken cancellationToken)
-                => ( _sender.Send(new GetModelTypeQuery(request), cancellationToken)) .ToActionResult404();
+                => ( _sender.Send(new GetModelTypeQuery(request), cancellationToken)) .ToEitherActionResult();
 
         [HttpPost(template: DocumentVersionManagerAPIEndPoints.ModelType.Create, Name = DocumentVersionManagerAPIEndPoints.ModelType.Create)]
         public Task<IActionResult> Create(ModelTypeCreateRequestDTO request, CancellationToken cancellationToken)

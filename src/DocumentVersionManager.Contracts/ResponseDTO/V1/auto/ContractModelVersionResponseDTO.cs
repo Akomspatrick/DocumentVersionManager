@@ -1,4 +1,4 @@
-namespace DocumentVersionManager.Contracts.ResponseDTO.V1.auto
+namespace DocumentVersionManager.Contracts.ResponseDTO.V1
 {
-    public record ModelVersionResponseDTO(object Value);
+    public record ModelVersionResponseDTO(Object Value);
 }
