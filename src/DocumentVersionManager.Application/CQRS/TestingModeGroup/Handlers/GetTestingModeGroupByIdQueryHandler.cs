@@ -6,28 +6,28 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public class GetTestingModeGroupByIdQueryHandler : IRequestHandler<GetTestingModeGroupByIdQuery, Either<GeneralFailure, TestingModeGroupResponseDTO>>
+    public class GetProcessFlowGroupByIdQueryHandler : IRequestHandler<GetProcessFlowGroupByIdQuery, Either<GeneralFailure, ProcessFlowGroupResponseDTO>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<GetTestingModeGroupByIdQueryHandler> _logger;
-        public ITestingModeGroupRepository _testingModeGroupRepository;
-        public GetTestingModeGroupByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetTestingModeGroupByIdQueryHandler> logger, ITestingModeGroupRepository testingModeGroupRepository)
+        private readonly ILogger<GetProcessFlowGroupByIdQueryHandler> _logger;
+        public IProcessFlowGroupRepository _ProcessFlowGroupRepository;
+        public GetProcessFlowGroupByIdQueryHandler(IUnitOfWork unitOfWork, ILogger<GetProcessFlowGroupByIdQueryHandler> logger, IProcessFlowGroupRepository ProcessFlowGroupRepository)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _testingModeGroupRepository = testingModeGroupRepository ?? throw new ArgumentNullException(nameof(testingModeGroupRepository));
+            _ProcessFlowGroupRepository = ProcessFlowGroupRepository ?? throw new ArgumentNullException(nameof(ProcessFlowGroupRepository));
         }
 
-        public async Task<Either<GeneralFailure, TestingModeGroupResponseDTO>> Handle(GetTestingModeGroupByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, ProcessFlowGroupResponseDTO>> Handle(GetProcessFlowGroupByIdQuery request, CancellationToken cancellationToken)
         {
             List<string> includes = null;// new List<string>() { "Models" };
-            return (await _testingModeGroupRepository
+            return (await _ProcessFlowGroupRepository
                             //==4
                             //.GetMatch(s => s.ModelTypeName == request.modelTypeRequestDTO.Value.ModelTypeId, includes, cancellationToken))
                             //.Map((result) => new ApplicationModelTypeResponseDTO(result.GuidId, result.ModelTypeName, convertToModelDto(result.Models)));
 
-                            .GetMatch(s => s.TestingModeGroupName.Equals(request.RequestTestingModeGroupDTO.EntityNameId), includes, cancellationToken))
-                            .Map((result) => new TestingModeGroupResponseDTO(result.TestingModeGroupName, result.DefaultTestingMode, result.Description, result.GuidId));
+                            .GetMatch(s => s.ProcessFlowGroupName.Equals(request.RequestProcessFlowGroupDTO.EntityNameId), includes, cancellationToken))
+                            .Map((result) => new ProcessFlowGroupResponseDTO(result.ProcessFlowGroupName, result.DefaultTestingMode, result.Description, result.GuidId));
 
         }
     }

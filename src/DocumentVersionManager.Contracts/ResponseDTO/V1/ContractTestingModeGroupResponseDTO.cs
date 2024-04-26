@@ -1,5 +1,5 @@
 namespace DocumentVersionManager.Contracts.ResponseDTO.V1
 {
-    // public  record TestingModeGroupResponseDTO(Object Value);
-    public record TestingModeGroupResponseDTO(string TestingModeGroupName, string testingMode, string description, Guid guidId);
+    // public  record ProcessFlowGroupResponseDTO(Object Value);
+    public record ProcessFlowGroupResponseDTO(string ProcessFlowGroupName, string testingMode, string description, Guid guidId);
 }

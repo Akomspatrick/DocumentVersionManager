@@ -11,6 +11,6 @@ namespace DocumentVersionManager.BaseModels.Entities
 
 
         public ICollection<Model> Models { get; set; } //This is for navigation property.// to be removed if i want  to strictly follow domain driven design
-
+        public required ProcessFlowGroup ProcessFlowGroup { get; init; }
     }
 }

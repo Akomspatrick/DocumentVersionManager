@@ -1,7 +1,7 @@
 using DocumentVersionManager.Domain.Entities;
 namespace DocumentVersionManager.Domain.Interfaces
 {
-    public  interface ITestingModeGroupRepository:IGenericRepository< TestingModeGroup>
+    public  interface IProcessFlowGroupRepository:IGenericRepository< ProcessFlowGroup>
     {
     }
 }

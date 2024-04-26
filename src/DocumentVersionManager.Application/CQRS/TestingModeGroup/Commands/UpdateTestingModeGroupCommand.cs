@@ -4,5 +4,5 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  record UpdateTestingModeGroupCommand(TestingModeGroupUpdateRequestDTO  UpdateTestingModeGroupDTO) :  IRequest<Either<GeneralFailure, int>>;
+    public  record UpdateProcessFlowGroupCommand(ProcessFlowGroupUpdateRequestDTO  UpdateProcessFlowGroupDTO) :  IRequest<Either<GeneralFailure, int>>;
 }

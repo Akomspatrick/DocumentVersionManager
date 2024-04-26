@@ -29,14 +29,14 @@ namespace DocumentVersionManager.Integration.Tests.ModelsController
         }
 
         [Theory]
-        [InlineData("TestingModeGroups/", "SECONDMODELNAME")]
-        [InlineData("TestingModeGroups/", "7808711f-544a-423d-8d99-f00c31e35be5")]
+        [InlineData("ProcessFlowGroups/", "SECONDMODELNAME")]
+        [InlineData("ProcessFlowGroups/", "7808711f-544a-423d-8d99-f00c31e35be5")]
         // [InlineData("Models/", "")]
         public async Task GetModelShouldRetunHttpStatusCode_OK(string path, string item)
         {
             // act
-            //            INSERT INTO `TestDocumentVersionManagerDB`.`TestingModeGroups`
-            //(`TestingModeGroupName`,
+            //            INSERT INTO `TestDocumentVersionManagerDB`.`ProcessFlowGroups`
+            //(`ProcessFlowGroupName`,
             //`DefaultTestingMode`,
             //`Description`,
             //`GuidId`)
@@ -48,13 +48,13 @@ namespace DocumentVersionManager.Integration.Tests.ModelsController
             // use docker also for testing
             var response = await _httpClient.GetAsync(path + item);
             var response2 = await _httpClient.GetAsync(path);
-            var response3 = await _httpClient.GetAsync("TestingModeGroups/");
+            var response3 = await _httpClient.GetAsync("ProcessFlowGroups/");
 
-            var response4 = await _httpClient.GetAsync("TestingModeGroups/");
-            var response6 = await _httpClient.GetAsync("/TestingModeGroups");
-            var response5 = await _httpClient.GetAsync("/TestingModeGroups/");
-            var response7 = await _httpClient.GetAsync("/TestingModeGroups/Get");
-            var response8 = await _httpClient.GetAsync("/api/TestingModeGroups/Get/");
+            var response4 = await _httpClient.GetAsync("ProcessFlowGroups/");
+            var response6 = await _httpClient.GetAsync("/ProcessFlowGroups");
+            var response5 = await _httpClient.GetAsync("/ProcessFlowGroups/");
+            var response7 = await _httpClient.GetAsync("/ProcessFlowGroups/Get");
+            var response8 = await _httpClient.GetAsync("/api/ProcessFlowGroups/Get/");
             //assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }

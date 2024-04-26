@@ -1,6 +1,5 @@
 using DocumentVersionManager.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
-using DocumentVersionManager.Application.CQRS.Model.Commands;
 using LanguageExt;
 using MediatR;
 using MediatR;
@@ -26,7 +25,7 @@ namespace DocumentVersionManager.Application.CQRS
         {
             throw new NotImplementedException("OPERATION NOT ALLOWED");
             var entity = _mapper.Map<Domain.Entities.ModelVersion>(request.UpdateModelVersionDTO);
-            return await _unitOfWork.ModelVersionRepository.UpdateAsync(entity, cancellationToken);
+            return await _modelVersionRepository.UpdateAsync(entity, cancellationToken);
         }
     }
 }

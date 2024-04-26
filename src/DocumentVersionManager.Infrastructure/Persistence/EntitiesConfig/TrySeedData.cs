@@ -24,16 +24,16 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                     // if (await ctx.Database.EnsureCreatedAsync())
                     {
 
-                        var testData = ctx.TestingModeGroups.Any();
+                        var testData = ctx.ProcessFlowGroups.Any();
                         if (!testData)
                         {
-                            var data = new List<TestingModeGroup>
+                            var data = new List<ProcessFlowGroup>
                             {
-                                TestingModeGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
-                                TestingModeGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
-                                TestingModeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                                ProcessFlowGroup.Create("LOADCELLS_GROUP", "AUTOMATIC", "FLOW TYPES FOR LOADCELL", Guid.NewGuid()),
+                                ProcessFlowGroup.Create("TESTLINKS_GROUP", "MANUAL", "FLOW TYPES FOR TESTLINKS", Guid.NewGuid()),
+                                ProcessFlowGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                             };
-                            ctx.TestingModeGroups.AddRange(data);
+                            ctx.ProcessFlowGroups.AddRange(data);
                             ctx.SaveChanges();
 
 
@@ -96,7 +96,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
 
 
 
-                               // TestingModeGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
+                               // ProcessFlowGroup.Create("SCALES/PAD", "MANUAL", "FLOW TYPES FOR SCALES/PAD",Guid.NewGuid())
                          
                                 
                                 //   public static ModelVersion Create(int  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, int  capacity, Double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, int  minimumDeadLoad, Double  vMin, int  nMax, int  safeLoad, int  ultimateLoad, string  shellMaterialName, Boolean  alloy, int  defaultCableLength, int  numberOfGauges, int  resistance, string  cCNumber, string  accuracyClass, string  application, int  temperingHardnessLow, int  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, Boolean  testPointDirection, Guid  guidId)

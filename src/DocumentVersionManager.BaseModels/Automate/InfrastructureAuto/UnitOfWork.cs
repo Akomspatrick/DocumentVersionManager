@@ -1,5 +1,6 @@
 using LanguageExt;
 using DocumentVersionManager.Domain.Errors;
+using Microsoft.EntityFrameworkCore;
 using DocumentVersionManager.Domain.Interfaces;
 
 namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
@@ -19,7 +20,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
             }
             catch (DbUpdateException ex)
             {
-                return new GeneralFailure(ex.Message);
+                return GeneralFailures.ProblemAddingEntityIntoDbContext("Problem Saving Data");
             }
             catch (Exception ex)
             {

@@ -6,23 +6,23 @@ using LanguageExt;
 using MediatR;
 namespace DocumentVersionManager.Application.CQRS
 {
-    public  class DeleteTestingModeGroupCommandHandler  :  IRequestHandler<DeleteTestingModeGroupCommand, Either<GeneralFailure, int>>
+    public  class DeleteProcessFlowGroupCommandHandler  :  IRequestHandler<DeleteProcessFlowGroupCommand, Either<GeneralFailure, int>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ITestingModeGroupRepository _testingModeGroupRepository ;
-        private readonly ILogger<DeleteTestingModeGroupCommandHandler> _logger;
-        public DeleteTestingModeGroupCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteTestingModeGroupCommandHandler> logger, ITestingModeGroupRepository testingModeGroupRepository )
+        public IProcessFlowGroupRepository _ProcessFlowGroupRepository ;
+        private readonly ILogger<DeleteProcessFlowGroupCommandHandler> _logger;
+        public DeleteProcessFlowGroupCommandHandler(IUnitOfWork unitOfWork, ILogger<DeleteProcessFlowGroupCommandHandler> logger, IProcessFlowGroupRepository ProcessFlowGroupRepository )
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _testingModeGroupRepository = testingModeGroupRepository  ?? throw new ArgumentNullException(nameof(testingModeGroupRepository ));
+            _ProcessFlowGroupRepository = ProcessFlowGroupRepository  ?? throw new ArgumentNullException(nameof(ProcessFlowGroupRepository ));
         }
 
-        public async Task<Either<GeneralFailure, int>> Handle(DeleteTestingModeGroupCommand request, CancellationToken cancellationToken)
+        public async Task<Either<GeneralFailure, int>> Handle(DeleteProcessFlowGroupCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException("Operation Not Allowed ");
-            //return  await _testingModeGroupRepository.DeleteByGuidAsync(request.DeleteTestingModeGroupDTO.guid, cancellationToken);
-            //Old return  await _unitOfWork.TestingModeGroupRepository.DeleteByGuidAsync(request.DeleteTestingModeGroupDTO.guid, cancellationToken);
+            //return  await _ProcessFlowGroupRepository.DeleteByGuidAsync(request.DeleteProcessFlowGroupDTO.guid, cancellationToken);
+            //Old return  await _unitOfWork.ProcessFlowGroupRepository.DeleteByGuidAsync(request.DeleteProcessFlowGroupDTO.guid, cancellationToken);
         }
     }
 }

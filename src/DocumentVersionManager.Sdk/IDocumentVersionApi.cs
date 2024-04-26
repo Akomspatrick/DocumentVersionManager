@@ -32,10 +32,10 @@ namespace DocumentVersionManager.Sdk
 
 
         // [ProducesResponseType(typeof(GeneralFailures), StatusCodes.Status400BadRequest)]
-        // [ProducesResponseType(typeof(TestingModeGroupCreateRequestDTO), StatusCodes.Status200OK)]
+        // [ProducesResponseType(typeof(ProcessFlowGroupCreateRequestDTO), StatusCodes.Status200OK)]
 
-        // [Post("/api/v1/TestingModeGroups")]
-        // Task<TestingModeGroupCreateRequestDTO> PostAll([Body]TestingModeGroupCreateRequestDTO request);
+        // [Post("/api/v1/ProcessFlowGroups")]
+        // Task<ProcessFlowGroupCreateRequestDTO> PostAll([Body]ProcessFlowGroupCreateRequestDTO request);
         //[Get("/api/v1/Models")]
         //internal Task<Either<GeneralFailure, ModelTypeResponseDTO>> GetInternal();
 
@@ -51,10 +51,10 @@ namespace DocumentVersionManager.Sdk
 
 
 
-        [Post("/api/v1/TestingModeGroups")]
-        internal Task<Either<GeneralFailure, TestingModeGroupCreateRequestDTO>> PostInternal([Body] TestingModeGroupCreateRequestDTO request);
+        [Post("/api/v1/ProcessFlowGroups")]
+        internal Task<Either<GeneralFailure, ProcessFlowGroupCreateRequestDTO>> PostInternal([Body] ProcessFlowGroupCreateRequestDTO request);
 
-        public async Task<Either<GeneralFailure, TestingModeGroupCreateRequestDTO>> Post([Body] TestingModeGroupCreateRequestDTO request)
+        public async Task<Either<GeneralFailure, ProcessFlowGroupCreateRequestDTO>> Post([Body] ProcessFlowGroupCreateRequestDTO request)
         {
             var response = await PostInternal(request);
             return response;

@@ -10,6 +10,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
         private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+        if (optionsBuilder.IsConfigured) return;
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             var conn = _configuration.GetConnectionString(constr);
             optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
@@ -29,7 +30,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
         public DbSet<ModelVersion> ModelVersions { get; private set; }
         public DbSet<ModelVersionDocument> ModelVersionDocuments { get; private set; }
         public DbSet<ShellMaterial> ShellMaterials { get; private set; }
-        public DbSet<TestingModeGroup> TestingModeGroups { get; private set; }
+        public DbSet<ProcessFlowGroup> ProcessFlowGroups { get; private set; }
         public DbSet<TestPoint> TestPoints { get; private set; }
     }
 }

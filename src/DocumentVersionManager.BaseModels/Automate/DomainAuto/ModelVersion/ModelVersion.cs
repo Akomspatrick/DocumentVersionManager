@@ -9,7 +9,7 @@ namespace DocumentVersionManager.Domain.Entities
         public string ModelVersionName    { get; init; }  = string.Empty; 
         public Model Model    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
-        public string TestingModeGroupName    { get; init; }  = string.Empty; 
+        public string ProcessFlowGroupName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public DateTime Timestamp    { get; init; } 
         public string UserName    { get; init; }  = string.Empty; 
@@ -40,12 +40,11 @@ namespace DocumentVersionManager.Domain.Entities
         public DateTime? OIMLCertificationTimestamp    { get; init; } 
         public bool TestPointDirection    { get; init; } 
         public ShellMaterial ShellMaterial    { get; init; } 
-        public TestingModeGroup TestingModeGroup    { get; init; } 
         private  List <TestPoint> _TestPoints { get;  set;}  = new List<TestPoint>();
         public  IReadOnlyCollection<TestPoint> TestPoints => _TestPoints;
         // public Guid GuidId    { get; init; } 
         
-        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  testingModeGroupName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, bool  alloy, Int32  defaultCableLength, Int32  numberOfGauges, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, Int32  temperingHardnessLow, Int32  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, bool  testPointDirection, Guid  guidId)
+        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  processFlowGroupName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, bool  alloy, Int32  defaultCableLength, Int32  numberOfGauges, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, Int32  temperingHardnessLow, Int32  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, bool  testPointDirection, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -57,7 +56,7 @@ namespace DocumentVersionManager.Domain.Entities
             VersionDescription = versionDescription ,
             ModelVersionName = modelVersionName ,
             ModelName = modelName ,
-            TestingModeGroupName = testingModeGroupName ,
+            ProcessFlowGroupName = processFlowGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Timestamp = timestamp ,
             UserName = userName ,

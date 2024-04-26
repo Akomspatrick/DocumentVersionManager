@@ -24,7 +24,7 @@ namespace DocumentVersionManager.Infrastructure
             services.AddScoped<IModelVersionRepository, ModelVersionRepository>();
             services.AddScoped<IModelVersionDocumentRepository, ModelVersionDocumentRepository>();
             services.AddScoped<IShellMaterialRepository, ShellMaterialRepository>();
-            services.AddScoped<ITestingModeGroupRepository, TestingModeGroupRepository>();
+            services.AddScoped<IProcessFlowGroupRepository, ProcessFlowGroupRepository>();
             services.AddScoped<ITestPointRepository, TestPointRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

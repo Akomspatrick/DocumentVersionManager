@@ -53,9 +53,9 @@ namespace DocumentVersionManager.Api
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class TestingModeGroup
+        public static class ProcessFlowGroup
         {
-            public const string Controller = "TestingModeGroups";
+            public const string Controller = "ProcessFlowGroups";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";

@@ -48,13 +48,13 @@ namespace DocumentVersionManager.Application.Mapping
             CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialDeleteRequestDTO, ShellMaterial>().ReverseMap();
         
-            // TestingModeGroup Mappings 
-            //CreateMap<TestingModeGroupGetRequestDTO, TestingModeGroup>().ReverseMap();
-            //CreateMap<TestingModeGroupGetRequestByIdDTO, TestingModeGroup>().ReverseMap();
-            //CreateMap<TestingModeGroupGetRequestByGuidDTO, TestingModeGroup>().ReverseMap();
-            //CreateMap<TestingModeGroupCreateRequestDTO, TestingModeGroup>().ReverseMap();
-            CreateMap<TestingModeGroupUpdateRequestDTO, TestingModeGroup>().ReverseMap();
-            //CreateMap<TestingModeGroupDeleteRequestDTO, TestingModeGroup>().ReverseMap();
+            // ProcessFlowGroup Mappings 
+            //CreateMap<ProcessFlowGroupGetRequestDTO, ProcessFlowGroup>().ReverseMap();
+            //CreateMap<ProcessFlowGroupGetRequestByIdDTO, ProcessFlowGroup>().ReverseMap();
+            //CreateMap<ProcessFlowGroupGetRequestByGuidDTO, ProcessFlowGroup>().ReverseMap();
+            //CreateMap<ProcessFlowGroupCreateRequestDTO, ProcessFlowGroup>().ReverseMap();
+            CreateMap<ProcessFlowGroupUpdateRequestDTO, ProcessFlowGroup>().ReverseMap();
+            //CreateMap<ProcessFlowGroupDeleteRequestDTO, ProcessFlowGroup>().ReverseMap();
         
             // TestPoint Mappings 
             //CreateMap<TestPointGetRequestDTO, TestPoint>().ReverseMap();

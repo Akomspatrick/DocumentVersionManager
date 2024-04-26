@@ -14,42 +14,42 @@ using Asp.Versioning;
 namespace DocumentVersionManager.Api.Controllers.v1
 {
     [ApiVersion(1)]
-    public class TestingModeGroupsController : TheBaseController<TestingModeGroupsController>
+    public class ProcessFlowGroupsController : TheBaseController<ProcessFlowGroupsController>
     {
 
-        public TestingModeGroupsController(ILogger<TestingModeGroupsController> logger, ISender sender) : base(logger, sender) { }
+        public ProcessFlowGroupsController(ILogger<ProcessFlowGroupsController> logger, ISender sender) : base(logger, sender) { }
 
-        [ProducesResponseType(typeof(IEnumerable<TestingModeGroupResponseDTO>), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.Get, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.Get)]
-        public Task<IActionResult> Get(CancellationToken cToken) => _sender.Send(new GetAllTestingModeGroupQuery(), cToken).ToActionResult();
+        [ProducesResponseType(typeof(IEnumerable<ProcessFlowGroupResponseDTO>), StatusCodes.Status200OK)]
+        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Get, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Get)]
+        public Task<IActionResult> Get(CancellationToken cToken) => _sender.Send(new GetAllProcessFlowGroupQuery(), cToken).ToActionResult();
 
-        [ProducesResponseType(typeof(TestingModeGroupResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetById, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetById)]
+        [ProducesResponseType(typeof(ProcessFlowGroupResponseDTO), StatusCodes.Status200OK)]
+        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.GetById, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.GetById)]
         public Task<IActionResult> GetById([FromRoute] string NameOrGuid, CancellationToken cancellationToken)
         {
             return Guid.TryParse(NameOrGuid, out Guid guid) ?
-                (_sender.Send(new GetTestingModeGroupByGuidQuery(new TestingModeGroupGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
+                (_sender.Send(new GetProcessFlowGroupByGuidQuery(new ProcessFlowGroupGetRequestByGuidDTO(guid)), cancellationToken)).ToEitherActionResult()
                 :
-                (_sender.Send(new GetTestingModeGroupByIdQuery(new TestingModeGroupGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
+                (_sender.Send(new GetProcessFlowGroupByIdQuery(new ProcessFlowGroupGetRequestByIdDTO(NameOrGuid)), cancellationToken)).ToEitherActionResult();
         }
 
         [ProducesResponseType(typeof(ModelTypeResponseDTO), StatusCodes.Status200OK)]
-        [HttpGet(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.GetByJSONBody)]
-        public Task<IActionResult> GetByJSONBody([FromBody] TestingModeGroupGetRequestDTO request, CancellationToken cancellationToken)
-                => (_sender.Send(new GetTestingModeGroupQuery(request), cancellationToken)).ToEitherActionResult();
+        [HttpGet(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.GetByJSONBody, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.GetByJSONBody)]
+        public Task<IActionResult> GetByJSONBody([FromBody] ProcessFlowGroupGetRequestDTO request, CancellationToken cancellationToken)
+                => (_sender.Send(new GetProcessFlowGroupQuery(request), cancellationToken)).ToEitherActionResult();
 
-        [HttpPost(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create)]
-        public Task<IActionResult> Create(TestingModeGroupCreateRequestDTO request, CancellationToken cancellationToken)
-             => (_sender.Send(new CreateTestingModeGroupCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create}", request);
+        [HttpPost(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Create, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Create)]
+        public Task<IActionResult> Create(ProcessFlowGroupCreateRequestDTO request, CancellationToken cancellationToken)
+             => (_sender.Send(new CreateProcessFlowGroupCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Create}", request);
 
-        [HttpPut(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.Update, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.Update)]
-        public Task<IActionResult> Update(TestingModeGroupUpdateRequestDTO request, CancellationToken cancellationToken)
-            => (_sender.Send(new UpdateTestingModeGroupCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.TestingModeGroup.Create}", request);
+        [HttpPut(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Update, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Update)]
+        public Task<IActionResult> Update(ProcessFlowGroupUpdateRequestDTO request, CancellationToken cancellationToken)
+            => (_sender.Send(new UpdateProcessFlowGroupCommand(request), cancellationToken)).ToActionResultCreated($"{DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Create}", request);
 
 
-        [HttpDelete(template: DocumentVersionManagerAPIEndPoints.TestingModeGroup.Delete, Name = DocumentVersionManagerAPIEndPoints.TestingModeGroup.Delete)]
+        [HttpDelete(template: DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Delete, Name = DocumentVersionManagerAPIEndPoints.ProcessFlowGroup.Delete)]
         public Task<IActionResult> Delete([FromRoute] Guid request, CancellationToken cancellationToken)
-            => _sender.Send(new DeleteTestingModeGroupCommand(new TestingModeGroupDeleteRequestDTO(request)), cancellationToken).ToActionResult();
+            => _sender.Send(new DeleteProcessFlowGroupCommand(new ProcessFlowGroupDeleteRequestDTO(request)), cancellationToken).ToActionResult();
 
     }
 }

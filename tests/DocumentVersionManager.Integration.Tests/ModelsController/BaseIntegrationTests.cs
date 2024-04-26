@@ -23,12 +23,12 @@ namespace DocumentVersionManager.Integration.Tests.ModelsController
 
                 //var contextManager = _scope.ServiceProvider.GetRequiredService<Infrastructure.Persistence.DocumentVersionManagerContext>();
                 //contextManager.Database.EnsureCreated();
-                //contextManager.TestingModeGroups.Add(TestingModeGroup.Create("Groupname", "defaultmode", "description", Guid.NewGuid()));
-                //contextManager.TestingModeGroups.Add(TestingModeGroup.Create("Groupname1", "defaultmode1", "description1", Guid.NewGuid()));
-                //contextManager.TestingModeGroups.Add(TestingModeGroup.Create("Groupname2", "defaultmode2", "descriptio1n2", Guid.NewGuid()));
+                //contextManager.ProcessFlowGroups.Add(ProcessFlowGroup.Create("Groupname", "defaultmode", "description", Guid.NewGuid()));
+                //contextManager.ProcessFlowGroups.Add(ProcessFlowGroup.Create("Groupname1", "defaultmode1", "description1", Guid.NewGuid()));
+                //contextManager.ProcessFlowGroups.Add(ProcessFlowGroup.Create("Groupname2", "defaultmode2", "descriptio1n2", Guid.NewGuid()));
                 //contextManager.SaveChanges();
                 // contextManager.Database.EnsureCreated();
-                //  Infrastructure.Persistence.EntitiesConfig.TestingModeGroupConfigSeedData(contextManager);
+                //  Infrastructure.Persistence.EntitiesConfig.ProcessFlowGroupConfigSeedData(contextManager);
 
             }
             _httpClient = factory.CreateClient();

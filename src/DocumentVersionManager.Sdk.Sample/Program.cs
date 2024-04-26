@@ -34,9 +34,9 @@ class Program
         //    var documentApi = Refit.RestService.For<IDocumentVersionApi>("https://localhost:7181");
         //    var response = await documentApi.Get(CancellationToken.None);
         //    // apiResponse = new ApiResponse();
-        //    // var request = new TestingModeGroupCreateRequestDTO(testingMode: "string7", TestingModeGroupName: "5string789", description: "string", guidId: Guid.NewGuid());
+        //    // var request = new ProcessFlowGroupCreateRequestDTO(testingMode: "string7", ProcessFlowGroupName: "5string789", description: "string", guidId: Guid.NewGuid());
 
-        //    //   Either < GeneralFailure, TestingModeGroupCreateRequestDTO > response = await documentApi.Post(request);
+        //    //   Either < GeneralFailure, ProcessFlowGroupCreateRequestDTO > response = await documentApi.Post(request);
         //    var document = "dddd";
         //}
         //catch (Exception ex)
