@@ -3,7 +3,7 @@
 namespace DocumentVersionManager.BaseModels.Entities
 {
     [BaseModelsForeignKeyAttribute("Model", "ModelVersions")]
-    [BaseModelsHardForeignKeyAttribute("ProcessFlowGroup", "ModelVersions", ["ProcessFlowGroupName"])]
+
     [BaseModelsHardForeignKeyAttribute("ShellMaterial", "ModelVersions", ["ShellMaterialName"])]
     public class ModelVersion : BaseEntity
     {
@@ -16,7 +16,7 @@ namespace DocumentVersionManager.BaseModels.Entities
 
         [BaseModelBasicAttribute(32, 0, true, true, false)]
         public string ModelName { get; init; } = string.Empty;
-        public string ProcessFlowGroupName { get; private set; } = string.Empty;
+
         public string DefaultTestingMode { get; init; } = string.Empty; // Manual, Automatic for each product
         public DateTime Timestamp { get; init; }
         public string UserName { get; init; } = string.Empty;
@@ -24,6 +24,7 @@ namespace DocumentVersionManager.BaseModels.Entities
 
         [BaseModelBasicAttribute(0, 0, false, false, false, true)]
         public int Capacity { get; init; }
+        public int TestCapacity { get; init; }
         public double? NominalOutput { get; init; }
         public decimal? NominalOutputPercentage { get; init; }
         public decimal? NonlinearityPercentage { get; init; }
@@ -42,8 +43,8 @@ namespace DocumentVersionManager.BaseModels.Entities
         public string? CCNumber { get; init; }
         public string? AccuracyClass { get; init; } = string.Empty;
         public string? Application { get; init; } = string.Empty;
-        public int? TemperingHardnessLow { get; init; }
-        public int? TemperingHardnessHigh { get; init; }
+        //public int? TemperingHardnessLow { get; init; }
+        //public int? TemperingHardnessHigh { get; init; }
         public string? NTEPCertificationId { get; init; } = string.Empty;
         public DateTime? NTEPCertificationTimestamp { get; init; }
 

@@ -256,6 +256,27 @@ namespace DocumentVersionManager.Infrastructure.Persistence.Repositories
 
 
         }
+        public async Task<Either<GeneralFailure, int>> DeleteByGuidAsync(Guid guid, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var entity = await _ctx.Set<T>().AsNoTracking().FirstOrDefaultAsync(s => (s.GuidId.Equals(guid)), cancellationToken);
+                if (entity == null)
+                {
+                    return GeneralFailures.DataNotFoundInRepository(guid.ToString());
+                }
+                _ctx.Remove<T>(entity);
+                return await _ctx.SaveChangesAsync(cancellationToken);
+
+
+            }
+            catch (Exception ex)
+            {
+                //Log this error properly
+                return GeneralFailures.ProblemDeletingEntityFromRepository(guid.ToString() + ex.Message);
+            }
+
+        }
 
         //public async Task<Result<T>> GetByGuidAsync2(Guid guid, CancellationToken cancellationToken = default)
         //{

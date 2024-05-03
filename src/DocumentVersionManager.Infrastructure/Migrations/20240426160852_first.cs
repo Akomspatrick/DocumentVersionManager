@@ -15,16 +15,20 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ModelTypes",
+                name: "ProcessFlowGroups",
                 columns: table => new
                 {
-                    ModelTypeName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    ProcessFlowGroupName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DefaultTestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModelTypes", x => x.ModelTypeName);
+                    table.PrimaryKey("PK_ProcessFlowGroups", x => x.ProcessFlowGroupName);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -44,20 +48,24 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ProcessFlowGroups",
+                name: "ModelTypes",
                 columns: table => new
                 {
+                    ModelTypeName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     ProcessFlowGroupName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DefaultTestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProcessFlowGroups", x => x.ProcessFlowGroupName);
+                    table.PrimaryKey("PK_ModelTypes", x => x.ModelTypeName);
+                    table.ForeignKey(
+                        name: "FK_ModelTypes_ProcessFlowGroups_ProcessFlowGroupName",
+                        column: x => x.ProcessFlowGroupName,
+                        principalTable: "ProcessFlowGroups",
+                        principalColumn: "ProcessFlowGroupName",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -93,8 +101,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     VersionDescription = table.Column<string>(type: "varchar(160)", maxLength: 160, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ModelVersionName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProcessFlowGroupName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DefaultTestingMode = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -147,12 +153,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         column: x => x.ShellMaterialName,
                         principalTable: "ShellMaterials",
                         principalColumn: "ShellMaterialName");
-                    table.ForeignKey(
-                        name: "FK_ModelVersions_ProcessFlowGroups_ProcessFlowGroupName",
-                        column: x => x.ProcessFlowGroupName,
-                        principalTable: "ProcessFlowGroups",
-                        principalColumn: "ProcessFlowGroupName",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -167,6 +167,10 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     DocumentDescription = table.Column<string>(type: "varchar(64)", maxLength: 64, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Stage = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DocumentDrive = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DocumentPath = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DocumentGuid = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Documentname = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
@@ -216,6 +220,11 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 column: "ModelTypeName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ModelTypes_ProcessFlowGroupName",
+                table: "ModelTypes",
+                column: "ProcessFlowGroupName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ModelVersions_ModelName",
                 table: "ModelVersions",
                 column: "ModelName");
@@ -224,11 +233,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 name: "IX_ModelVersions_ShellMaterialName",
                 table: "ModelVersions",
                 column: "ShellMaterialName");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ModelVersions_ProcessFlowGroupName",
-                table: "ModelVersions",
-                column: "ProcessFlowGroupName");
         }
 
         /// <inheritdoc />
@@ -250,10 +254,10 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 name: "ShellMaterials");
 
             migrationBuilder.DropTable(
-                name: "ProcessFlowGroups");
+                name: "ModelTypes");
 
             migrationBuilder.DropTable(
-                name: "ModelTypes");
+                name: "ProcessFlowGroups");
         }
     }
 }

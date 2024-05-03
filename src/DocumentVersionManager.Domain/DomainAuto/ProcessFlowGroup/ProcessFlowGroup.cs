@@ -7,11 +7,11 @@ namespace DocumentVersionManager.Domain.Entities
         public string ProcessFlowGroupName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public string Description    { get; init; }  = string.Empty; 
-        private  List <ModelVersion> _ModelVersions { get;  set;}  = new List<ModelVersion>();
-        public  IReadOnlyCollection<ModelVersion> ModelVersions => _ModelVersions;
+        private  List <ModelType> _ModelTypes { get;  set;}  = new List<ModelType>();
+        public  IReadOnlyCollection<ModelType> ModelTypes => _ModelTypes;
         // public Guid GuidId    { get; init; } 
         
-        public static ProcessFlowGroup Create(string  ProcessFlowGroupName, string  defaultTestingMode, string  description, Guid  guidId)
+        public static ProcessFlowGroup Create(string  processFlowGroupName, string  defaultTestingMode, string  description, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -19,7 +19,7 @@ namespace DocumentVersionManager.Domain.Entities
     }
         return  new()
         {
-            ProcessFlowGroupName = ProcessFlowGroupName ,
+            ProcessFlowGroupName = processFlowGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Description = description ,
             GuidId = guidId ,

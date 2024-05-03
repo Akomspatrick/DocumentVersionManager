@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 namespace DocumentVersionManager.Infrastructure.Persistence
 {
-    public class DocumentVersionManagerContext : DbContext
+    public class DocumentVersionManagerContext :   DbContext
     {
         private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (optionsBuilder.IsConfigured) return;
+        if (optionsBuilder.IsConfigured) return;
             var constr = GetConnectionstringName.GetConnectionStrName(Environment.MachineName);
             var conn = _configuration.GetConnectionString(constr);
             optionsBuilder.UseMySql(conn!, GeneralUtils.GetMySqlVersion());
@@ -24,7 +24,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DocumentVersionManagerContext).Assembly);
         }
-
+        
         public DbSet<Model> Models { get; private set; }
         public DbSet<ModelType> ModelTypes { get; private set; }
         public DbSet<ModelVersion> ModelVersions { get; private set; }

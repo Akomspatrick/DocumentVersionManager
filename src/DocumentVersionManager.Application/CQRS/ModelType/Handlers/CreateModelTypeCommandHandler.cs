@@ -25,7 +25,7 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
 
         public async Task<Either<GeneralFailure, Guid>> Handle(CreateModelTypeCommand request, CancellationToken cancellationToken)
         {
-            var entity = Domain.Entities.ModelType.Create(request.CreateModelTypeDTO.ModelTypeName, request.CreateModelTypeDTO.GuidId);
+            var entity = Domain.Entities.ModelType.Create(request.CreateModelTypeDTO.ModelTypeName, request.CreateModelTypeDTO.ProcessFlowGroupName, request.CreateModelTypeDTO.GuidId);
             return (await _modelTypeRepository.AddAsync(entity, cancellationToken)).Map((x) => entity.GuidId);
         }
 

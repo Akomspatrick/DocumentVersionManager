@@ -49,7 +49,14 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<Guid>("GuidId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("ProcessFlowGroupName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
                     b.HasKey("ModelTypeName");
+
+                    b.HasIndex("ProcessFlowGroupName");
 
                     b.ToTable("ModelTypes");
                 });
@@ -134,19 +141,11 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
-                    b.Property<int?>("TemperingHardnessHigh")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TemperingHardnessLow")
+                    b.Property<int>("TestCapacity")
                         .HasColumnType("int");
 
                     b.Property<bool>("TestPointDirection")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("ProcessFlowGroupName")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
@@ -176,8 +175,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.HasIndex("ModelName");
 
                     b.HasIndex("ShellMaterialName");
-
-                    b.HasIndex("ProcessFlowGroupName");
 
                     b.ToTable("ModelVersions");
                 });
@@ -238,6 +235,30 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("ModelVersionDocuments");
                 });
 
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", b =>
+                {
+                    b.Property<string>("ProcessFlowGroupName")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("DefaultTestingMode")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("ProcessFlowGroupName");
+
+                    b.ToTable("ProcessFlowGroups");
+                });
+
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
                 {
                     b.Property<string>("ShellMaterialName")
@@ -275,30 +296,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("TestPoints");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", b =>
-                {
-                    b.Property<string>("ProcessFlowGroupName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("DefaultTestingMode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("ProcessFlowGroupName");
-
-                    b.ToTable("ProcessFlowGroups");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.Model", b =>
                 {
                     b.HasOne("DocumentVersionManager.Domain.Entities.ModelType", "ModelType")
@@ -308,6 +305,17 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("ModelType");
+                });
+
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelType", b =>
+                {
+                    b.HasOne("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", "ProcessFlowGroup")
+                        .WithMany("ModelTypes")
+                        .HasForeignKey("ProcessFlowGroupName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProcessFlowGroup");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersion", b =>
@@ -322,17 +330,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .WithMany("ModelVersions")
                         .HasForeignKey("ShellMaterialName");
 
-                    b.HasOne("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", "ProcessFlowGroup")
-                        .WithMany("ModelVersions")
-                        .HasForeignKey("ProcessFlowGroupName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Model");
 
                     b.Navigation("ShellMaterial");
-
-                    b.Navigation("ProcessFlowGroup");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionDocument", b =>
@@ -374,12 +374,12 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Navigation("TestPoints");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", b =>
                 {
-                    b.Navigation("ModelVersions");
+                    b.Navigation("ModelTypes");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", b =>
+            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
                 {
                     b.Navigation("ModelVersions");
                 });

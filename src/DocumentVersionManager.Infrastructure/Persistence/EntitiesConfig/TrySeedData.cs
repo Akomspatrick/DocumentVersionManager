@@ -44,9 +44,9 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelType>
                             {
-                                ModelType.Create("FIRSTMODELTYPE",  Guid.NewGuid()),
-                                ModelType.Create("SECONDMODELTYPE",  Guid.NewGuid()),
-                                ModelType.Create("THIRDMODELTYPE",Guid.NewGuid())
+                                ModelType.Create("FIRSTMODELTYPE", "LOADCELLS_GROUP", Guid.NewGuid()),
+                                ModelType.Create("SECONDMODELTYPE","LOADCELLS_GROUP",  Guid.NewGuid()),
+                                ModelType.Create("THIRDMODELTYPE","LOADCELLS_GROUP", Guid.NewGuid())
                             };
                             ctx.ModelTypes.AddRange(data);
                             ctx.SaveChanges();
@@ -86,11 +86,10 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelVersion>
                                {
-                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME","LOADCELLS_GROUP", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1
-                                                               , 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME", "TESTLINKS_GROUP", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION", 2, 2, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "SCALES/PAD", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(2, "INITIAL DESIGN TO INPROVE VERSION1", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME", "SCALES/PAD", "MANUAL", DateTime.UtcNow, "OLADEJI", 100, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", 1, 1, "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1000,1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION",  "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION",  "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(2, "INITIAL DESIGN TO INPROVE VERSION1", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
 
 
 
@@ -122,7 +121,7 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                                 ModelVersionDocument.Create(2, "FIRSTMODELNAME",2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1", Guid.NewGuid()),
                                 ModelVersionDocument.Create(1, "SECONDMODELNAME",1, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME1.pdf", DateTime.UtcNow,"USER1",   Guid.NewGuid()),
                                 ModelVersionDocument.Create(2, "SECONDMODELNAME", 2, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME2.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid()),
-                                ModelVersionDocument.Create(3, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
+                              //  ModelVersionDocument.Create(3, "SECONDMODELNAME", 3, "DOC DESCRPTION", "WIRING","DIVENAME","DRIVEPATH", Guid.NewGuid(), "DOCNAME3.pdf", DateTime.UtcNow, "USER1", Guid.NewGuid())
                             };
                             ctx.ModelVersionDocuments.AddRange(data);
                             ctx.SaveChanges();

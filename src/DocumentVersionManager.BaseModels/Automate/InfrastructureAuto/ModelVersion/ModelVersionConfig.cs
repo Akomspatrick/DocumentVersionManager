@@ -11,7 +11,6 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.Property(e => e.VersionDescription).HasMaxLength(160); 
             entity.Property(e => e.ModelVersionName).HasMaxLength(32); 
             entity.Property(e => e.ModelName).HasMaxLength(32); 
-            entity.Property(e => e.ProcessFlowGroupName).HasMaxLength(32); 
             entity.Property(e => e.DefaultTestingMode).HasMaxLength(32); 
             entity.Property(e => e.UserName).HasMaxLength(32); 
             entity.Property(e => e.NominalOutput).HasPrecision(18,6); 
@@ -21,7 +20,6 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.Property(e => e.ShellMaterialName).HasMaxLength(32); 
             entity.Property(e => e.Capacity).IsRequired(); 
             entity.HasOne<Model>(e => e.Model).WithMany(ad => ad.ModelVersions).HasForeignKey(e => new {e.ModelName});
-            entity.HasOne<ProcessFlowGroup>(e => e.ProcessFlowGroup).WithMany(ad => ad.ModelVersions).HasForeignKey(e => new {e.ProcessFlowGroupName});
             entity.HasOne<ShellMaterial>(e => e.ShellMaterial).WithMany(ad => ad.ModelVersions).HasForeignKey(e => new {e.ShellMaterialName});
             
         }

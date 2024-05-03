@@ -9,13 +9,13 @@ namespace DocumentVersionManager.Domain.Entities
         public string ModelVersionName    { get; init; }  = string.Empty; 
         public Model Model    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
-        public string ProcessFlowGroupName    { get; init; }  = string.Empty; 
         public string DefaultTestingMode    { get; init; }  = string.Empty; 
         public DateTime Timestamp    { get; init; } 
         public string UserName    { get; init; }  = string.Empty; 
         private  List <ModelVersionDocument> _ModelVersionDocuments { get;  set;}  = new List<ModelVersionDocument>();
         public  IReadOnlyCollection<ModelVersionDocument> ModelVersionDocuments => _ModelVersionDocuments;
         public Int32 Capacity    { get; init; } 
+        public Int32 TestCapacity    { get; init; } 
         public double? NominalOutput    { get; init; } 
         public decimal? NominalOutputPercentage    { get; init; } 
         public decimal? NonlinearityPercentage    { get; init; } 
@@ -32,20 +32,17 @@ namespace DocumentVersionManager.Domain.Entities
         public string? CCNumber    { get; init; }  = string.Empty; 
         public string? AccuracyClass    { get; init; }  = string.Empty; 
         public string? Application    { get; init; }  = string.Empty; 
-        public Int32? TemperingHardnessLow    { get; init; } 
-        public Int32? TemperingHardnessHigh    { get; init; } 
         public string? NTEPCertificationId    { get; init; }  = string.Empty; 
         public DateTime? NTEPCertificationTimestamp    { get; init; } 
         public string? OIMLCertificationId    { get; init; }  = string.Empty; 
         public DateTime? OIMLCertificationTimestamp    { get; init; } 
         public bool TestPointDirection    { get; init; } 
         public ShellMaterial ShellMaterial    { get; init; } 
-        public ProcessFlowGroup ProcessFlowGroup    { get; init; } 
         private  List <TestPoint> _TestPoints { get;  set;}  = new List<TestPoint>();
         public  IReadOnlyCollection<TestPoint> TestPoints => _TestPoints;
         // public Guid GuidId    { get; init; } 
         
-        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  ProcessFlowGroupName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, bool  alloy, Int32  defaultCableLength, Int32  numberOfGauges, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, Int32  temperingHardnessLow, Int32  temperingHardnessHigh, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, bool  testPointDirection, Guid  guidId)
+        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, Int32  testCapacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, bool  alloy, Int32  defaultCableLength, Int32  numberOfGauges, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, string  nTEPCertificationId, DateTime  nTEPCertificationTimestamp, string  oIMLCertificationId, DateTime  oIMLCertificationTimestamp, bool  testPointDirection, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -57,11 +54,11 @@ namespace DocumentVersionManager.Domain.Entities
             VersionDescription = versionDescription ,
             ModelVersionName = modelVersionName ,
             ModelName = modelName ,
-            ProcessFlowGroupName = ProcessFlowGroupName ,
             DefaultTestingMode = defaultTestingMode ,
             Timestamp = timestamp ,
             UserName = userName ,
             Capacity = capacity ,
+            TestCapacity = testCapacity ,
             NominalOutput = nominalOutput ,
             NominalOutputPercentage = nominalOutputPercentage ,
             NonlinearityPercentage = nonlinearityPercentage ,
@@ -78,8 +75,6 @@ namespace DocumentVersionManager.Domain.Entities
             CCNumber = cCNumber ,
             AccuracyClass = accuracyClass ,
             Application = application ,
-            TemperingHardnessLow = temperingHardnessLow ,
-            TemperingHardnessHigh = temperingHardnessHigh ,
             NTEPCertificationId = nTEPCertificationId ,
             NTEPCertificationTimestamp = nTEPCertificationTimestamp ,
             OIMLCertificationId = oIMLCertificationId ,

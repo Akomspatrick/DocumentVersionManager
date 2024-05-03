@@ -20,7 +20,7 @@ namespace DocumentVersionManager.Domain.Tests
             var guidId = Guid.Empty;
             var PropertyName = "ModelType Guid value cannot be empty guidId";
             //Act
-            Action act = () => ModelType.Create(modelTypeName, guidId);
+            Action act = () => ModelType.Create(modelTypeName, Faker.Name.First(), guidId);
 
             //Assert
             act.Should().Throw<ArgumentException>().WithMessage($"*{PropertyName}*");
@@ -35,7 +35,7 @@ namespace DocumentVersionManager.Domain.Tests
             var modelTypeName = "";
             var guidId = Guid.NewGuid();
             //Act
-            Action act = () => ModelType.Create(null, guidId);
+            Action act = () => ModelType.Create(null, null, guidId);
             //Assert
             act.Should().Throw<ArgumentException>().WithMessage("Value cannot be null. (Parameter 'modelTypeName')");
         }

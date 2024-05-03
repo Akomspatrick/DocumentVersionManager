@@ -21,7 +21,7 @@ namespace DocumentVersionManager.Application.CQRS
         public async Task<Either<GeneralFailure, IEnumerable<ProcessFlowGroupResponseDTO>>> Handle(GetAllProcessFlowGroupQuery request, CancellationToken cancellationToken)
         {
             return (await _ProcessFlowGroupRepository
-                   .GetAllAsync(s => true, new List<string>() { "ModelVersions" }, null, cancellationToken))
+                   .GetAllAsync(s => true, new List<string>() { "ModelTypes" }, null, cancellationToken))
                    .Map(task => task.Select(result => new ProcessFlowGroupResponseDTO(result.ProcessFlowGroupName, result.DefaultTestingMode, result.Description, result.GuidId)));// ;/);
 
         }
