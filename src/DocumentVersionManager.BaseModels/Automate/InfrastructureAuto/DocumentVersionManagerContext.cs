@@ -31,6 +31,5 @@ namespace DocumentVersionManager.Infrastructure.Persistence
         public DbSet<ModelVersionDocument> ModelVersionDocuments { get; private set; }
         public DbSet<ProcessFlowGroup> ProcessFlowGroups { get; private set; }
         public DbSet<TestPoint> TestPoints { get; private set; }
-        public DbSet<ShellMaterial> ShellMaterials { get; private set; }
     }
 }

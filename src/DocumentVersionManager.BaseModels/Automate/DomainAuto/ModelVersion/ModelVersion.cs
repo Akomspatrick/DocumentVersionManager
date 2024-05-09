@@ -25,7 +25,7 @@ namespace DocumentVersionManager.Domain.Entities
         public Int32? SafeLoad    { get; init; } 
         public Int32? UltimateLoad    { get; init; } 
         public string? ShellMaterialName    { get; init; }  = string.Empty; 
-        public Int32? NumberOfGauges    { get; init; } 
+        public Int32? DefaultCableLength    { get; init; } 
         public Int32? Resistance    { get; init; } 
         public string? CCNumber    { get; init; }  = string.Empty; 
         public string? AccuracyClass    { get; init; }  = string.Empty; 
@@ -34,7 +34,7 @@ namespace DocumentVersionManager.Domain.Entities
         public  IReadOnlyCollection<TestPoint> TestPoints => _TestPoints;
         // public Guid GuidId    { get; init; } 
         
-        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, Int32  testCapacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, Int32  numberOfGauges, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, Guid  guidId)
+        public static ModelVersion Create(Int32  modelVersionId, string  versionDescription, string  modelVersionName, string  modelName, string  defaultTestingMode, DateTime  timestamp, string  userName, Int32  capacity, Int32  testCapacity, double  nominalOutput, decimal  nominalOutputPercentage, decimal  nonlinearityPercentage, Int32  minimumDeadLoad, double  vMin, Int32  nMax, Int32  safeLoad, Int32  ultimateLoad, string  shellMaterialName, Int32  defaultCableLength, Int32  resistance, string  cCNumber, string  accuracyClass, string  application, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -60,7 +60,7 @@ namespace DocumentVersionManager.Domain.Entities
             SafeLoad = safeLoad ,
             UltimateLoad = ultimateLoad ,
             ShellMaterialName = shellMaterialName ,
-            NumberOfGauges = numberOfGauges ,
+            DefaultCableLength = defaultCableLength ,
             Resistance = resistance ,
             CCNumber = cCNumber ,
             AccuracyClass = accuracyClass ,

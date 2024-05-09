@@ -1,6 +1,6 @@
 using AutoMapper;
 using DocumentVersionManager.Contracts.RequestDTO.V1;
-using DocumentVersionManager.Contracts.RequestDTO.V1.auto;
+
 using DocumentVersionManager.Domain.Entities;
 namespace DocumentVersionManager.Application.Mapping
 {
@@ -15,7 +15,7 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<ModelCreateRequestDTO, Model>().ReverseMap();
             CreateMap<ModelUpdateRequestDTO, Model>().ReverseMap();
             //CreateMap<ModelDeleteRequestDTO, Model>().ReverseMap();
-        
+
             // ModelType Mappings 
             //CreateMap<ModelTypeGetRequestDTO, ModelType>().ReverseMap();
             //CreateMap<ModelTypeGetRequestByIdDTO, ModelType>().ReverseMap();
@@ -23,7 +23,7 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<ModelTypeCreateRequestDTO, ModelType>().ReverseMap();
             CreateMap<ModelTypeUpdateRequestDTO, ModelType>().ReverseMap();
             //CreateMap<ModelTypeDeleteRequestDTO, ModelType>().ReverseMap();
-        
+
             // ModelVersion Mappings 
             //CreateMap<ModelVersionGetRequestDTO, ModelVersion>().ReverseMap();
             //CreateMap<ModelVersionGetRequestByIdDTO, ModelVersion>().ReverseMap();
@@ -31,7 +31,7 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<ModelVersionCreateRequestDTO, ModelVersion>().ReverseMap();
             CreateMap<ModelVersionUpdateRequestDTO, ModelVersion>().ReverseMap();
             //CreateMap<ModelVersionDeleteRequestDTO, ModelVersion>().ReverseMap();
-        
+
             // ModelVersionDocument Mappings 
             //CreateMap<ModelVersionDocumentGetRequestDTO, ModelVersionDocument>().ReverseMap();
             //CreateMap<ModelVersionDocumentGetRequestByIdDTO, ModelVersionDocument>().ReverseMap();
@@ -39,7 +39,7 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<ModelVersionDocumentCreateRequestDTO, ModelVersionDocument>().ReverseMap();
             CreateMap<ModelVersionDocumentUpdateRequestDTO, ModelVersionDocument>().ReverseMap();
             //CreateMap<ModelVersionDocumentDeleteRequestDTO, ModelVersionDocument>().ReverseMap();
-        
+
             // ProcessFlowGroup Mappings 
             //CreateMap<ProcessFlowGroupGetRequestDTO, ProcessFlowGroup>().ReverseMap();
             //CreateMap<ProcessFlowGroupGetRequestByIdDTO, ProcessFlowGroup>().ReverseMap();
@@ -47,7 +47,7 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<ProcessFlowGroupCreateRequestDTO, ProcessFlowGroup>().ReverseMap();
             CreateMap<ProcessFlowGroupUpdateRequestDTO, ProcessFlowGroup>().ReverseMap();
             //CreateMap<ProcessFlowGroupDeleteRequestDTO, ProcessFlowGroup>().ReverseMap();
-        
+
             // TestPoint Mappings 
             //CreateMap<TestPointGetRequestDTO, TestPoint>().ReverseMap();
             //CreateMap<TestPointGetRequestByIdDTO, TestPoint>().ReverseMap();
@@ -55,23 +55,23 @@ namespace DocumentVersionManager.Application.Mapping
             //CreateMap<TestPointCreateRequestDTO, TestPoint>().ReverseMap();
             CreateMap<TestPointUpdateRequestDTO, TestPoint>().ReverseMap();
             //CreateMap<TestPointDeleteRequestDTO, TestPoint>().ReverseMap();
-        
+
             // ShellMaterial Mappings 
             //CreateMap<ShellMaterialGetRequestDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialGetRequestByIdDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialGetRequestByGuidDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialCreateRequestDTO, ShellMaterial>().ReverseMap();
-            CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
+            //   CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialDeleteRequestDTO, ShellMaterial>().ReverseMap();
-        
+
             // ShellMaterial Mappings 
             //CreateMap<ShellMaterialGetRequestDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialGetRequestByIdDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialGetRequestByGuidDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialCreateRequestDTO, ShellMaterial>().ReverseMap();
-            CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
+            // CreateMap<ShellMaterialUpdateRequestDTO, ShellMaterial>().ReverseMap();
             //CreateMap<ShellMaterialDeleteRequestDTO, ShellMaterial>().ReverseMap();
-        
+
         }
-        }
+    }
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DocumentVersionManagerContext))]
-    [Migration("20240426171202_firstsss")]
-    partial class firstsss
+    [Migration("20240509214047_Test2")]
+    partial class Test2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,9 +76,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<string>("AccuracyClass")
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("Alloy")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Application")
                         .HasColumnType("longtext");
 
@@ -107,12 +104,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
-                    b.Property<string>("NTEPCertificationId")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("NTEPCertificationTimestamp")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<double?>("NominalOutput")
                         .HasPrecision(18, 6)
                         .HasColumnType("double");
@@ -124,15 +115,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.Property<decimal?>("NonlinearityPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("decimal(18,6)");
-
-                    b.Property<int?>("NumberOfGauges")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OIMLCertificationId")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("OIMLCertificationTimestamp")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("Resistance")
                         .HasColumnType("int");
@@ -146,9 +128,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<int>("TestCapacity")
                         .HasColumnType("int");
-
-                    b.Property<bool>("TestPointDirection")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime(6)");
@@ -176,8 +155,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.HasKey("ModelVersionId", "ModelName");
 
                     b.HasIndex("ModelName");
-
-                    b.HasIndex("ShellMaterialName");
 
                     b.ToTable("ModelVersions");
                 });
@@ -262,23 +239,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     b.ToTable("ProcessFlowGroups");
                 });
 
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
-                {
-                    b.Property<string>("ShellMaterialName")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
-
-                    b.Property<bool>("Alloy")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<Guid>("GuidId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("ShellMaterialName");
-
-                    b.ToTable("ShellMaterials");
-                });
-
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.TestPoint", b =>
                 {
                     b.Property<int>("ModelVersionId")
@@ -293,6 +253,9 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
                     b.Property<Guid>("GuidId")
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
 
                     b.HasKey("ModelVersionId", "ModelName", "CapacityTestPoint");
 
@@ -329,13 +292,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DocumentVersionManager.Domain.Entities.ShellMaterial", "ShellMaterial")
-                        .WithMany("ModelVersions")
-                        .HasForeignKey("ShellMaterialName");
-
                     b.Navigation("Model");
-
-                    b.Navigation("ShellMaterial");
                 });
 
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ModelVersionDocument", b =>
@@ -380,11 +337,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
             modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ProcessFlowGroup", b =>
                 {
                     b.Navigation("ModelTypes");
-                });
-
-            modelBuilder.Entity("DocumentVersionManager.Domain.Entities.ShellMaterial", b =>
-                {
-                    b.Navigation("ModelVersions");
                 });
 #pragma warning restore 612, 618
         }

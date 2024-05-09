@@ -1,6 +1,4 @@
-﻿using Asp.Versioning;
-using AutoMapper;
-using DocumentVersionManager.Api.Mapping;
+﻿
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 namespace DocumentVersionManager.Api.Controllers

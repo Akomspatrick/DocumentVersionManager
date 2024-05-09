@@ -63,6 +63,5 @@ namespace DocumentVersionManager.Api
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-
     }
 }

@@ -86,10 +86,20 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<ModelVersion>
                                {
-                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME", "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100, 1000,1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 2, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", true, 20, 2, 2, "CCNUMBER", "CLASS", "APPLICATION",  "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION",  "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
-                                ModelVersion.Create(2, "INITIAL DESIGN TO INPROVE VERSION1", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",  "MANUAL", DateTime.UtcNow, "OLADEJI", 100,1000, 1, 1, 1, 1, 1, 1, 1, 1, "SHELLMATERIAL1", true, 20, 1, 1, "CCNUMBER", "CLASS", "APPLICATION", "NTEPCERTIFICATIONID", DateTime.UtcNow, "OIMLCERTIFICATIONID1", DateTime.UtcNow, true, Guid.NewGuid()),
+                                ModelVersion.Create(1, "SPECIAL DESIGN", "FIRST_VERSION_FIRSTMODEL_NAME", "FIRSTMODELNAME",
+                                "AUTOMATIC", DateTime.UtcNow, "OLADEJI", 100,100, 1000,
+                                1, 1, 1, 1, 1, 1, 1,
+                                "SHELLMATERIAL1",  20, 1,  "CCNUMBER", "CLASS", "APPLICATION",   Guid.NewGuid()),
+                                ModelVersion.Create(2, "AUTO DESIGN TO COMBAT SPLIILING", "SECOND_VERSION_FIRSTMODELNAME", "FIRSTMODELNAME",
+                                "MANUAL", DateTime.UtcNow, "OLADEJI", 100,100,1000,
+                                2, 2, 2, 2, 2, 2,2
+                                , "SHELLMATERIAL1",  20,  2, "CCNUMBER", "CLASS", "APPLICATION",  Guid.NewGuid()),
+                                ModelVersion.Create(1, "INITIAL DESIGN", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",
+                                "MANUAL", DateTime.UtcNow, "OLADEJI", 100,100,1000,
+                                1, 1, 1, 1, 1, 1,  1,
+                                "SHELLMATERIAL1",  20, 1,  "CCNUMBER", "CLASS", "APPLICATION",   Guid.NewGuid()),
+                                ModelVersion.Create(2, "INITIAL DESIGN TO INPROVE VERSION1", "FIRST_VERSION_SECONDMODELNAME", "SECONDMODELNAME",
+                                "MANUAL", DateTime.UtcNow, "OLADEJI", 100,100, 1000, 2, 2, 2, 2, 2, 2, 2, "SHELLMATERIAL1", 20, 2, "CCNUMBER", "CLASS", "APPLICATION", Guid.NewGuid()),
 
 
 
@@ -133,11 +143,11 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         {
                             var data = new List<TestPoint>
                             {
-                                TestPoint.Create( 1, "FIRSTMODELNAME",10000, Guid.NewGuid()),
-                                TestPoint.Create(1,"FIRSTMODELNAME",  2000, Guid.NewGuid()),
-                                TestPoint.Create(1, "FIRSTMODELNAME", 3000, Guid.NewGuid()),
-                                TestPoint.Create(1, "FIRSTMODELNAME", 4000, Guid.NewGuid()),
-                                TestPoint.Create(1, "SECONDMODELNAME", 49, Guid.NewGuid())
+                                TestPoint.Create( 1, "FIRSTMODELNAME",1,10000, Guid.NewGuid()),
+                                TestPoint.Create(1,"FIRSTMODELNAME",  2,2000, Guid.NewGuid()),
+                                TestPoint.Create(1, "FIRSTMODELNAME", 3,3000, Guid.NewGuid()),
+                                TestPoint.Create(1, "FIRSTMODELNAME", 4,4000, Guid.NewGuid()),
+                                TestPoint.Create(1, "SECONDMODELNAME", 5,49, Guid.NewGuid())
                             };
                             ctx.TestPoints.AddRange(data);
                             ctx.SaveChanges();

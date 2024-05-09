@@ -63,15 +63,5 @@ namespace DocumentVersionManager.Api
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class ShellMaterial
-        {
-            public const string Controller = "ShellMaterials";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DocumentVersionManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class Test2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,21 +29,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProcessFlowGroups", x => x.ProcessFlowGroupName);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "ShellMaterials",
-                columns: table => new
-                {
-                    ShellMaterialName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Alloy = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShellMaterials", x => x.ShellMaterialName);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -108,6 +93,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     UserName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Capacity = table.Column<int>(type: "int", nullable: false),
+                    TestCapacity = table.Column<int>(type: "int", nullable: false),
                     NominalOutput = table.Column<double>(type: "double", precision: 18, scale: 6, nullable: true),
                     NominalOutputPercentage = table.Column<decimal>(type: "decimal(18,6)", precision: 18, scale: 6, nullable: true),
                     NonlinearityPercentage = table.Column<decimal>(type: "decimal(18,6)", precision: 18, scale: 6, nullable: true),
@@ -118,9 +104,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     UltimateLoad = table.Column<int>(type: "int", nullable: true),
                     ShellMaterialName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Alloy = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     DefaultCableLength = table.Column<int>(type: "int", nullable: true),
-                    NumberOfGauges = table.Column<int>(type: "int", nullable: true),
                     Resistance = table.Column<int>(type: "int", nullable: true),
                     CCNumber = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -128,15 +112,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Application = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TemperingHardnessLow = table.Column<int>(type: "int", nullable: true),
-                    TemperingHardnessHigh = table.Column<int>(type: "int", nullable: true),
-                    NTEPCertificationId = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NTEPCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    OIMLCertificationId = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OIMLCertificationTimestamp = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    TestPointDirection = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
@@ -148,11 +123,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                         principalTable: "Models",
                         principalColumn: "ModelName",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ModelVersions_ShellMaterials_ShellMaterialName",
-                        column: x => x.ShellMaterialName,
-                        principalTable: "ShellMaterials",
-                        principalColumn: "ShellMaterialName");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -200,6 +170,7 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                     ModelName = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CapacityTestPoint = table.Column<int>(type: "int", nullable: false),
+                    Order = table.Column<int>(type: "int", nullable: false),
                     GuidId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
@@ -228,11 +199,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
                 name: "IX_ModelVersions_ModelName",
                 table: "ModelVersions",
                 column: "ModelName");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ModelVersions_ShellMaterialName",
-                table: "ModelVersions",
-                column: "ShellMaterialName");
         }
 
         /// <inheritdoc />
@@ -249,9 +215,6 @@ namespace DocumentVersionManager.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Models");
-
-            migrationBuilder.DropTable(
-                name: "ShellMaterials");
 
             migrationBuilder.DropTable(
                 name: "ModelTypes");

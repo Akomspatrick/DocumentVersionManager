@@ -37,8 +37,8 @@ namespace DocumentVersionManager.BaseModels.Entities
         [BaseModelBasicAttribute(32, 0, false, false, true)]
         public string? ShellMaterialName { get; init; } = string.Empty;
         // public bool Alloy { get; init; }//  This is on Probation Now
-        // public int? DefaultCableLength { get; init; }
-        public int? NumberOfGauges { get; init; }
+        public int? DefaultCableLength { get; init; }
+        //public int? NumberOfGauges { get; init; }
         public int? Resistance { get; init; }
         public string? CCNumber { get; init; }
         public string? AccuracyClass { get; init; } = string.Empty;
