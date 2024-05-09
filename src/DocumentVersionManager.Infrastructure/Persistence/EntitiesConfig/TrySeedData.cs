@@ -68,19 +68,19 @@ namespace DocumentVersionManager.Infrastructure.Persistence
                         //                Model.Create("SECONDMODELNAME", "FIRSTMODELTYPE", Guid.Parse("7808711f-544a-423d-8d99-f00c31e35be5")),
                         //               Model.Create("THIRDMODELNAME", "SECONDMODELTYPE", Guid.Parse("58dcf5c5-5a00-4ffa-bb37-9374a8d3c69b")));
 
-                        var shellMaterials = ctx.ShellMaterials.Any();
-                        if (!shellMaterials)
-                        {
-                            var data = new List<ShellMaterial>
-                            {
-                                ShellMaterial.Create("ShellMaterial1", true, Guid.NewGuid()),
-                                ShellMaterial.Create("ShellMaterial2", true, Guid.NewGuid()),
-                                ShellMaterial.Create("ShellMaterial3", true, Guid.NewGuid()),
-                                ShellMaterial.Create("ShellMaterial4", true, Guid.NewGuid())
-                            };
-                            ctx.ShellMaterials.AddRange(data);
-                            ctx.SaveChanges();
-                        }
+                        //var shellMaterials = ctx.ShellMaterials.Any();
+                        //if (!shellMaterials)
+                        //{
+                        //    var data = new List<ShellMaterial>
+                        //    {
+                        //        ShellMaterial.Create("ShellMaterial1", true, Guid.NewGuid()),
+                        //        ShellMaterial.Create("ShellMaterial2", true, Guid.NewGuid()),
+                        //        ShellMaterial.Create("ShellMaterial3", true, Guid.NewGuid()),
+                        //        ShellMaterial.Create("ShellMaterial4", true, Guid.NewGuid())
+                        //    };
+                        //    ctx.ShellMaterials.AddRange(data);
+                        //    ctx.SaveChanges();
+                        //}
                         var modelVersions = ctx.ModelVersions.Any();
                         if (!modelVersions)
                         {

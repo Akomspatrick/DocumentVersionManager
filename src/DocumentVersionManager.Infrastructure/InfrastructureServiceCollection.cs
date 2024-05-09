@@ -23,7 +23,7 @@ namespace DocumentVersionManager.Infrastructure
             services.AddScoped<IModelTypeRepository, ModelTypeRepository>();
             services.AddScoped<IModelVersionRepository, ModelVersionRepository>();
             services.AddScoped<IModelVersionDocumentRepository, ModelVersionDocumentRepository>();
-            services.AddScoped<IShellMaterialRepository, ShellMaterialRepository>();
+
             services.AddScoped<IProcessFlowGroupRepository, ProcessFlowGroupRepository>();
             services.AddScoped<ITestPointRepository, TestPointRepository>();
 

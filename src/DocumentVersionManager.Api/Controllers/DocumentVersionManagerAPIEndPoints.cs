@@ -1,4 +1,4 @@
-namespace DocumentVersionManager.Api.Controllers
+namespace DocumentVersionManager.Api
 {
     public static class DocumentVersionManagerAPIEndPoints
     {
@@ -16,16 +16,6 @@ namespace DocumentVersionManager.Api.Controllers
         public static class ModelType
         {
             public const string Controller = "ModelTypes";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
-        public static class ProcessFlowGroup
-        {
-            public const string Controller = "ProcessFlowGroups";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
@@ -53,19 +43,9 @@ namespace DocumentVersionManager.Api.Controllers
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
-        public static class Product
+        public static class ProcessFlowGroup
         {
-            public const string Controller = "Products";
-            public const string Create = $"{APIBase}/{Controller}";
-            public const string Delete = $"{APIBase}/{Controller}/{{request}}";
-            public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
-            public const string GetByJSONBody = $"{APIBase}/{Controller}/JsonBody";
-            public const string Get = $"{APIBase}/{Controller}";
-            public const string Update = $"{APIBase}/{Controller}";
-        }
-        public static class ShellMaterial
-        {
-            public const string Controller = "ShellMaterials";
+            public const string Controller = "ProcessFlowGroups";
             public const string Create = $"{APIBase}/{Controller}";
             public const string Delete = $"{APIBase}/{Controller}/{{request}}";
             public const string GetById = $"{APIBase}/{Controller}/{{NameOrGuid}}";
@@ -83,5 +63,6 @@ namespace DocumentVersionManager.Api.Controllers
             public const string Get = $"{APIBase}/{Controller}";
             public const string Update = $"{APIBase}/{Controller}";
         }
+
     }
 }

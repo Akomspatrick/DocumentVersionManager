@@ -20,8 +20,6 @@ namespace DocumentVersionManager.Infrastructure.Persistence.EntitiesConfig
             entity.Property(e => e.ShellMaterialName).HasMaxLength(32); 
             entity.Property(e => e.Capacity).IsRequired(); 
             entity.HasOne<Model>(e => e.Model).WithMany(ad => ad.ModelVersions).HasForeignKey(e => new {e.ModelName});
-            entity.HasOne<ShellMaterial>(e => e.ShellMaterial).WithMany(ad => ad.ModelVersions).HasForeignKey(e => new {e.ShellMaterialName});
-            
         }
     }
 }

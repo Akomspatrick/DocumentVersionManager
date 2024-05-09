@@ -10,7 +10,7 @@ namespace DocumentVersionManager.BaseModels.Entities
         [BaseModelBasicAttribute(32, 0, true, true, false)]
         public string ModelName { get; init; } = string.Empty;
 
-
+        public int Order { get; init; }// this is the order of the test points   
 
         [BaseModelBasicAttribute(true)]
         public int CapacityTestPoint { get; init; }// these are the test points/weights for the capacity test

@@ -14,10 +14,12 @@
 
 	<ItemGroup>
 	  <None Remove="Entities\Product_revoved.txt" />
+	  <None Remove="Entities\ShellMaterial_toberemoved.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Include="Entities\Product_revoved.txt" />
+	  <Compile Include="Entities\ShellMaterial_toberemoved.txt" />
 	</ItemGroup>
 
 	<ItemGroup>

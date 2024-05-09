@@ -6,11 +6,12 @@ namespace DocumentVersionManager.Domain.Entities
         private TestPoint(){}
         public Int32 ModelVersionId    { get; init; } 
         public string ModelName    { get; init; }  = string.Empty; 
+        public Int32 Order    { get; init; } 
         public Int32 CapacityTestPoint    { get; init; } 
         public ModelVersion ModelVersion    { get; init; } 
         // public Guid GuidId    { get; init; } 
         
-        public static TestPoint Create(Int32  modelVersionId, string  modelName, Int32  capacityTestPoint, Guid  guidId)
+        public static TestPoint Create(Int32  modelVersionId, string  modelName, Int32  order, Int32  capacityTestPoint, Guid  guidId)
     {
     if (guidId == Guid.Empty)
     {
@@ -20,6 +21,7 @@ namespace DocumentVersionManager.Domain.Entities
         {
             ModelVersionId = modelVersionId ,
             ModelName = modelName ,
+            Order = order ,
             CapacityTestPoint = capacityTestPoint ,
             GuidId = guidId ,
         };

@@ -4,7 +4,7 @@ namespace DocumentVersionManager.BaseModels.Entities
 {
     [BaseModelsForeignKeyAttribute("Model", "ModelVersions")]
 
-    [BaseModelsHardForeignKeyAttribute("ShellMaterial", "ModelVersions", ["ShellMaterialName"])]
+    //[BaseModelsHardForeignKeyAttribute("ShellMaterial", "ModelVersions", ["ShellMaterialName"])]
     public class ModelVersion : BaseEntity
     {
         [BaseModelBasicAttribute(true)]
@@ -36,8 +36,8 @@ namespace DocumentVersionManager.BaseModels.Entities
         public int? UltimateLoad { get; init; }
         [BaseModelBasicAttribute(32, 0, false, false, true)]
         public string? ShellMaterialName { get; init; } = string.Empty;
-        public bool Alloy { get; init; }
-        public int? DefaultCableLength { get; init; }
+        // public bool Alloy { get; init; }//  This is on Probation Now
+        // public int? DefaultCableLength { get; init; }
         public int? NumberOfGauges { get; init; }
         public int? Resistance { get; init; }
         public string? CCNumber { get; init; }
@@ -45,13 +45,13 @@ namespace DocumentVersionManager.BaseModels.Entities
         public string? Application { get; init; } = string.Empty;
         //public int? TemperingHardnessLow { get; init; }
         //public int? TemperingHardnessHigh { get; init; }
-        public string? NTEPCertificationId { get; init; } = string.Empty;
-        public DateTime? NTEPCertificationTimestamp { get; init; }
+        // public string? NTEPCertificationId { get; init; } = string.Empty;
+        // public DateTime? NTEPCertificationTimestamp { get; init; }
 
-        public string? OIMLCertificationId { get; init; } = string.Empty;
-        public DateTime? OIMLCertificationTimestamp { get; init; }
-        public bool TestPointDirection { get; init; } = true;// true = increasing, false = decreasing
-        public required ShellMaterial ShellMaterial { get; init; }
+        // public string? OIMLCertificationId { get; init; } = string.Empty;
+        // public DateTime? OIMLCertificationTimestamp { get; init; }
+        //public bool TestPointDirection { get; init; } = true;// true = increasing, false = decreasing
+        //public required ShellMaterial ShellMaterial { get; init; }
         // public required ProcessFlowGroup ProcessFlowGroup { get; init; }
         public ICollection<TestPoint> TestPoints { get; set; } = new List<TestPoint>();
 
