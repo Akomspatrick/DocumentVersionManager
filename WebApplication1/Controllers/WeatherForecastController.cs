@@ -69,65 +69,65 @@ namespace WebApplication1.Controllers
 
         //}
 
-        //[HttpGet(Name = "GetWeatherForecastqqq")]
-
-        //public IActionResult PrintLabel(string productId)
-        //{
-
-        //    var value = Encrypt.EncryptDecrypt(productId, 10);
-        //    var value2 = Encrypt.EncryptDecrypt(value, 10);
-        //    string base64String = GetBarCodeIStream(productId);
-        //    var path = Path.Combine(_hostingEnvironment.ContentRootPath, "Reports", "Report1.rdlc");
-        //    Random random = new Random();
-        //    string imagetype = "pdf";
-        //    var ImageResult = new ImageResult(imagetype).Create();
-        //    string filename = $"{productId}BarCodelabel_{random.Next(1, 1000000).ToString()}{imagetype}";
-        //    var imagesPath = Path.Combine(_hostingEnvironment.ContentRootPath, "BarcodeLabelImages", filename);
-
-        //    using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-        //    {
-        //        LocalReport locareport = new();
-        //        locareport.LoadReportDefinition(stream);
-        //        locareport.EnableExternalImages = true;
-
-        //        ReportParameterCollection reportParameters = new()
-        //        {
-        //            new ReportParameter("ProductId", productId),
-        //            new ReportParameter("ModelId", "ML002"),
-        //            new ReportParameter("BarCodeImg", base64String, true)
-        //        };
-        //        locareport.SetParameters(reportParameters);
-
-        //        var result = locareport.Render("PDF");
-
-        //        return File(result, "application/pdf", "Thefile");
-
-        //    }
-
-
-        //}
-
         [HttpGet(Name = "GetWeatherForecastqqq")]
 
-        public IActionResult PrintLabelAsFile(string productId)
+        public IActionResult PrintLabel(string productId)
         {
 
-            var value = Encrypt.EncryptDecrypt(productId, 10);
-            var value2 = Encrypt.EncryptDecrypt(value, 10);
-            var barcodeBitmap = CreateQrCode(productId);
-            //Bitmap barcodeBitmap = barcodeWriter.Write(text); // Generate the barcode image
+            //var value = Encrypt.EncryptDecrypt(productId, 10);
+            // var value2 = Encrypt.EncryptDecrypt(value, 10);
+            string base64String = GetBarCodeIStream(productId);
+            var path = Path.Combine(_hostingEnvironment.ContentRootPath, "Reports", "Report1.rdlc");
+            // Random random = new Random();
+            //string imagetype = "pdf";
+            // var ImageResult = new ImageResult(imagetype).Create();
+            // string filename = $"{productId}BarCodelabel_{random.Next(1, 1000000).ToString()}{imagetype}";
+            // var imagesPath = Path.Combine(_hostingEnvironment.ContentRootPath, "BarcodeLabelImages", filename);
 
-            MemoryStream stream = new MemoryStream();
-            barcodeBitmap.Save(stream, ImageFormat.Png); // Save the barcode image to a stream
+            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                LocalReport locareport = new();
+                locareport.LoadReportDefinition(stream);
+                locareport.EnableExternalImages = true;
 
-            return File(stream.ToArray(), "image/png"); // Return the barcode image as a file
+                ReportParameterCollection reportParameters = new()
+                {
+                    new ReportParameter("ProductId", productId),
+                    new ReportParameter("ModelId", "ML002"),
+                    new ReportParameter("BarCodeImg", base64String, true)
+                };
+                locareport.SetParameters(reportParameters);
 
-           
+                var result = locareport.Render("PDF");
+
+                return File(result, "application/pdf", "Thefile");
 
             }
 
 
-        
+        }
+
+        // [HttpGet(Name = "GetWeatherForecastqqq")]
+
+        //public IActionResult PrintLabelAsFile(string productId)
+        //{
+
+        //    var value = Encrypt.EncryptDecrypt(productId, 10);
+        //    var value2 = Encrypt.EncryptDecrypt(value, 10);
+        //    var barcodeBitmap = CreateQrCode(productId);
+        //    //Bitmap barcodeBitmap = barcodeWriter.Write(text); // Generate the barcode image
+
+        //    MemoryStream stream = new MemoryStream();
+        //    barcodeBitmap.Save(stream, ImageFormat.Png); // Save the barcode image to a stream
+
+        //    return File(stream.ToArray(), "image/png"); // Return the barcode image as a file
+
+
+
+        //    }
+
+
+
         //[HttpPost(Name = "GetWeatherForecastqqqsss")]
         //public IActionResult PrintLabel_itisHttpGet(string productId)
         //{
@@ -236,7 +236,7 @@ namespace WebApplication1.Controllers
 
         }
 
-        private static  Bitmap CreateQrCode(string data)
+        private static Bitmap CreateQrCode(string data)
         {
             //specify desired options
             QrCodeEncodingOptions options = new QrCodeEncodingOptions()

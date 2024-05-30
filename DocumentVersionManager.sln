@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{7D
 		CreateModelType.http = CreateModelType.http
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{3C02FF95-E714-481F-9A9A-261B213DC2C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleBarCodeGeneratingAPI", "WebApplication1\SampleBarCodeGeneratingAPI.csproj", "{3C02FF95-E714-481F-9A9A-261B213DC2C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp4RDLC", "WinFormsApp4RDLC\WinFormsApp4RDLC.csproj", "{E5075B41-F08D-4BEB-8916-C9E6ACDA4C14}"
 EndProject
@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Sdk.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Infrastructure.Tests", "tests\DocumentVersionManager.Infrastructure.Tests\DocumentVersionManager.Infrastructure.Tests.csproj", "{1677A561-A802-43F7-94B4-660C33C8CC98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentVersionManager.Api.Tests", "tests\DocumentVersionManager.Api.Tests\DocumentVersionManager.Api.Tests.csproj", "{E348B27D-9583-4886-BACB-4F9A64142DF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentVersionManager.Api.Tests", "tests\DocumentVersionManager.Api.Tests\DocumentVersionManager.Api.Tests.csproj", "{E348B27D-9583-4886-BACB-4F9A64142DF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
