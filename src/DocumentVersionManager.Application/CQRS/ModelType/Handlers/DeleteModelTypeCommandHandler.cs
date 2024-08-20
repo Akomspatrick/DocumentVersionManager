@@ -30,7 +30,13 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
                 .DeleteAsync(x, cancellationToken)
                 .Result);
 
-
+            ////   return (
+            //var res = await _modelTypeRepository
+            // .GetMatch(s => (s.GuidId.Equals(request.DeleteModelTypeDTO.guid)), null, cancellationToken);
+            //var dd=
+            //res.Match(Left: x => x, Right: x => _modelTypeRepository
+            //.DeleteAsync(x, cancellationToken)
+            //.Result);
         }
 
 

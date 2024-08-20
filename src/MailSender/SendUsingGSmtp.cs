@@ -58,6 +58,7 @@ namespace MailSender
             catch (Exception x)
             {
                 //Mail as not sent but error  as suppresed make sure you validate mail on client side
+                Console.WriteLine(x);
             }
 
         }

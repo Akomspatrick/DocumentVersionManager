@@ -25,6 +25,11 @@ namespace DocumentVersionManager.Application.CQRS.ModelType.Handlers
         async Task<Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>> IRequestHandler<GetAllModelTypeQuery, Either<GeneralFailure, IEnumerable<ModelTypeResponseDTO>>>.Handle(GetAllModelTypeQuery request, CancellationToken cancellationToken)
         {
 
+            var result = await _modelTypeRepository
+                  .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken);
+
+
+
             return (await _modelTypeRepository
                   .GetAllAsync(s => true, new List<string>() { "Models" }, null, cancellationToken))
                   .Map(task => task

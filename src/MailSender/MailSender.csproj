@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EASendMail" Version="7.9.2" />
-  </ItemGroup>
-
 </Project>
